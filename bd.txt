@@ -1,0 +1,246 @@
+CREATE TABLE clientes (
+    cpf_cli VARCHAR(11) PRIMARY KEY,
+    nome_cli VARCHAR(50) NOT NULL,
+    email_cli VARCHAR(100) NOT NULL,
+    tel_cli VARCHAR(11),
+    senha_cli VARCHAR(100) NOT NULL,
+    data_nasc_cli DATE NOT NULL
+);
+
+-- Tabela Endereços
+CREATE TABLE enderecos (
+    id_end INT(10) AUTO_INCREMENT PRIMARY KEY,
+    cpf_cli VARCHAR(11) NOT NULL,
+    cep VARCHAR(8) NOT NULL,
+    numero INT(5) NOT NULL,
+    complemento TEXT,
+    FOREIGN KEY (cpf_cli) REFERENCES clientes(cpf_cli)
+);
+
+-- Tabela Carrinhos
+CREATE TABLE carrinhos (
+    id_carrinho INT(10) AUTO_INCREMENT PRIMARY KEY,
+    cpf_cli VARCHAR(11) NOT NULL,
+    FOREIGN KEY (cpf_cli) REFERENCES clientes(cpf_cli)
+);
+
+-- Tabela Categorias
+CREATE TABLE categorias (
+    id_categoria INT(10) AUTO_INCREMENT PRIMARY KEY,
+    nome_categoria VARCHAR(50) NOT NULL
+);
+
+-- Tabela Fornecedores
+CREATE TABLE fornecedores (
+    id_fornecedor INT(10) AUTO_INCREMENT PRIMARY KEY,
+    nome_fornecedor VARCHAR(50) NOT NULL,
+    email_fornecedor VARCHAR(100) NOT NULL
+);
+
+
+-- Tabela Produtos
+CREATE TABLE produtos (
+    id_produto INT(10) AUTO_INCREMENT PRIMARY KEY,
+    id_categoria INT(10),
+    nome_produto VARCHAR(100) NOT NULL,
+    desc_produto TEXT NOT NULL,
+    foto_produto VARCHAR(30) NOT NULL,
+    preco_produto DECIMAL(8, 2) NOT NULL,
+    FOREIGN KEY (id_categoria) REFERENCES categorias(id_categoria)
+);
+
+-- Tabela Itens de Venda
+CREATE TABLE itens_venda (
+    id_item INT(20) AUTO_INCREMENT PRIMARY KEY,
+    id_carrinho INT(10) NOT NULL,
+    id_produto INT(10) NOT NULL,
+    quantidade_item INT(5),
+    FOREIGN KEY (id_carrinho) REFERENCES carrinhos(id_carrinho),
+    FOREIGN KEY (id_produto) REFERENCES produtos(id_produto)
+);
+
+-- Tabela Vendas
+CREATE TABLE vendas (
+    id_venda INT(10) AUTO_INCREMENT PRIMARY KEY,
+    id_carrinho INT(10) NOT NULL,
+    pagamento_venda INT(2) NOT NULL,
+    entrega_venda INT(2) NOT NULL,
+    data_venda datetime NOT NULL,
+    FOREIGN KEY (id_carrinho) REFERENCES carrinhos(id_carrinho)
+);
+
+-- Tabela Estoques
+CREATE TABLE estoques (
+    id_estoque INT(10) AUTO_INCREMENT PRIMARY KEY,
+    id_produto INT(10) NOT NULL,
+    qntd_estoque INT(6) NOT NULL,
+    estoque_min INT(6),
+    estoque_max INT(6),
+    FOREIGN KEY (id_produto) REFERENCES produtos(id_produto)
+);
+
+-- Tabela Compras
+CREATE TABLE compras (
+    id_compra INT(10) AUTO_INCREMENT PRIMARY KEY,
+    id_produto INT(10) NOT NULL,
+    id_fornecedor INT(10) NOT NULL,
+    qntd_compra INT(6) NOT NULL,
+    data_compra datetime NOT NULL,
+    preco_uni_compra DECIMAL(8, 2) NOT NULL,
+    data_venc datetime,
+    FOREIGN KEY (id_produto) REFERENCES produtos(id_produto),
+    FOREIGN KEY (id_fornecedor) REFERENCES fornecedores(id_fornecedor)
+);
+
+-- Tabela Funcionários
+CREATE TABLE funcionarios (
+    id_func INT(10) AUTO_INCREMENT PRIMARY KEY,
+    nome_func VARCHAR(50) NOT NULL,
+    email_func VARCHAR(100) NOT NULL,
+    senha_func VARCHAR(100) NOT NULL
+);
+
+-- Tabela Logins
+CREATE TABLE logins (
+    id_login INT(10) AUTO_INCREMENT PRIMARY KEY,
+    id_func INT(10) NOT NULL,
+    data_login datetime NOT NULL,
+    FOREIGN KEY (id_func) REFERENCES funcionarios(id_func)
+);
+
+-- Tabela Produto Updates
+CREATE TABLE produto_updates (
+    id_prod_up INT(10) AUTO_INCREMENT PRIMARY KEY,
+    id_produto INT(10) NOT NULL,
+    nome_prod_up VARCHAR(50),
+    desc_prod_up TEXT,
+    preco_prod_up DECIMAL(8, 2),
+    data_prod_up datetime NOT NULL,
+    FOREIGN KEY (id_produto) REFERENCES produtos(id_produto)
+);
+
+-- Índice para melhorar o desempenho da pesquisa pelo nome do cliente
+CREATE INDEX idx_nome_cliente ON clientes(nome_cli);
+
+-- Índice para melhorar o desempenho ao pesquisar pela data de nascimento do cliente
+CREATE INDEX idx_data_nasc_cliente ON clientes(data_nasc_cli);
+
+-- Índice para melhorar o desempenho ao pesquisar o produto pelo nome
+CREATE INDEX idx_nome_produto ON produtos(nome_produto);
+
+-- Índice para melhorar o desempenho ao pesquisar vendas pela data
+CREATE INDEX idx_data_venda ON vendas(data_venda);
+
+-- Índice para melhorar o desempenho ao verificar os dados de login dos clientes
+CREATE INDEX idx_login_cliente ON clientes(email_cli, senha_cli);
+
+-- Índice para melhorar o desempenho ao verificar os dados de login dos funcionários
+CREATE INDEX idx_login_funcionarios ON funcionarios(email_func, senha_func);
+
+-- View para mostrar as compras de produtos
+CREATE VIEW compras_produto AS 
+SELECT 
+p.nome_produto AS 'Produto', 
+p.preco_produto AS 'Preco de Venda', 
+f.nome_fornecedor AS 'Fornecedor', 
+c.qntd_compra AS 'Quantidade Compra', 
+c.data_compra AS 'Data', 
+c.preco_uni_compra AS 'Preço de Compra' 
+FROM compras c 
+JOIN produtos p ON c.id_produto = p.id_produto 
+JOIN fornecedores f ON c.id_fornecedor = f.id_fornecedor;
+
+-- View para mostrar todas as vendas feitas, o cliente e os produtos comprados
+CREATE VIEW view_vendas AS 
+SELECT 
+c.nome_cli AS 'Nome Cliente',
+p.nome_produto AS 'Nome Produto', 
+i.quantidade_item AS 'Quantidade', 
+p.preco_produto AS 'Preço Unitário', 
+p.preco_produto * i.quantidade_item AS 'Preço Final' 
+FROM clientes c 
+JOIN carrinhos ON c.cpf_cli = carrinhos.cpf_cli
+JOIN vendas ON carrinhos.id_carrinho = vendas.id_carrinho
+JOIN itens_venda i ON carrinhos.id_carrinho = i.id_carrinho 
+JOIN produtos p ON i.id_produto = p.id_produto;
+
+-- Trigger para atualizar o estoque após venda
+DELIMITER $$
+CREATE TRIGGER atualiza_estoque_venda
+AFTER INSERT ON vendas
+FOR EACH ROW
+BEGIN
+    UPDATE estoques e
+    JOIN itens_venda iv ON e.id_produto = iv.id_produto
+    SET e.qntd_estoque = e.qntd_estoque - iv.quantidade_item
+    WHERE iv.id_carrinho = NEW.id_carrinho;
+END$$
+DELIMITER ;
+
+-- Trigger para atualizar o estoque quando o produto for comprado
+DELIMITER $$
+CREATE TRIGGER atualiza_estoque_compra
+AFTER INSERT ON compras
+FOR EACH ROW
+BEGIN
+    UPDATE estoques e
+    SET e.qntd_estoque = e.qntd_estoque + NEW.qntd_compra    
+    WHERE e.id_produto = NEW.id_produto;
+END$$
+DELIMITER ;
+
+-- Trigger para fazer auditoria do update dos produtos 
+DELIMITER $$
+CREATE TRIGGER auditoria_update_produtos
+BEFORE UPDATE ON produtos
+FOR EACH ROW 
+BEGIN
+INSERT INTO produto_updates 
+SET	id_produto = OLD.id_produto,
+nome_prod_up = OLD.nome_produto,
+desc_prod_up = OLD.desc_produto,
+preco_prod_up = OLD.preco_produto,
+data_prod_up = NOW();
+END$$
+DELIMITER ;
+
+DELIMITER $$
+
+CREATE PROCEDURE valida_cpf(IN cpf VARCHAR(11), OUT is_valid BOOLEAN)
+BEGIN
+    DECLARE sum1, sum2, digit1, digit2, i, num INT;
+    
+    -- Inicializar variáveis
+    SET sum1 = 0;
+    SET sum2 = 0;
+    SET is_valid = TRUE;
+    
+    -- Validar o tamanho do CPF
+    IF LENGTH(cpf) != 11 THEN
+        SET is_valid = FALSE;
+    ELSE
+        -- Calcular o primeiro dígito verificador
+        SET i = 1;
+        WHILE i <= 9 DO
+            SET num = CAST(SUBSTRING(cpf, i, 1) AS UNSIGNED);
+            SET sum1 = sum1 + num * (11 - i);
+            SET sum2 = sum2 + num * (12 - i);
+            SET i = i + 1;
+        END WHILE;
+        
+        SET digit1 = (sum1 * 10) % 11;
+        IF digit1 = 10 THEN SET digit1 = 0; END IF;
+        
+        -- Calcular o segundo dígito verificador
+        SET sum2 = sum2 + digit1 * 2;
+        SET digit2 = (sum2 * 10) % 11;
+        IF digit2 = 10 THEN SET digit2 = 0; END IF;
+        
+        -- Comparar os dígitos verificadores calculados com os fornecidos
+        IF digit1 != CAST(SUBSTRING(cpf, 10, 1) AS UNSIGNED) OR digit2 != CAST(SUBSTRING(cpf, 11, 1) AS UNSIGNED) THEN
+            SET is_valid = FALSE;
+        END IF;
+    END IF;
+END$$
+
+DELIMITER ;

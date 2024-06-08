@@ -1,0 +1,24 @@
+.btn-indigo {
+    color: white;
+    background-color: #6610f2;
+}
+
+.btn-indigo:focus-visible {
+    color: white;
+    background-color: #510ebd;
+    border-color: #6723d4;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgba(102, 16, 242, .5);
+}
+
+.btn-check:checked+.btn-indigo, .btn.active, .btn.show, .btn-indigo:first-child:active, :not(.btn-check)+.btn-indigo:active  {
+    color:white;
+    background-color:  #510ebd;
+    border-color:#6723d4;
+}
+
+.btn-indigo:hover {
+    color:white;
+    background-color:  #510ebd;
+    border-color:#6723d4;
+}
