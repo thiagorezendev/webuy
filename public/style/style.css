@@ -3,6 +3,10 @@
     background-color: #6610f2;
 }
 
+.text-indigo {
+    color: #6610f2;
+}
+
 .btn-indigo:focus-visible {
     color: white;
     background-color: #510ebd;

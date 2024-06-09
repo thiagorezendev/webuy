@@ -12,7 +12,7 @@ Route::get('/login', function () {
 
 Route::get('/cadastro', function () {
     return view('main.cadastro');
-});
+})->name('cadastro');
 
 Route::get('/pagamento', function () {
     return view('main.pagamento');
