@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FornecedorController;
 
 Route::get('/', function () {
     return view('main.home');
@@ -25,3 +26,5 @@ Route::get('/pagamento', function () {
 Route::get('/pagamento', function () {
     return view('main.pagamento');
 })->name('adm.home');
+
+Route::resource('fornecedor', FornecedorController::class);
