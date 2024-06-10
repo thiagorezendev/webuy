@@ -14,6 +14,14 @@ Route::get('/cadastro', function () {
     return view('main.cadastro');
 })->name('cadastro');
 
+Route::get('/sobre', function () {
+    return view('main.sobre');
+})->name('sobre');
+
 Route::get('/pagamento', function () {
     return view('main.pagamento');
 });
+
+Route::get('/pagamento', function () {
+    return view('main.pagamento');
+})->name('adm.home');

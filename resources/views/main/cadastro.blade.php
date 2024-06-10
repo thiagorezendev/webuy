@@ -6,7 +6,7 @@
 <main class="container-sm container-md container-lg p-5 text-center mt-3 mb-3">
     <form class="form-register">
         <a href="{{ route('home') }}" class="link-body-emphasis text-decoration-none">
-            <img class="mb-4" src="../images/logo-header-webuy.png" alt="" width="200" height="70">
+            <img class="mb-4" src="../images/logo-webuy.png" alt="" width="200" height="160">
         </a>
         <h1 class="h3 mb-4">Fazer cadastro</h1>
         <h2 class="h5 text-start">Dados Pessoais</h2>
