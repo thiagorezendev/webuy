@@ -3,6 +3,7 @@
 
 @section('main')
 
+@include('layout.color-toggle')
 
 <header class="p-3 mb-3 border-bottom">
   <nav class="navbar navbar-expand-lg">
@@ -32,12 +33,16 @@
         </ul>
         <div class="d-flex justify-content-center">
           <form class="d-flex flex-fill me-2" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
+            <div class="input-group">
+              <span class="input-group-text">
+                <img src="{{ asset('images/icons/search.svg') }}" alt="" width="12" height="12">
+              </span>
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            </div>
           </form>
           <div class="dropdown text-end">
             <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-              <img src="{{ asset('images/people.svg')}}" alt="perfil" width="40" height="40" class="rounded-circle">
+              <img src="{{ asset('images/icons/people.svg')}}" alt="perfil" width="40" height="40" class="rounded-circle">
             </a>
             <ul class="dropdown-menu text-small">
               <li><a class="dropdown-item" href="{{route('login')}}">Entrar</a></li>
@@ -61,7 +66,7 @@
           <p class="card-text">R$ 100,00</p>
           <div class="d-grid gap-2 mx-auto">
             <button class="btn btn-indigo">Ver</button>
-            <button class="btn btn-outline-dark">Adicionar ao Carrinho</button>
+            <button class="btn btn-outline-secondary">Adicionar ao Carrinho</button>
             
           </div>
         </div>

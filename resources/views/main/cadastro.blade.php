@@ -41,7 +41,7 @@
         <input type="email" class="form-control mb-2" id="email" placeholder="Email">
         <input type="password" class="form-control mb-4" id="senha" placeholder="Senha">
         <div class="d-grid d-md-flex gap-2 justify-content-md-end">
-            <button type="button" class="btn btn-outline-dark" id="voltar">Voltar </button>
+            <button type="button" class="btn btn-outline-secondary" id="voltar">Voltar </button>
             <button class="btn btn-indigo" type="submit">Cadastrar</button>
         </div>
         <p class="mt-5 mb-3 text-muted">&copy; 2024 - Lauro e Thiago</p>
