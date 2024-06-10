@@ -1,7 +1,6 @@
-@extends('layout.head')
+
 @section('titulo', 'Home')
 
-@section('main')
   @extends('layout.frame')
   @section('home', 'active')
   @section('content')
@@ -23,4 +22,4 @@
         </div>
     </div>
   @endsection
-@endsection
+

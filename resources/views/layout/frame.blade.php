@@ -1,6 +1,10 @@
+@extends('layout.head')
+
+@section('main')
+
 @include('layout.color-toggle')
 
-<header class="p-1 mb-3 border-bottom">
+<header class="p-3 mb-3 border-bottom">
     <nav class="navbar navbar-expand-lg">
       <div class="container">
         <a href="/" class="d-flex align-items-center me-2 mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
@@ -26,7 +30,7 @@
               <a class="nav-link  @yield('sobre')" href="{{ route('sobre') }}">Sobre</a>
             </li>
           </ul>
-          <div class="d-flex justify-content-center mt-3">
+          <div class="d-flex justify-content-center">
             <form class="d-flex flex-fill me-2" role="search">
               <div class="input-group">
                 <span class="input-group-text">
@@ -67,4 +71,5 @@
     </div>
 </footer>
 
+@endsection
 
