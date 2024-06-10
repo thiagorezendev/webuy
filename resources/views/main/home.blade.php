@@ -18,26 +18,20 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="#">Home</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Link
+              Categorias
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
+              <li><a class="dropdown-item" href="#">Lucas Colen</a></li>
             </ul>
           </li>
           <li class="nav-item">
-            <a class="nav-link disabled" aria-disabled="true">Link</a>
+            <a class="nav-link" href="#">Sobre</a>
           </li>
         </ul>
-        <div class="d-flex align-itens-center">
-          <form class="d-flex me-2" role="search">
+        <div class="d-flex justify-content-center">
+          <form class="d-flex flex-fill me-2" role="search">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success" type="submit">Search</button>
           </form>
@@ -46,11 +40,7 @@
               <img src="{{ asset('images/people.svg')}}" alt="perfil" width="40" height="40" class="rounded-circle">
             </a>
             <ul class="dropdown-menu text-small">
-              <li><a class="dropdown-item" href="#">New project...</a></li>
-              <li><a class="dropdown-item" href="#">Settings</a></li>
-              <li><a class="dropdown-item" href="#">Profile</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Sign out</a></li>
+              <li><a class="dropdown-item" href="{{route('login')}}">Entrar</a></li>
             </ul>
           </div>
         </div>

@@ -5,8 +5,10 @@
 
 <main class="form-signin text-center">
   <form class="">
-    <img class="mb-3" src="../images/logo-header-webuy.png" alt="" width="200" height="70">
-    <h1 class="h3 mb-3 fw-normal">Fazer login</h1>
+    <a href="{{ route('home') }}" class="link-body-emphasis text-decoration-none">
+      <img class="mb-3" src="../images/logo-header-webuy.png" alt="" width="200" height="70">
+    </a>
+    <h1 class="h3 mb-3">Fazer login</h1>
 
     <div class="form-floating mb-2">
       <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">

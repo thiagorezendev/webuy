@@ -33,16 +33,14 @@
     justify-content: center;
     height: 100vh;
     padding: 20px;
-    max-width: 330px;
+    max-width: 450px;
     margin: auto; 
 }
 
-.form-register {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 100vh;
-    padding: 20px;
-    max-width: 330px;
-    margin: auto; 
+
+@media (min-width: 1200px) {
+    .form-register {
+        margin: 0 auto;
+        max-width: 75%;
+    }
 }
