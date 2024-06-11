@@ -22,5 +22,16 @@
     <p>Agradecemos por visitar nosso site e esperamos que sua experiência de compra seja a melhor possível. Se tiver alguma
         dúvida ou sugestão, não hesite em entrar em contato conosco.</p>
     <p>Atenciosamente,<br>Lauro Brant e Thiago Rezende</p>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
 
 @endsection
