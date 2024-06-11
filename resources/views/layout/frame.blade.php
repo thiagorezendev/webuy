@@ -2,7 +2,7 @@
 
 @section('main')
 
-@include('layout.color-toggle')
+@include('layout.components.color-toggle')
 
   <header class="p-3 mb-3 border-bottom h-25">
       <nav class="navbar navbar-expand-lg">
@@ -44,7 +44,7 @@
                   <img src="{{ asset('images/icons/people.svg')}}" alt="perfil" width="40" height="40" class="rounded-circle">
                 </a>
                 <ul class="dropdown-menu text-small">
-                  <li><a class="dropdown-item" href="{{route('login')}}">Entrar</a></li>
+                  <li><a class="dropdown-item" href="{{route('cliente.login')}}">Entrar</a></li>
                 </ul>
               </div>
             </div>

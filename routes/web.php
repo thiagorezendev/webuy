@@ -12,15 +12,15 @@ Route::get('/sobre', function () {
 })->name('sobre');
 
 Route::get('/login', function () {
-    return view('cliente.login');
+    return view('main.cliente.login');
 })->name('cliente.login');
 
 Route::get('/cadastro', function () {
-    return view('cliente.create');
+    return view('main.cliente.create');
 })->name('cliente.cadastro');
 
 Route::get('/pagamento', function () {
-    return view('cliente.venda.create');
+    return view('main.cliente.venda.create');
 })->name('cliente.pagamento');
 
 Route::get('/adm', function () {

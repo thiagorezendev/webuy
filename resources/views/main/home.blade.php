@@ -4,7 +4,7 @@
   @extends('layout.frame')
   @section('home', 'active')
   @section('content')
-  @include('layout.produto-modal')
+  @include('layout.components.produto-modal')
     <h1 class="h1 mb-4">Produtos</h1>
     <div class="row" data-masonry='{"percentPosition": true }'>
         <div class="col-sm-6 col-lg-4 mb-4">
