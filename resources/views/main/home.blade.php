@@ -1,7 +1,7 @@
 
 @section('titulo', 'Home')
 
-  @extends('layout.frame')
+  @extends('layout.main-frame')
   @section('home', 'active')
   @section('content')
   @include('layout.components.produto-modal')

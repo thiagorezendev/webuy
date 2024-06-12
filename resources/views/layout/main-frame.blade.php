@@ -7,7 +7,7 @@
   <header class="p-3 mb-3 border-bottom h-25">
       <nav class="navbar navbar-expand-lg">
         <div class="container">
-          <a href="/" class="d-flex align-items-center me-2 mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
+          <a href="{{ route('main.home') }}" class="d-flex align-items-center me-2 mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
             <img src="{{ asset('images/logo-webuy-vert-2.png')}}" alt="logo webuy" width="100" height="35">
           </a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
@@ -16,7 +16,7 @@
           <div class="collapse navbar-collapse" id="navbarScroll">
             <ul class="navbar-nav me-auto my-2 my-lg-0">
               <li class="nav-item">
-                <a class="nav-link @yield('home')" href="{{ route('home') }}">Home</a>
+                <a class="nav-link @yield('home')" href="{{ route('main.home') }}">Home</a>
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -27,7 +27,7 @@
                 </ul>
               </li>
               <li class="nav-item">
-                <a class="nav-link  @yield('sobre')" href="{{ route('sobre') }}">Sobre</a>
+                <a class="nav-link  @yield('sobre')" href="{{ route('main.sobre') }}">Sobre</a>
               </li>
             </ul>
             <div class="d-flex justify-content-center">
@@ -60,13 +60,13 @@
   <footer class="border-top">
       <div class="container d-flex flex-wrap justify-content-between align-items-center py-1 my-4">
           <p class="col-md-4 mb-0 text-body-secondary">&copy; 2024 WeBuy - <a href="https://github.com/BrantLauro" target="_blank" class="text-decoration-none text-body-secondary">Lauro Brant</a> e <a href="https://github.com/thiagorezendev" target="_blank" class="text-decoration-none text-body-secondary">Thiago Rezende</a></p>
-          <a href="{{ route('home') }}" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+          <a href="{{ route('adm.home') }}" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
               <img src="{{ asset('images/logo-webuy-icon.png')}}" alt="logo webuy" width="50" height="50">
           </a>
           <ul class="nav col-md-4 justify-content-end">
-            <li class="nav-item"><a href="{{ route('home') }}" class="nav-link px-2 text-body-secondary">Home</a></li>
-            <li class="nav-item"><a href="{{ route('sobre') }}" class="nav-link px-2 text-body-secondary">Sobre</a></li>
-            <li class="nav-item"><a href="{{ route('adm.home')}}" class="nav-link px-2 text-body-secondary">Administração</a></li>
+            <li class="nav-item"><a href="{{ route('main.home') }}" class="nav-link px-2 text-body-secondary">Home</a></li>
+            <li class="nav-item"><a href="{{ route('main.sobre') }}" class="nav-link px-2 text-body-secondary">Sobre</a></li>
+            <li class="nav-item"><a href="{{ route('adm.login')}}" class="nav-link px-2 text-body-secondary">Administração</a></li>
           </ul>
       </div>
   </footer>

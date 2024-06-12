@@ -1,9 +1,9 @@
-@extends('layout.frame')
+@extends('layout.main-frame')
 @section('titulo', 'Pagamento')
 
 @section('content')
 
-  <main>
+  <main class="mb-5">
     <div class="py-5 text-center">
       <h2>Pagamento</h2>
       <p class="lead">Preencha os campos para concluir sua compra.</p>

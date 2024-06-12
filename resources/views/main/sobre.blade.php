@@ -1,7 +1,7 @@
 @section('titulo', 'Sobre')
 
 
-@extends('layout.frame')
+@extends('layout.main-frame')
 @section('sobre', 'active')
 @section('content')
     <h1 class="h1 mb-4">Sobre</h1>
