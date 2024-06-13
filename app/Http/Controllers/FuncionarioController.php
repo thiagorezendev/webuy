@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\funcionario;
+use App\Funcionario;
 use Illuminate\Http\Request;
 
 class FuncionarioController extends Controller
@@ -34,7 +34,7 @@ class FuncionarioController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(funcionario $funcionario)
+    public function show(Funcionario $funcionario)
     {
         //
     }
@@ -42,7 +42,7 @@ class FuncionarioController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(funcionario $funcionario)
+    public function edit(Funcionario $funcionario)
     {
         //
     }
@@ -50,7 +50,7 @@ class FuncionarioController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, funcionario $funcionario)
+    public function update(Request $request, Funcionario $funcionario)
     {
         //
     }
@@ -58,7 +58,7 @@ class FuncionarioController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(funcionario $funcionario)
+    public function destroy(Funcionario $funcionario)
     {
         //
     }

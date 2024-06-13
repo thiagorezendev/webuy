@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\FornecedorController;
+use App\Http\Controllers\ClienteController;
 
 // rotas da Main
 
@@ -21,9 +21,11 @@ Route::get('/cadastro', function () {
     return view('main.cliente.create');
 })->name('cliente.cadastro');
 
+Route::post('/cadastro', [ClienteController::class,'store'])->name('cliente.store');
+
 Route::get('/perfil', function () {
     return view('main.cliente.create');
-})->name('cliente.cadastro');
+})->name('cliente.perfil');
 
 Route::get('/carrinho', function () {
     return view('main.cliente.carrinho.show');

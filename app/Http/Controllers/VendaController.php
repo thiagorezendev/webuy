@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\venda;
+use App\Venda;
 use Illuminate\Http\Request;
 
 class VendaController extends Controller
@@ -34,7 +34,7 @@ class VendaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(venda $venda)
+    public function show(Venda $venda)
     {
         //
     }
@@ -42,7 +42,7 @@ class VendaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(venda $venda)
+    public function edit(Venda $venda)
     {
         //
     }
@@ -50,7 +50,7 @@ class VendaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, venda $venda)
+    public function update(Request $request, Venda $venda)
     {
         //
     }
@@ -58,7 +58,7 @@ class VendaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(venda $venda)
+    public function destroy(Venda $venda)
     {
         //
     }

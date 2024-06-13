@@ -2,25 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\cliente;
+use App\Models\Cliente;
+use App\Models\Endereco;
 use Illuminate\Http\Request;
 
 class ClienteController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        //
+        return view('main.cliente.create');
     }
 
     /**
@@ -28,13 +22,15 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Cliente::create($request->all());
+        Endereco::create($request->all());
+        return redirect()->back()->with('message','Produto cadastrado com sucesso!');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(cliente $cliente)
+    public function show(Cliente $cliente)
     {
         //
     }
@@ -42,7 +38,7 @@ class ClienteController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(cliente $cliente)
+    public function edit(Cliente $cliente)
     {
         //
     }
@@ -50,7 +46,7 @@ class ClienteController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, cliente $cliente)
+    public function update(Request $request, Cliente $cliente)
     {
         //
     }
@@ -58,7 +54,7 @@ class ClienteController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(cliente $cliente)
+    public function destroy(Cliente $cliente)
     {
         //
     }

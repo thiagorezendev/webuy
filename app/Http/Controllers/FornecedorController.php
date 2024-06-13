@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\fornecedor;
+use App\Fornecedor;
 use Illuminate\Http\Request;
 
 class FornecedorController extends Controller
@@ -34,7 +34,7 @@ class FornecedorController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(fornecedor $fornecedor)
+    public function show(Fornecedor $fornecedor)
     {
         //
     }
@@ -42,7 +42,7 @@ class FornecedorController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(fornecedor $fornecedor)
+    public function edit(Fornecedor $fornecedor)
     {
         //
     }
@@ -50,7 +50,7 @@ class FornecedorController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, fornecedor $fornecedor)
+    public function update(Request $request, Fornecedor $fornecedor)
     {
         //
     }
@@ -58,7 +58,7 @@ class FornecedorController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(fornecedor $fornecedor)
+    public function destroy(Fornecedor $fornecedor)
     {
         //
     }

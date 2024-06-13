@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\categoria;
+use App\Categoria;
 use Illuminate\Http\Request;
 
 class CategoriaController extends Controller
@@ -34,7 +34,7 @@ class CategoriaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(categoria $categoria)
+    public function show(Categoria $categoria)
     {
         //
     }
@@ -42,7 +42,7 @@ class CategoriaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(categoria $categoria)
+    public function edit(Categoria $categoria)
     {
         //
     }
@@ -50,7 +50,7 @@ class CategoriaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, categoria $categoria)
+    public function update(Request $request, Categoria $categoria)
     {
         //
     }
@@ -58,7 +58,7 @@ class CategoriaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(categoria $categoria)
+    public function destroy(Categoria $categoria)
     {
         //
     }

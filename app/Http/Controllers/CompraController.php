@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\compra;
+use App\Compra;
 use Illuminate\Http\Request;
 
 class CompraController extends Controller
@@ -34,7 +34,7 @@ class CompraController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(compra $compra)
+    public function show(Compra $compra)
     {
         //
     }
@@ -42,7 +42,7 @@ class CompraController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(compra $compra)
+    public function edit(Compra $compra)
     {
         //
     }
@@ -50,7 +50,7 @@ class CompraController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, compra $compra)
+    public function update(Request $request, Compra $compra)
     {
         //
     }
@@ -58,7 +58,7 @@ class CompraController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(compra $compra)
+    public function destroy(Compra $compra)
     {
         //
     }
