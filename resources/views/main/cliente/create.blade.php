@@ -5,7 +5,7 @@
 
 <main class="container-sm container-md container-lg p-5 text-center mt-3 mb-3">
     <form class="form-register">
-        <a href="{{ route('home') }}" class="link-body-emphasis text-decoration-none">
+        <a href="{{ route('main.home') }}" class="link-body-emphasis text-decoration-none">
             <img class="mb-4" src="../images/logo-webuy.png" alt="" width="200" height="160">
         </a>
         <h1 class="h3 mb-4">Fazer cadastro</h1>
@@ -41,19 +41,12 @@
         <input type="email" class="form-control mb-2" id="email" placeholder="Email">
         <input type="password" class="form-control mb-4" id="senha" placeholder="Senha">
         <div class="d-grid d-md-flex gap-2 justify-content-md-end">
-            <button type="button" class="btn btn-outline-secondary" id="voltar">Voltar </button>
+            <a class="btn btn-outline-secondary" href="{{ route('main.home') }}">Voltar </a>
             <button class="btn btn-indigo" type="submit">Cadastrar</button>
         </div>
         <p class="mt-5 mb-3 text-muted">&copy; 2024 - Lauro e Thiago</p>
     </form>
 </main>
-
-<script>
-    document.getElementById('voltar').addEventListener('click', function(event) {
-        event.preventDefault();
-        window.location.href = '{{ route('home') }}';
-    });
-</script>
 
 
 @endsection

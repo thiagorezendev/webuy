@@ -50,6 +50,10 @@
     fill: currentColor;
 }
 
+.vh-65 {
+    min-height: 65vh;
+}
+
 @media (min-width: 1200px) {
     .form-register {
         margin: 0 auto;

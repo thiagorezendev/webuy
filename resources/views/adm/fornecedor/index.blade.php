@@ -4,7 +4,7 @@
   @section('fornecedores', 'active')
   @section('content')
     <h1 class="h1 mb-4">Fornecedores</h1>
-    <button class="btn btn-indigo mb-4" type="button">Novo</button>
+    <a class="btn btn-indigo mb-4" href="{{ route('adm.fornecedor.create')}}">Novo</a>
     <div class="table-responsive">
         <table class="table table-striped table-hover">
             <thead>

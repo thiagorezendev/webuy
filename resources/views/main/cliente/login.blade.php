@@ -5,7 +5,7 @@
 
 <main class="form-signin text-center">
   <form class="">
-    <a href="{{ route('home') }}" class="link-body-emphasis text-decoration-none">
+    <a href="{{ route('main.home') }}" class="link-body-emphasis text-decoration-none">
       <img class="mb-3" src="../images/logo-webuy.png" alt="" width="200" height="160">
     </a>
     <h1 class="h3 mb-3">Fazer login</h1>

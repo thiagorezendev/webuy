@@ -19,21 +19,21 @@
           <li class="list-group-item d-flex justify-content-between lh-sm">
             <div>
               <h6 class="my-0">Capivara de plástico</h6>
-              <small class="text-muted">Animal de estimação</small>
+              <small class="text-muted">Quantidade: 1</small>
             </div>
             <span class="text-muted">R$12</span>
           </li>
           <li class="list-group-item d-flex justify-content-between lh-sm">
             <div>
               <h6 class="my-0">Lápis inapagavel</h6>
-              <small class="text-muted">Escrita que fica para sempre</small>
+              <small class="text-muted">Quantidade: 1</small>
             </div>
             <span class="text-muted">R$8</span>
           </li>
           <li class="list-group-item d-flex justify-content-between lh-sm">
             <div>
               <h6 class="my-0">Cueca freada</h6>
-              <small class="text-muted">Pra quem curte uma cueca diferente</small>
+              <small class="text-muted">Quantidade: 1</small>
             </div>
             <span class="text-muted">R$5</span>
           </li>

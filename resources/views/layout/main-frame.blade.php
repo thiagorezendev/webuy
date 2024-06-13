@@ -45,6 +45,7 @@
                 </a>
                 <ul class="dropdown-menu text-small">
                   <li><a class="dropdown-item" href="{{route('cliente.login')}}">Entrar</a></li>
+                  <li><a class="dropdown-item" href="{{route('cliente.carrinho')}}">Carrinho</a></li>
                 </ul>
               </div>
             </div>
@@ -53,7 +54,7 @@
       </nav>
   </header>
   
-  <div class="container mb-4">
+  <div class="container mb-4 vh-65">
     @yield('content')
   </div>
   

@@ -4,7 +4,7 @@
   @section('categorias', 'active')
   @section('content')
     <h1 class="h1 mb-4">Categorias</h1>
-    <button class="btn btn-indigo mb-4" type="button">Nova</button>
+    <a class="btn btn-indigo mb-4" href="{{ route('adm.categoria.create') }}">Nova</a>
     <div class="table-responsive">
         <table class="table table-striped table-hover">
             <thead>

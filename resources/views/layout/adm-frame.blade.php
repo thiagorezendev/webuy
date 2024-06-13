@@ -4,7 +4,7 @@
 
 @include('layout.components.color-toggle')
 
-  <header class="p-3 mb-3 border-bottom h-25">
+  <header class="p-3 mb-3 border-bottom">
       <nav class="navbar navbar-expand-lg">
         <div class="container">
           <a href="{{ route('adm.home') }}" class="d-flex align-items-center me-2 mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
@@ -54,7 +54,7 @@
       </nav>
   </header>
   
-  <div class="container mb-4 flex-1">
+  <div class="container mb-4 vh-65">
     @yield('content')
   </div>
   
