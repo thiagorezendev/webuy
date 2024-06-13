@@ -21,6 +21,10 @@ Route::get('/cadastro', function () {
     return view('main.cliente.create');
 })->name('cliente.cadastro');
 
+Route::get('/perfil', function () {
+    return view('main.cliente.create');
+})->name('cliente.cadastro');
+
 Route::get('/carrinho', function () {
     return view('main.cliente.carrinho.show');
 })->name('cliente.carrinho');
