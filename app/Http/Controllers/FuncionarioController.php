@@ -10,7 +10,8 @@ class FuncionarioController extends Controller {
      * Display a listing of the resource.
      */
     public function index() {
-        return view('adm.funcionario.index');
+        $funcionarios = Funcionario::all();
+        return view('adm.funcionario.index', compact('funcionarios'));
     }
 
     public function login() {

@@ -16,21 +16,20 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                <th scope="row">1</th>
-                <td>Mart Minas</td>
-                <td>martminas@gmail.com</td>
-                <td>
-                    <a href="#" class="btn btn-success mb-1 mb-md-0">Editar</a>
-                    <form action="" method="post"
-                        style="display: inline;">
-                        {{ csrf_field() }}
-                        {{ method_field('DELETE') }}
-                        <button type="submit" class="btn btn-danger mb-1 mb-md-0"
-                            onclick="return confirm('Tem certeza que deseja excluir?')">Excluir</button>
-                    </form>
-                </td>
-                </tr>
+                @foreach ($fornecedores as $fornecedor)
+                    <tr>
+                        <th scope="row">{{ $fornecedor->id_fornecedor }}</th>
+                        <td>{{ $fornecedor->nome_fornecedor }}</td>
+                        <td>{{ $fornecedor->email }}</td>
+                        <td>
+                            <a href="{{ route('adm.fornecedor.edit', $fornecedor->id_fornecedor) }}" class="btn btn-success mb-1 mb-md-0">Editar</a>
+                            <form action="{{ route('adm.fornecedor.delete', $fornecedor->id_fornecedor) }}" method="post" style="display: inline;">
+                                {{ csrf_field() }}
+                                {{ method_field('DELETE') }}
+                                <button type="submit" class="btn btn-danger mb-1 mb-md-0" onclick="return confirm('Tem certeza que deseja excluir?')">Excluir</button>
+                            </form>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
     </div>

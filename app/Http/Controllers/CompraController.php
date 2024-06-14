@@ -12,7 +12,8 @@ class CompraController extends Controller {
      * Display a listing of the resource.
      */
     public function index() {
-        return view('adm.compra.index');
+        $compras = Compra::all();
+        return view('adm.compra.index', compact('compras'));
     }
 
     /**

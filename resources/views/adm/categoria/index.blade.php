@@ -16,21 +16,22 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                <th scope="row">1</th>
-                <td>Produto não peressível</td>
-                <td>1</td>
-                <td>
-                    <a href="#" class="btn btn-success mb-1 mb-md-0">Editar</a>
-                    <form action="" method="post"
-                        style="display: inline;">
-                        {{ csrf_field() }}
-                        {{ method_field('DELETE') }}
-                        <button type="submit" class="btn btn-danger mb-1 mb-md-0"
-                            onclick="return confirm('Tem certeza que deseja excluir?')">Excluir</button>
-                    </form>
-                </td>
-                </tr>
+                @foreach ($categorias as $categoria)
+                    <tr>
+                        <th scope="row">{{ $categoria->id_categoria }}</th>
+                        <td>{{ $categoria->nome_categoria }}</td>
+                        {{-- <td>{{ $categoria->produtos->count() }}</td> --}}
+                        <td>Exemplo</td>
+                        <td>
+                            {{-- <a href="{{ route('adm.categoria.show', $categoria->id_categoria) }}" class="btn btn-indigo mb-1 mb-md-0">Ver mais</a> --}}
+                            <a href="{{ route('adm.categoria.edit', $categoria->id_categoria) }}" class="btn btn-success mb-1 mb-md-0">Editar</a>
+                            <form action="{{ route('adm.categoria.delete', $categoria->id_categoria) }}" method="post" style="display: inline;">
+                                {{ csrf_field() }}
+                                {{ method_field('DELETE') }}
+                                <button type="submit" class="btn btn-danger mb-1 mb-md-0" onclick="return confirm('Tem certeza que deseja excluir?')">Excluir</button>
+                            </form>                        
+                    </tr>
+                @endforeach
             </tbody>
         </table>
     </div>

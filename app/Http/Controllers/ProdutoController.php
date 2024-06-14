@@ -12,7 +12,8 @@ class ProdutoController extends Controller {
      * Display a listing of the resource.
      */
     public function index() {
-        return view('adm.produto.index');
+        $produtos = Produto::all();
+        return view('adm.produto.index', compact('produtos'));
     }
 
     /**
@@ -35,7 +36,7 @@ class ProdutoController extends Controller {
      * Display the specified resource.
      */
     public function show(Produto $produto) {
-        //
+        return view('adm.produto.show', compact('produto'));
     }
 
     /**

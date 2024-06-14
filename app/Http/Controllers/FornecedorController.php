@@ -10,7 +10,8 @@ class FornecedorController extends Controller {
      * Display a listing of the resource.
      */
     public function index() {
-        return view('adm.fornecedor.index');
+        $fornecedores = Fornecedor::all();
+        return view('adm.fornecedor.index', compact('fornecedores'));
     }
 
     /**
