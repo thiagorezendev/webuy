@@ -6,25 +6,25 @@ use App\Models\Cliente;
 use App\Models\Endereco;
 use Illuminate\Http\Request;
 
-class ClienteController extends Controller
-{
-
+class ClienteController extends Controller {
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
+    public function create() {
         return view('main.cliente.create');
+    }
+
+    public function login() {
+        return view('main.cliente.login');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         Cliente::create($request->all());
         Endereco::create($request->all());
-        return redirect()->back()->with('message','Produto cadastrado com sucesso!');
+        return redirect()->back()->with('message','Cadastrado com sucesso!');
     }
 
     /**

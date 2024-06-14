@@ -45,7 +45,7 @@
                 </a>
                 <ul class="dropdown-menu text-small">
                   <li><a class="dropdown-item" href="{{route('cliente.login')}}">Entrar</a></li>
-                  <li><a class="dropdown-item" href="{{route('cliente.carrinho')}}">Carrinho</a></li>
+                  <li><a class="dropdown-item" href="{{route('cliente.carrinho', ['cpf_cli' => 1])}}">Carrinho</a></li>
                 </ul>
               </div>
             </div>
@@ -61,7 +61,7 @@
   <footer class="border-top">
       <div class="container d-flex flex-wrap justify-content-between align-items-center py-1 my-4">
           <p class="col-md-4 mb-0 text-body-secondary">&copy; 2024 WeBuy - <a href="https://github.com/BrantLauro" target="_blank" class="text-decoration-none text-body-secondary">Lauro Brant</a> e <a href="https://github.com/thiagorezendev" target="_blank" class="text-decoration-none text-body-secondary">Thiago Rezende</a></p>
-          <a href="{{ route('adm.home') }}" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+          <a href="{{ route('main.home') }}" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
               <img src="{{ asset('images/logo-webuy-icon.png')}}" alt="logo webuy" width="50" height="50">
           </a>
           <ul class="nav col-md-4 justify-content-end">

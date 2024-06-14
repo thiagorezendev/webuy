@@ -5,22 +5,19 @@ namespace App\Http\Controllers;
 use App\Venda;
 use Illuminate\Http\Request;
 
-class VendaController extends Controller
-{
+class VendaController extends Controller {
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        //
+    public function index() {
+        return view('adm.venda.index');
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-        //
+    public function create() {
+        return view('adm.venda.create');
     }
 
     /**
@@ -32,19 +29,10 @@ class VendaController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(Venda $venda)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Venda $venda)
-    {
-        //
+    public function edit(Venda $venda) {
+        return view('adm.venda.edit');
     }
 
     /**

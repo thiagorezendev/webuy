@@ -2,41 +2,30 @@
 
 namespace App\Http\Controllers;
 
-use App\Categoria;
+use App\Models\Categoria;
 use Illuminate\Http\Request;
 
-class CategoriaController extends Controller
-{
+class CategoriaController extends Controller {
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        //
+    public function index() {
+        return view('adm.categoria.index');
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-        //
+    public function create() {
+        return view('adm.categoria.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Categoria $categoria)
-    {
-        //
+    public function store(Request $request) {
+        Categoria::create($request->all());
+        return redirect()->back()->with('message','Cadastrado com sucesso!');
     }
 
     /**

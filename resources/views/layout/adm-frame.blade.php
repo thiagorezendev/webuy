@@ -16,19 +16,19 @@
           <div class="collapse navbar-collapse" id="navbarScroll">
             <ul class="navbar-nav me-auto my-2 my-lg-0">
               <li class="nav-item">
-                <a class="nav-link @yield('produtos')" href="{{ route('adm.produto') }}">Produtos</a>
+                <a class="nav-link @yield('produtos')" href="{{ route('adm.produto.index') }}">Produtos</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link  @yield('categorias')" href="{{ route('adm.categoria') }}">Categorias</a>
+                <a class="nav-link  @yield('categorias')" href="{{ route('adm.categoria.index') }}">Categorias</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link  @yield('compras')" href="{{ route('adm.compra') }}">Compras</a>
+                <a class="nav-link  @yield('compras')" href="{{ route('adm.compra.index') }}">Compras</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link  @yield('fornecedores')" href="{{ route('adm.fornecedor') }}">Fornecedores</a>
+                <a class="nav-link  @yield('fornecedores')" href="{{ route('adm.fornecedor.index') }}">Fornecedores</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link  @yield('funcionarios')" href="{{ route('adm.funcionario') }}">Funcionários</a>
+                <a class="nav-link  @yield('funcionarios')" href="{{ route('adm.funcionario.index') }}">Funcionários</a>
               </li>
             </ul>
             <div class="d-flex justify-content-center">
@@ -65,11 +65,11 @@
               <img src="{{ asset('images/logo-webuy-icon.png')}}" alt="logo webuy" width="50" height="50">
           </a>
           <ul class="nav col-md-5 justify-content-end">
-            <li class="nav-item"><a href="{{ route('adm.produto') }}" class="nav-link px-2 text-body-secondary">Produtos</a></li>
-            <li class="nav-item"><a href="{{ route('adm.categoria') }}" class="nav-link px-2 text-body-secondary">Categorias</a></li>
-            <li class="nav-item"><a href="{{ route('adm.compra')}}" class="nav-link px-2 text-body-secondary">Compras</a></li>
-            <li class="nav-item"><a href="{{ route('adm.fornecedor')}}" class="nav-link px-2 text-body-secondary">Fornecedores</a></li>
-            <li class="nav-item"><a href="{{ route('adm.funcionario')}}" class="nav-link px-2 text-body-secondary">Funcionários</a></li>
+            <li class="nav-item"><a href="{{ route('adm.produto.index') }}" class="nav-link px-2 text-body-secondary">Produtos</a></li>
+            <li class="nav-item"><a href="{{ route('adm.categoria.index') }}" class="nav-link px-2 text-body-secondary">Categorias</a></li>
+            <li class="nav-item"><a href="{{ route('adm.compra.index')}}" class="nav-link px-2 text-body-secondary">Compras</a></li>
+            <li class="nav-item"><a href="{{ route('adm.fornecedor.index')}}" class="nav-link px-2 text-body-secondary">Fornecedores</a></li>
+            <li class="nav-item"><a href="{{ route('adm.funcionario.index')}}" class="nav-link px-2 text-body-secondary">Funcionários</a></li>
           </ul>
       </div>
   </footer>

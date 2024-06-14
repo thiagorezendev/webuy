@@ -2,49 +2,37 @@
 
 namespace App\Http\Controllers;
 
-use App\Fornecedor;
+use App\Models\Fornecedor;
 use Illuminate\Http\Request;
 
-class FornecedorController extends Controller
-{
+class FornecedorController extends Controller {
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        return view('adm.fornecedores');
+    public function index() {
+        return view('adm.fornecedor.index');
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-        //
+    public function create() {
+        return view('adm.fornecedor.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Fornecedor $fornecedor)
-    {
-        //
+    public function store(Request $request) {
+        Fornecedor::create($request->all());
+        return redirect()->back()->with('message','Cadastrado com sucesso!');
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Fornecedor $fornecedor)
-    {
-        //
+    public function edit(Fornecedor $fornecedor) {
+        return view('adm.fornecedor.edit');
     }
 
     /**
