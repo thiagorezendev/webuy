@@ -30,8 +30,8 @@
                             <a href="#" class="btn btn-indigo mb-1 mb-md-0" data-bs-toggle="modal"
                                 data-bs-target="#produto-show">Ver mais</a>
                             <a href="#"
-                                class="btn btn-success mb-1 mb-md-0">Editar</a> // Adicionei o href="#" para não dar erro, lembrar de alterar
-                            <form action="#" method="post"
+                                class="btn btn-success mb-1 mb-md-0">Editar</a> <!-- Adicionei o href="#" para não dar erro, lembrar de alterar -->
+                            <form action="{{ route('adm.produto.delete', $produto->id_produto) }}" method="post"
                                 style="display: inline;">
                                 {{ csrf_field() }}
                                 {{ method_field('DELETE') }}

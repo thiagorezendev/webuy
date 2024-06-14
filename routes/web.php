@@ -52,7 +52,7 @@ Route::group(['prefix' => '/adm', 'as' => 'adm.'], function () {
         Route::get('/{id}', [ProdutoController::class, 'show'])->name('show');
         Route::get('/editar/{id}', [ProdutoController::class, 'edit'])->name('edit');
         Route::post('/editar/{id}', [ProdutoController::class, 'update'])->name('update');
-        Route::delete('/{id}', [ProdutoController::class, 'delete'])->name('delete');
+        Route::delete('/{id}', [ProdutoController::class, 'destroy'])->name('delete');
     });
 
     Route::group(['prefix' => 'categoria', 'as' => 'categoria.'], function () {
