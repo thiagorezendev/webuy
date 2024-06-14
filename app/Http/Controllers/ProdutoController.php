@@ -15,6 +15,13 @@ class ProdutoController extends Controller {
         return view('adm.produto.index');
     }
 
+    public function home() {
+        $produtos = Produto::paginate(9);
+        $categorias = Categoria::all();
+        return view('main.home', compact('produtos', 'categorias'));
+    }
+
+
     /**
      * Show the form for creating a new resource.
      */

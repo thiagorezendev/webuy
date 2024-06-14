@@ -23,7 +23,9 @@
                   Categorias
                 </a>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Lucas Colen</a></li>
+                  @foreach ($categorias as $categoria)
+                    <li><a class="dropdown-item" href="{{ route('produto.filtro', ['categoria' => $categoria -> id_categoria]) }}">{{ $categoria -> nome_categoria }}</a></li>
+                  @endforeach
                 </ul>
               </li>
               <li class="nav-item">

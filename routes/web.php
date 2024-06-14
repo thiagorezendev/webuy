@@ -10,15 +10,20 @@ use App\Http\Controllers\CompraController;
 use App\Http\Controllers\FornecedorController;
 use App\Http\Controllers\FuncionarioController;
 
+use App\Models\Categoria;
+
 // rotas da Main
 
-Route::get('/', function () {
-    return view('main.home');
-})->name('main.home');
+Route::get('/', [ProdutoController::class, 'home'])->name('main.home');
 
 Route::get('/sobre', function () {
-    return view('main.sobre');
+    $categorias = Categoria::all();
+    return view('main.sobre', compact('categorias'));
 })->name('main.sobre');
+
+Route::get('/sobre/{categoria}', function () {
+    return view('main.sobre');
+})->name('produto.filtro');
 
 Route::get('/login', [ClienteController::class, 'login'])->name('cliente.login');
 

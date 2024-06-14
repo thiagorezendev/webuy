@@ -24,7 +24,7 @@ class ClienteController extends Controller {
     public function store(Request $request) {
         Cliente::create($request->all());
         Endereco::create($request->all());
-        return redirect()->back()->with('message','Cadastrado com sucesso!');
+        return redirect()->route('main.home')->with('message','Cadastrado com sucesso!');
     }
 
     /**
