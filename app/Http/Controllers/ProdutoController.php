@@ -6,6 +6,7 @@ use App\Models\Categoria;
 use App\Models\Produto;
 use App\Models\Estoque;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProdutoController extends Controller {
     /**
@@ -34,7 +35,20 @@ class ProdutoController extends Controller {
      * Store a newly created resource in storage.
      */
     public function store(Request $request) {
-        Produto::create($request->all());
+
+        $path = $request->file('foto_produto')->store('produtos', 'public');
+        $path = 'storage/' . $path;
+
+        if($path) {
+            Produto::create([
+                'nome_produto' => $request->nome_produto,
+                'id_categoria' => $request->id_categoria,
+                'desc_produto' => $request->desc_produto,
+                'foto_produto' => $path,
+                'preco_produto' => $request->preco_produto 
+            ]);
+        }
+
         return redirect()->back()->with('message','Cadastrado com sucesso!');
     }
 

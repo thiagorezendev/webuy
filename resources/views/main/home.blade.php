@@ -11,7 +11,7 @@
         
             <div class="col-sm-6 col-lg-4 mb-4">
                 <div class="card">
-                    <img src="{{ $produto -> foto_produto }}" alt="foto produto" class="rounded-top">
+                    <img src="{{ asset($produto -> foto_produto) }}" alt="foto produto" class="rounded-top" max-height="250">
                     <div class="card-body">
                         <h5 class="card-title">{{ $produto -> nome_produto }}</h5>
                         <p class="card-text">R$ {{ $produto -> preco_produto }}</p>
