@@ -47,8 +47,10 @@ class FornecedorController extends Controller {
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Fornecedor $fornecedor)
+    public function destroy($id_fornecedor)
     {
-        //
+        $fornecedor = Fornecedor::findOrFail($id_fornecedor);
+        $fornecedor->delete();
+        return redirect()->route('adm.fornecedor.index')->with('message','Deletado com sucesso!');
     }
 }

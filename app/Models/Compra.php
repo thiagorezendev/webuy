@@ -10,6 +10,8 @@ class Compra extends Model
     use HasFactory;
 
     public $timestamps = false;
+    
+    protected $primaryKey = 'id_compra';
 
     protected $fillable = ['id_produto', 'id_fornecedor', 'qntd_compra', 'data_compra', 'preco_uni_compra', 'data_venc'];
 }

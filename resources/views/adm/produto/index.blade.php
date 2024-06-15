@@ -24,12 +24,12 @@
                         <th scope="row">{{ $produto->id_produto }}</th>
                         <td>{{ $produto->nome_produto }}</td>
                         <td>R$ {{ number_format($produto->preco_produto, 2, ',', '.') }}</td>
-                        <td>{{ $produto->categoria_produto }}</td>
-                        <td>{{ $produto->estoque_produto }}</td>
+                        <td>{{-- {{ $produto->categoria_produto }} --}} Categoria do produto</td>
+                        <td>{{-- {{ $produto->estoque_produto }} --}} Estoque do produto</td>
                         <td>
                             <a href="#" class="btn btn-indigo mb-1 mb-md-0" data-bs-toggle="modal"
                                 data-bs-target="#produto-show">Ver mais</a>
-                            <a href="#"
+                            <a href="{{ route('adm.produto.edit', $produto->id_produto) }}"
                                 class="btn btn-success mb-1 mb-md-0">Editar</a> <!-- Adicionei o href="#" para não dar erro, lembrar de alterar -->
                             <form action="{{ route('adm.produto.delete', $produto->id_produto) }}" method="post"
                                 style="display: inline;">

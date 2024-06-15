@@ -13,5 +13,6 @@ class Fornecedor extends Model
 
     public $timestamps = false;
 
+    protected $primaryKey = 'id_fornecedor';
     protected $fillable = ['nome_fornecedor', 'email_fornecedor'];
 }

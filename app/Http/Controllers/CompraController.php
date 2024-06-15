@@ -30,7 +30,6 @@ class CompraController extends Controller {
      * Store a newly created resource in storage.
      */
     public function store(Request $request) {
-
         Compra::create([
             'id_produto' => $request->id_produto,
             'id_fornecedor' => $request->id_fornecedor,
@@ -60,8 +59,10 @@ class CompraController extends Controller {
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Compra $compra)
+    public function destroy($id_compra)
     {
-        //
+        $compra = Compra::findOrFail($id_compra);
+        $compra->delete();
+        return redirect()->route('adm.compra.index')->with('message','Deletado com sucesso!');
     }
 }

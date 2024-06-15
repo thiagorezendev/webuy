@@ -24,13 +24,13 @@
                 @foreach ($compras as $compra)
                     <tr>
                         <th scope="row">{{ $compra->id_compra }}</th>
-                        {{-- <td>{{ $compra->produto->nome_produto }}</td>
-                        <td>{{ $compra->fornecedor->nome_fornecedor }}</td> --}}
-                        <td>{{ $compra->quantidade }}</td>
-                        <td>{{ $compra->preco_uni }}</td>
-                        <td>{{ $compra->data_vencimento }}</td>
-                        <td>{{ $compra->data }}</td>
-                        <td>{{ $compra->preco_total }}</td>
+                        <td>{{-- {{ $compra->produto->nome_produto }} --}} Nome do produto</td>
+                        <td>{{-- {{ $compra->fornecedor->nome_fornecedor }} --}} Nome do fornecedor</td>
+                        <td>{{ $compra->qntd_compra }}</td>
+                        <td>{{ $compra->preco_uni_compra }}</td>
+                        <td>{{ $compra->data_venc }}</td>
+                        <td>{{ $compra->data_compra }}</td>
+                        <td>{{-- {{ $compra->preco_total }} --}} Preço total</td>
                         <td>
                             <a href="{{ route('adm.compra.edit', $compra->id_compra) }}" class="btn btn-success mb-1 mb-md-0">Editar</a>
                             <form action="{{ route('adm.compra.delete', $compra->id_compra) }}" method="post" style="display: inline;">
