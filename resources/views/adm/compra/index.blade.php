@@ -21,26 +21,25 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                <th scope="row">1</th>
-                <td>Feijão</td>
-                <td>Mart Minas</td>
-                <td>5</td>
-                <td>R$ 03,00</td>
-                <td>Indeterminada</td>
-                <td>12/06/2024</td>
-                <td>R$ 15,00</td>
-                <td>
-                    <a href="#" class="btn btn-success mb-1 mb-md-0">Editar</a>
-                    <form action="" method="post"
-                        style="display: inline;">
-                        {{ csrf_field() }}
-                        {{ method_field('DELETE') }}
-                        <button type="submit" class="btn btn-danger mb-1 mb-md-0"
-                            onclick="return confirm('Tem certeza que deseja excluir?')">Excluir</button>
-                    </form>
-                </td>
-                </tr>
+                @foreach ($compras as $compra)
+                    <tr>
+                        <th scope="row">{{ $compra->id_compra }}</th>
+                        {{-- <td>{{ $compra->produto->nome_produto }}</td>
+                        <td>{{ $compra->fornecedor->nome_fornecedor }}</td> --}}
+                        <td>{{ $compra->quantidade }}</td>
+                        <td>{{ $compra->preco_uni }}</td>
+                        <td>{{ $compra->data_vencimento }}</td>
+                        <td>{{ $compra->data }}</td>
+                        <td>{{ $compra->preco_total }}</td>
+                        <td>
+                            <a href="{{ route('adm.compra.edit', $compra->id_compra) }}" class="btn btn-success mb-1 mb-md-0">Editar</a>
+                            <form action="{{ route('adm.compra.delete', $compra->id_compra) }}" method="post" style="display: inline;">
+                                {{ csrf_field() }}
+                                {{ method_field('DELETE') }}
+                                <button type="submit" class="btn btn-danger mb-1 mb-md-0" onclick="return confirm('Tem certeza que deseja excluir?')">Excluir</button>
+                            </form>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
     </div>

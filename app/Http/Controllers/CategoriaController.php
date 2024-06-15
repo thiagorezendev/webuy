@@ -10,7 +10,8 @@ class CategoriaController extends Controller {
      * Display a listing of the resource.
      */
     public function index() {
-        return view('adm.categoria.index');
+        $categorias = Categoria::all();
+        return view('adm.categoria.index', compact('categorias'));
     }
 
     /**

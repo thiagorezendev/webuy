@@ -14,7 +14,8 @@ class ProdutoController extends Controller {
      * Display a listing of the resource.
      */
     public function index() {
-        return view('adm.produto.index');
+        $produtos = Produto::all();
+        return view('adm.produto.index', compact('produtos'));
     }
 
     public function home() {
@@ -58,7 +59,7 @@ class ProdutoController extends Controller {
      * Display the specified resource.
      */
     public function show(Produto $produto) {
-        //
+        return view('adm.produto.show', compact('produto'));
     }
 
     /**
@@ -81,6 +82,8 @@ class ProdutoController extends Controller {
      */
     public function destroy(Produto $produto)
     {
-        //
+        $produto = Produto::findOrFail($produto->id_produto);
+        $produto->delete();
+        return redirect()->route('adm.produto.index')->with('message','Deletado com sucesso!');
     }
 }
