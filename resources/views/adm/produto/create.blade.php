@@ -3,7 +3,7 @@
   @extends('layout.adm-frame')
   @section('produtos', 'active')
   @section('content')
-    <form action="{{ route('adm.produto.store') }}" method="POST">
+    <form action="{{ route('adm.produto.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <h1 class="h1 my-4 text-center">Novo Produto</h1>
         <div class="row g-2">

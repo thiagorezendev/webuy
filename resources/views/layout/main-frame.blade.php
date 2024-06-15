@@ -23,7 +23,9 @@
                   Categorias
                 </a>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Lucas Colen</a></li>
+                  @foreach ($categorias as $categoria)
+                    <li><a class="dropdown-item" href="{{ route('produto.filtro', ['categoria' => $categoria -> id_categoria]) }}">{{ $categoria -> nome_categoria }}</a></li>
+                  @endforeach
                 </ul>
               </li>
               <li class="nav-item">
@@ -44,8 +46,15 @@
                   <img src="{{ asset('images/icons/people.svg')}}" alt="perfil" width="40" height="40" class="rounded-circle">
                 </a>
                 <ul class="dropdown-menu text-small">
-                  <li><a class="dropdown-item" href="{{route('cliente.login')}}">Entrar</a></li>
-                  <li><a class="dropdown-item" href="{{route('cliente.carrinho', ['cpf_cli' => 1])}}">Carrinho</a></li>
+                  @auth('web')
+                    <li><a class="dropdown-item" href="{{ route('cliente.carrinho', $cliente) }}">Carrinho</a></li>
+                    <li><a class="dropdown-item" href="{{ route('cliente.perfil', $cliente) }}">Minha Conta</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="{{ route('cliente.logout') }}">Sair</a></li>
+                    @else
+                      <li><a class="dropdown-item" href="{{ route('cliente.login') }}">Entrar</a></li>
+                      <li><a class="dropdown-item" href="{{ route('cliente.cadastro') }}">Cadastrar</a></li>
+                  @endauth
                 </ul>
               </div>
             </div>

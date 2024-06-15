@@ -54,6 +54,25 @@
     min-height: 65vh;
 }
 
+.active>.page-link {
+    color:white;
+    background-color:  #510ebd;
+    border-color:#6723d4;
+}
+.page-link {
+    color:#9560eb;
+}
+
+.page-link:hover {
+    color:#9560eb;
+}
+
+.page-link:focus {
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgba(102, 16, 242, .5);
+}
+
+
 @media (min-width: 1200px) {
     .form-register {
         margin: 0 auto;
