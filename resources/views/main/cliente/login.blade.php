@@ -4,18 +4,19 @@
 @section('main')
 
 <main class="form-signin text-center">
-  <form class="">
+  <form action="{{ route('cliente.login.autentica') }}" method="POST">
+    @csrf
     <a href="{{ route('main.home') }}" class="link-body-emphasis text-decoration-none">
       <img class="mb-3" src="../images/logo-webuy.png" alt="" width="200" height="160">
     </a>
     <h1 class="h3 mb-3">Fazer login</h1>
 
     <div class="form-floating mb-2">
-      <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+      <input type="email_cliente" class="form-control" id="floatingInput" name="email" placeholder="name@example.com">
       <label for="floatingInput">Email</label>
     </div>
     <div class="form-floating mb-2">
-      <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+      <input type="senha_cliente" class="form-control" id="floatingPassword" name="password" placeholder="Password">
       <label for="floatingPassword">Senha</label>
     </div>
 

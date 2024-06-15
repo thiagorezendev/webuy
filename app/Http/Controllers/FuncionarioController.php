@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Funcionario;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class FuncionarioController extends Controller {
     /**
@@ -17,6 +19,23 @@ class FuncionarioController extends Controller {
         return view('adm.funcionario.login');
     }
 
+    public function autentica(Request $request) {
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
+ 
+        if (Auth::guard('admin')->attempt($credentials)) {
+            $request->session()->regenerate();
+ 
+            return redirect()->route('adm.home');
+        }
+ 
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ])->onlyInput('email');
+    }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -28,7 +47,11 @@ class FuncionarioController extends Controller {
      * Store a newly created resource in storage.
      */
     public function store(Request $request) {
-        Funcionario::create($request->all());
+        Funcionario::create([
+            'nome_func' => $request -> nome_func,
+            'email' => $request -> email,
+            'password' => Hash::make($request -> password),
+        ]);
         return redirect()->back()->with('message','Cadastrado com sucesso!');
     }
 

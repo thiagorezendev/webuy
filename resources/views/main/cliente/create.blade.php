@@ -48,8 +48,8 @@
             
         </div>
         <h2 class="h5 text-start mt-2">Dados de Login</h2>
-        <input type="email" class="form-control mb-2" name="email_cli" placeholder="Email">
-        <input type="password" class="form-control mb-4" name="senha_cli" placeholder="Senha">
+        <input type="email" class="form-control mb-2" name="email" placeholder="Email">
+        <input type="password" class="form-control mb-4" name="password" placeholder="Senha">
         <div class="d-grid d-md-flex gap-2 justify-content-md-end">
             <a class="btn btn-outline-secondary" href="{{ route('main.home') }}">Voltar </a>
             <button class="btn btn-indigo" type="submit">Cadastrar</button>
