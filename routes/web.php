@@ -61,7 +61,7 @@ Route::group(['prefix' => '/adm', 'as' => 'adm.'], function () {
         Route::post('/novo', [CategoriaController::class, 'store'])->name('store');
         Route::get('/editar/{id}', [CategoriaController::class, 'edit'])->name('edit');
         Route::post('/editar/{id}', [CategoriaController::class, 'update'])->name('update');
-        Route::delete('/{id}', [CategoriaController::class, 'delete'])->name('delete');
+        Route::delete('/{id}', [CategoriaController::class, 'destroy'])->name('delete');
     });
 
     Route::group(['prefix' => 'compra', 'as' => 'compra.'], function () {
@@ -70,7 +70,7 @@ Route::group(['prefix' => '/adm', 'as' => 'adm.'], function () {
         Route::post('/novo', [CompraController::class, 'store'])->name('store');
         Route::get('/editar/{id}', [CompraController::class, 'edit'])->name('edit');
         Route::post('/editar/{id}', [CompraController::class, 'update'])->name('update');
-        Route::delete('/{id}', [CompraController::class, 'delete'])->name('delete');
+        Route::delete('/{id}', [CompraController::class, 'destroy'])->name('delete');
     });
 
     Route::group(['prefix' => 'fornecedor', 'as' => 'fornecedor.'], function () {
@@ -79,7 +79,7 @@ Route::group(['prefix' => '/adm', 'as' => 'adm.'], function () {
         Route::post('/novo', [FornecedorController::class, 'store'])->name('store');
         Route::get('/editar/{id}', [FornecedorController::class, 'edit'])->name('edit');
         Route::post('/editar/{id}', [FornecedorController::class, 'update'])->name('update');
-        Route::delete('/{id}', [FornecedorController::class, 'delete'])->name('delete');
+        Route::delete('/{id}', [FornecedorController::class, 'destroy'])->name('delete');
     });
 
     Route::group(['prefix' => 'funcironario', 'as' => 'funcionario.'], function () {
@@ -88,6 +88,6 @@ Route::group(['prefix' => '/adm', 'as' => 'adm.'], function () {
         Route::post('/novo', [FuncionarioController::class, 'store'])->name('store');
         Route::get('/editar/{id}', [FuncionarioController::class, 'edit'])->name('edit');
         Route::post('/editar/{id}', [FuncionarioController::class, 'update'])->name('update');
-        Route::delete('/{id}', [FuncionarioController::class, 'delete'])->name('delete');
+        Route::delete('/{id}', [FuncionarioController::class, 'destroy'])->name('delete');
     });
 });

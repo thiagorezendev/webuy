@@ -20,7 +20,7 @@
                     <tr>
                         <th scope="row">{{ $fornecedor->id_fornecedor }}</th>
                         <td>{{ $fornecedor->nome_fornecedor }}</td>
-                        <td>{{ $fornecedor->email }}</td>
+                        <td>{{ $fornecedor->email_fornecedor }}</td>
                         <td>
                             <a href="{{ route('adm.fornecedor.edit', $fornecedor->id_fornecedor) }}" class="btn btn-success mb-1 mb-md-0">Editar</a>
                             <form action="{{ route('adm.fornecedor.delete', $fornecedor->id_fornecedor) }}" method="post" style="display: inline;">

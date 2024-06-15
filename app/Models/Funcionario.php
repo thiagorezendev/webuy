@@ -10,6 +10,7 @@ class Funcionario extends Model
     use HasFactory;
 
     public $timestamps = false;
+    protected $primaryKey = 'id_func';
 
     protected $fillable = ['nome_func', 'email_func', 'senha_func'];
 }
