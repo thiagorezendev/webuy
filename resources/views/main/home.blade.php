@@ -4,11 +4,6 @@
   @extends('layout.main-frame')
   @section('home', 'active')
   @section('content')
-  @auth
-      <p>logado</p>
-      @else
-      <p>Nao logado</p>
-  @endauth
     <h1 class="h1 mb-4">Produtos</h1>
     <div class="row" data-masonry='{"percentPosition": true }'>
         @foreach ($produtos as $produto)

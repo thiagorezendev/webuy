@@ -7,6 +7,7 @@ use App\Models\Produto;
 use App\Models\Estoque;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class ProdutoController extends Controller {
     /**
@@ -19,7 +20,8 @@ class ProdutoController extends Controller {
     public function home() {
         $produtos = Produto::paginate(9);
         $categorias = Categoria::all();
-        return view('main.home', compact('produtos', 'categorias'));
+        $cliente = Auth::id();
+        return view('main.home', compact('produtos', 'categorias', 'cliente'));
     }
 
 

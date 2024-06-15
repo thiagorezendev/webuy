@@ -47,13 +47,13 @@
                 </a>
                 <ul class="dropdown-menu text-small">
                   @auth('web')
-                    <li><a class="dropdown-item" href="{{route('cliente.login')}}">Carrinho</a></li>
-                    <li><a class="dropdown-item" href="{{route('cliente.login')}}">Minha Conta</a></li>
+                    <li><a class="dropdown-item" href="{{ route('cliente.carrinho', $cliente) }}">Carrinho</a></li>
+                    <li><a class="dropdown-item" href="{{ route('cliente.perfil', $cliente) }}">Minha Conta</a></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="{{route('cliente.login')}}">Sair</a></li>
+                    <li><a class="dropdown-item" href="{{ route('cliente.logout') }}">Sair</a></li>
                     @else
-                      <li><a class="dropdown-item" href="{{route('cliente.login')}}">Entrar</a></li>
-                      <li><a class="dropdown-item" href="{{route('cliente.cadastro')}}">Cadastrar</a></li>
+                      <li><a class="dropdown-item" href="{{ route('cliente.login') }}">Entrar</a></li>
+                      <li><a class="dropdown-item" href="{{ route('cliente.cadastro') }}">Cadastrar</a></li>
                   @endauth
                 </ul>
               </div>

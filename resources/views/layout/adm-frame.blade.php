@@ -45,7 +45,7 @@
                   <img src="{{ asset('images/icons/people.svg')}}" alt="perfil" width="40" height="40" class="rounded-circle">
                 </a>
                 <ul class="dropdown-menu text-small">
-                  <li><a class="dropdown-item" href="{{route('main.home')}}">Sair</a></li>
+                  <li><a class="dropdown-item" href="{{route('adm.logout')}}">Sair</a></li>
                 </ul>
               </div>
             </div>

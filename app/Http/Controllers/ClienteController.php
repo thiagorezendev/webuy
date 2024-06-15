@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cliente;
 use App\Models\Endereco;
+use App\Models\Categoria;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -26,13 +27,23 @@ class ClienteController extends Controller {
             'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
+       
  
         if (Auth::guard('web')->attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->route('main.home')->with('message','logado com sucesso!');
+            return redirect()->route('main.home');
         }
  
-        return back()->with('message', 'The provided credentials do not match our records.');
+        return back()->with('message', 'Email ou senha incorretos!');
+    }
+
+    public function logout(Request $request) {
+        Auth::guard('web')->logout();
+ 
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+     
+        return redirect()->route('main.home');
     }
 
     /**
@@ -55,9 +66,10 @@ class ClienteController extends Controller {
     /**
      * Display the specified resource.
      */
-    public function show(Cliente $cliente)
-    {
-        //
+    public function show($id) {
+        $categorias = Categoria::all();
+        $cliente = Cliente::findOrFail($id);
+        return view('main.cliente.show', compact('categorias', 'cliente'));
     }
 
     /**

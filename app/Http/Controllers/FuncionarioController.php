@@ -27,14 +27,21 @@ class FuncionarioController extends Controller {
  
         if (Auth::guard('admin')->attempt($credentials)) {
             $request->session()->regenerate();
- 
             return redirect()->route('adm.home');
         }
  
-        return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ])->onlyInput('email');
+        return back()->with('message', 'Email ou senha incorretos!');
     }
+
+    public function logout(Request $request) {
+        Auth::guard('admin')->logout();
+ 
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+     
+        return redirect()->route('main.home');
+    }
+
 
     /**
      * Show the form for creating a new resource.
