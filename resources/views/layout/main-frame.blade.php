@@ -46,8 +46,15 @@
                   <img src="{{ asset('images/icons/people.svg')}}" alt="perfil" width="40" height="40" class="rounded-circle">
                 </a>
                 <ul class="dropdown-menu text-small">
-                  <li><a class="dropdown-item" href="{{route('cliente.login')}}">Entrar</a></li>
-                  <li><a class="dropdown-item" href="{{route('cliente.carrinho', ['cpf_cli' => 1])}}">Carrinho</a></li>
+                  @auth('web')
+                    <li><a class="dropdown-item" href="{{route('cliente.login')}}">Carrinho</a></li>
+                    <li><a class="dropdown-item" href="{{route('cliente.login')}}">Minha Conta</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="{{route('cliente.login')}}">Sair</a></li>
+                    @else
+                      <li><a class="dropdown-item" href="{{route('cliente.login')}}">Entrar</a></li>
+                      <li><a class="dropdown-item" href="{{route('cliente.cadastro')}}">Cadastrar</a></li>
+                  @endauth
                 </ul>
               </div>
             </div>

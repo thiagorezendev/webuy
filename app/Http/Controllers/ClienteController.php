@@ -7,6 +7,7 @@ use App\Models\Endereco;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 class ClienteController extends Controller {
     /**
@@ -28,13 +29,10 @@ class ClienteController extends Controller {
  
         if (Auth::guard('web')->attempt($credentials)) {
             $request->session()->regenerate();
- 
-            return redirect()->route('main.home');
+            return redirect()->route('main.home')->with('message','logado com sucesso!');
         }
  
-        return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ])->onlyInput('email');
+        return back()->with('message', 'The provided credentials do not match our records.');
     }
 
     /**
@@ -50,7 +48,7 @@ class ClienteController extends Controller {
             'data_nasc_cli' => $request -> data_nasc_cli
         ]);
 
-        Endereco::create($request->all());
+      
         return redirect()->route('main.home')->with('message','Cadastrado com sucesso!');
     }
 
