@@ -30,7 +30,6 @@ class CompraController extends Controller {
      * Store a newly created resource in storage.
      */
     public function store(Request $request) {
-
         Compra::create([
             'id_produto' => $request->id_produto,
             'id_fornecedor' => $request->id_fornecedor,

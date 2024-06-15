@@ -48,17 +48,25 @@ class ProdutoController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Produto $produto)
+    public function edit($id_produto)
     {
-        return view('adm.produto.edit');
+        $produto = Produto::findOrFail($id_produto);
+        $categorias = Categoria::all();
+        return view('adm.produto.edit', compact('produto', 'categorias'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Produto $produto)
+    public function update(Request $request, $id_produto)
     {
-        //
+        $produto = Produto::findOrFail($id_produto);
+        if($request->method() == 'GET'){
+            return view('adm.produto.edit', compact('produto'));
+        } else {
+            $produto->update($request->all());
+        }    
+        return redirect()->route('adm.produto.index')->with('message', 'Produto atualizado com sucesso!');
     }
 
     /**
