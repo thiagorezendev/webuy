@@ -18,12 +18,12 @@
             <tbody>
                 @foreach ($funcionarios as $funcionario)
                     <tr>
-                        <th scope="row">{{ $funcionario->id_func }}</th>
+                        <th scope="row">{{ $funcionario->id }}</th>
                         <td>{{ $funcionario->nome_func }}</td>
-                        <td>{{ $funcionario->email_func }}</td>
+                        <td>{{ $funcionario->email }}</td>
                         <td>
-                            <a href="{{ route('adm.funcionario.edit', $funcionario->id_func) }}" class="btn btn-success mb-1 mb-md-0">Editar</a>
-                            <form action="{{ route('adm.funcionario.delete', $funcionario->id_func) }}" method="post" style="display: inline;">
+                            <a href="{{ route('adm.funcionario.edit', $funcionario->id) }}" class="btn btn-success mb-1 mb-md-0">Editar</a>
+                            <form action="{{ route('adm.funcionario.delete', $funcionario->id) }}" method="post" style="display: inline;">
                                 {{ csrf_field() }}
                                 {{ method_field('DELETE') }}
                                 <button type="submit" class="btn btn-danger mb-1 mb-md-0" onclick="return confirm('Tem certeza que deseja excluir?')">Excluir</button>

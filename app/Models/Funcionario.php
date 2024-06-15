@@ -11,7 +11,6 @@ class Funcionario extends Authenticatable
     use HasFactory;
 
     public $timestamps = false;
-    protected $primaryKey = 'id_func';
 
     protected $fillable = ['nome_func', 'email', 'password'];
 }
