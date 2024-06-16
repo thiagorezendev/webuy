@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\FornecedorRequest;
 use App\Models\Fornecedor;
 use Illuminate\Http\Request;
 
@@ -24,7 +25,7 @@ class FornecedorController extends Controller {
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request) {
+    public function store(FornecedorRequest $request) {
         Fornecedor::create($request->all());
         return redirect()->back()->with('message','Cadastrado com sucesso!');
     }
@@ -40,7 +41,7 @@ class FornecedorController extends Controller {
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id_fornecedor)
+    public function update(FornecedorRequest $request, $id_fornecedor)
     {
         $id_fornecedor = Fornecedor::findOrFail($id_fornecedor);
         $id_fornecedor->update($request->all());

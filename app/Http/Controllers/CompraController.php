@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CompraRequest;
 use App\Models\Compra;
 use App\Models\Fornecedor;
 use App\Models\Produto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class CompraController extends Controller {
     /**
@@ -29,12 +31,12 @@ class CompraController extends Controller {
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request) {
+    public function store(CompraRequest $request) {
         Compra::create([
             'id_produto' => $request->id_produto,
             'id_fornecedor' => $request->id_fornecedor,
             'qntd_compra' => $request->qntd_compra,
-            'data_compra' => date('y-m-d'),
+            'data_compra' => date('Y-m-d'),
             'preco_uni_compra' => $request->preco_uni_compra,
             'data_venc' => $request->data_venc,
         ]);
@@ -54,7 +56,7 @@ class CompraController extends Controller {
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id_compra)
+    public function update(CompraRequest $request, $id_compra)
     {
         $compra = Compra::findOrFail($id_compra);
         $compra->update($request->all()); 

@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CategoriaoRequest;
 use App\Models\Categoria;
 use Illuminate\Http\Request;
 use ILLuminate\Database\QueryException;
 use App\Models\Produto;
+use App\Http\Requests\CategoriaRequest;
 
 class CategoriaController extends Controller
 {
@@ -29,7 +31,7 @@ class CategoriaController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CategoriaRequest $request)
     {
         Categoria::create($request->all());
         return redirect()->back()->with('message', 'Cadastrado com sucesso!');
@@ -47,7 +49,7 @@ class CategoriaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id_categoria)
+    public function update(CategoriaRequest $request, $id_categoria)
     {
         $categoria = Categoria::findOrFail($id_categoria);
         $categoria->update($request->all());

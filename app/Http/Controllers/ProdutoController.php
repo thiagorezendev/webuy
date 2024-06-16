@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProdutoRequest;
 use App\Models\Categoria;
 use App\Models\Produto;
 use App\Models\Estoque;
@@ -41,7 +42,7 @@ class ProdutoController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request) {
+    public function store(ProdutoRequest $request) {
 
         $path = $request->file('foto_produto')->store('produtos', 'public');
         $path = 'storage/' . $path;
@@ -80,7 +81,7 @@ class ProdutoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id_produto)
+    public function update(ProdutoRequest $request, $id_produto)
     {
         $produto = Produto::findOrFail($id_produto);
         if($request->method() == 'GET'){
