@@ -98,8 +98,13 @@ class ProdutoController extends Controller
     {
         Compra::where('id_produto', $id_produto)->delete();
 
-        $produto = Produto::find($id_produto);
+        $produto = Produto::findOrFail($id_produto);
         if ($produto) {
+
+            if ($produto->foto_produto) {
+                Storage::disk('public')->delete(str_replace('storage/', '', $produto->foto_produto));
+            }
+
             $produto->delete();
             return redirect()->route('adm.produto.index')->with('message', 'Deletado com sucesso!');
         } else {

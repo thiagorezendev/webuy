@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Categoria;
 use Illuminate\Http\Request;
+use ILLuminate\Database\QueryException;
+use App\Models\Produto;
 
 class CategoriaController extends Controller
 {
@@ -54,8 +56,14 @@ class CategoriaController extends Controller
      */
     public function destroy($id_categoria)
     {
+        Produto::where('id_categoria', $id_categoria)->update(['id_categoria' => null]);
+
         $categoria = Categoria::findOrFail($id_categoria);
-        $categoria->delete();
-        return redirect()->route('adm.categoria.index')->with('message', 'Deletado com sucesso!');
+        if($categoria) {
+            $categoria->delete();
+            return redirect()->route('adm.categoria.index')->with('message', 'Categoria deletada com sucesso!');
+        } else {
+            return redirect()->route('adm.categoria.index')->with('message', 'Erro ao tentar deletar a categoria.');
+        }
     }
 }
