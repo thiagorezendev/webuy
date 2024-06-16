@@ -36,6 +36,7 @@ class ProdutoRequest extends FormRequest
             'desc_produto.required' => 'O campo descrição do produto é obrigatório',
             'foto_produto.required' => 'O campo foto do produto é obrigatório',
             'preco_produto.required' => 'O campo preço do produto é obrigatório',
+            'preco_produto.integer' => 'O campo preço do produto deve ser um número inteiro',
         ];
     }
 }

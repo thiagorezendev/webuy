@@ -1,8 +1,8 @@
 @section('titulo', 'Novo Fornecedor')
 
-  @extends('layout.adm-frame')
-  @section('fornecedores', 'active')
-  @section('content')
+@extends('layout.adm-frame')
+@section('fornecedores', 'active')
+@section('content')
     <form action="{{ route('adm.fornecedor.store') }}" method="POST">
         @csrf
         <h1 class="h1 my-4 text-center">Novo Fornecedor</h1>
@@ -19,10 +19,15 @@
         </div>
         <div class="row g-2">
         </div>
-        
+        @error('nome_fornecedor')
+            <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
+        @error('email_fornecedor')
+            <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
         <div class="d-grid d-md-flex gap-2 my-4 justify-content-md-end">
             <a type="button" class="btn btn-outline-danger" href="{{ route('adm.fornecedor.index') }}">Cancelar</a>
             <button class="btn btn-indigo" type="submit">Cadastrar</button>
         </div>
     </form>
-  @endsection
+@endsection
