@@ -14,7 +14,7 @@
       <input type="password" class="form-control mb-2" name="password" placeholder="Senha">
       
       <div class="d-grid d-md-flex gap-2 my-4 justify-content-md-end">
-          <a type="button" class="btn btn-outline-danger" href="{{ route('adm.produto.index') }}">Cancelar</a>
+          <a type="button" class="btn btn-outline-danger" href="{{ route('adm.funcionario.index') }}">Cancelar</a>
           <button class="btn btn-indigo" type="submit">Cadastrar</button>
       </div>
     </form>

@@ -32,16 +32,19 @@ class FornecedorController extends Controller {
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Fornecedor $fornecedor) {
-        return view('adm.fornecedor.edit');
+    public function edit($id_fornecedor) {
+        $fornecedor = Fornecedor::findOrFail($id_fornecedor);
+        return view('adm.fornecedor.edit', compact('fornecedor'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Fornecedor $fornecedor)
+    public function update(Request $request, $id_fornecedor)
     {
-        //
+        $id_fornecedor = Fornecedor::findOrFail($id_fornecedor);
+        $id_fornecedor->update($request->all());
+        return redirect()->route('adm.fornecedor.index')->with('message','Atualizado com sucesso!');
     }
 
     /**

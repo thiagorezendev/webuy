@@ -66,16 +66,19 @@ class FuncionarioController extends Controller {
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Funcionario $funcionario) {
-        return view('adm.funcionario.edit');
+    public function edit($id) {
+        $funcionario = Funcionario::findOrFail($id);
+        return view('adm.funcionario.edit' , compact('funcionario'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Funcionario $funcionario)
+    public function update(Request $request, $id)
     {
-        //
+        $id = Funcionario::findOrFail($id);
+        $id->update($request->all());
+        return redirect()->route('adm.funcionario.index')->with('message','Atualizado com sucesso!');
     }
 
     /**

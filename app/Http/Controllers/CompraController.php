@@ -44,16 +44,21 @@ class CompraController extends Controller {
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Compra $compra) {
-        return view('adm.compra.edit');
+    public function edit($id_compra) {
+        $compra = Compra::findOrFail($id_compra);
+        $produtos = Produto::all();
+        $fornecedores = Fornecedor::all();
+        return view('adm.compra.edit', compact('compra', 'produtos', 'fornecedores'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Compra $compra)
+    public function update(Request $request, $id_compra)
     {
-        //
+        $compra = Compra::findOrFail($id_compra);
+        $compra->update($request->all()); 
+        return redirect()->route('adm.compra.index')->with('message','Atualizado com sucesso!');
     }
 
     /**
