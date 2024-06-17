@@ -1,4 +1,4 @@
-<div class="modal fade" id="produto-modal" tabindex="-1" aria-labelledby="produto-modal-label" aria-hidden="true">
+<div class="modal fade" id="produto-modal-{{ $produto -> id_produto }}" tabindex="-1" aria-labelledby="produto-modal-label" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl">
       <div class="modal-content d-flex rounded-3 py-2 px-1 px-md-3 shadow">
         <div class="modal-header border-bottom-0">
@@ -8,7 +8,7 @@
         <div class="modal-body py-0">
             <div class="row my-2">
                 <div class="col-12 col-lg-6 col-sm-12 text-center mb-3 mb-md-3 mb-lg-0">
-                  <img src="{{ $produto -> foto_produto }}" alt="foto produto" class="img-fluid rounded">
+                  <img src="{{ $produto -> foto_produto }}" alt="foto produto" class="img-fluid rounded" min-height="525">
                 </div>
                 <div class="col-12 col-lg-6 col-sm-12">
                     <h2 class="h2">R$ {{ $produto -> preco_produto }}</h2>
@@ -19,7 +19,7 @@
                       </div>
                     </div>
                   <p>{{ $produto -> desc_produto }}</p>
-                  <p>Alimento não perecível</p>
+                  <p></p>
                 </div>
             </div>
            

@@ -84,11 +84,15 @@ class ProdutoController extends Controller
     public function update(ProdutoRequest $request, $id_produto)
     {
         $produto = Produto::findOrFail($id_produto);
-        if($request->method() == 'GET'){
-            return view('adm.produto.edit', compact('produto'));
-        } else {
-            $produto->update($request->all());
-        }    
+        $path = $request->file('foto_produto')->store('produtos', 'public');
+        $path = 'storage/' . $path;
+        $produto->update([
+            'nome_produto' => $request->nome_produto,
+            'id_categoria' => $request->id_categoria,
+            'desc_produto' => $request->desc_produto,
+            'foto_produto' => $path,
+            'preco_produto' => $request->preco_produto 
+        ]);    
         return redirect()->route('adm.produto.index')->with('message', 'Produto atualizado com sucesso!');
     }
 

@@ -16,7 +16,7 @@
       <label for="floatingInput">Email</label>
     </div>
     <div class="form-floating mb-2">
-      <input type="senha_cliente" class="form-control" id="floatingPassword" name="password" placeholder="Password">
+      <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Senha">
       <label for="floatingPassword">Senha</label>
     </div>
 
