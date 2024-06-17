@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Funcionario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class FuncionarioController extends Controller {
@@ -21,12 +22,19 @@ class FuncionarioController extends Controller {
     }
 
     public function autentica(Request $request) {
+        date_default_timezone_set('America/Sao_Paulo');
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
  
         if (Auth::guard('admin')->attempt($credentials)) {
+            $data = [
+                'id_func' => Auth::guard('admin')->user()->id,
+                'data_login' => date('y-m-d  h:i:s')
+            ];
+
+            DB::table('logins')->insertGetId($data);
             $request->session()->regenerate();
             return redirect()->route('adm.home');
         }
