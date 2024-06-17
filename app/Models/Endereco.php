@@ -15,8 +15,7 @@ class Endereco extends Model
 
     protected $fillable = ['cpf_cli', 'cep', 'numero', 'complemento'];
 
-    public function cliente(): BelongsTo
-    {
+    public function cliente(): BelongsTo {
         return $this->belongsTo(Cliente::class, 'cpf_cli');
     }
 

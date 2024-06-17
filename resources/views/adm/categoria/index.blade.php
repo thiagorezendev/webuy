@@ -21,7 +21,7 @@
                         <th scope="row">{{ $categoria->id_categoria }}</th>
                         <td>{{ $categoria->nome_categoria }}</td>
                         {{-- <td>{{ $categoria->produtos->count() }}</td> --}}
-                        <td>Exemplo</td>
+                        <td>{{ $categoria->produtos->count()}}</td>
                         <td>
                             {{-- <a href="{{ route('adm.categoria.show', $categoria->id_categoria) }}" class="btn btn-indigo mb-1 mb-md-0">Ver mais</a> --}}
                             <a href="{{ route('adm.categoria.edit', $categoria->id_categoria) }}" class="btn btn-success mb-1 mb-md-0">Editar</a>

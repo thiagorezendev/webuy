@@ -4,8 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ProdutoRequest extends FormRequest
-{
+class ProdutoRequest extends FormRequest{
     /**
      * Determine if the user is authorized to make this request.
      */
@@ -24,8 +23,8 @@ class ProdutoRequest extends FormRequest
         return [
             'nome_produto' => 'required|string',
             'desc_produto' => 'required|string',
-            'foto_produto' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'preco_produto' => 'required|integer',
+            'foto_produto' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+            'preco_produto' => 'required|numeric',
         ];
     }
 
@@ -36,7 +35,7 @@ class ProdutoRequest extends FormRequest
             'desc_produto.required' => 'O campo descrição do produto é obrigatório',
             'foto_produto.required' => 'O campo foto do produto é obrigatório',
             'preco_produto.required' => 'O campo preço do produto é obrigatório',
-            'preco_produto.integer' => 'O campo preço do produto deve ser um número inteiro',
+            'preco_produto.numero' => 'O campo preço do produto deve ser um número',
         ];
     }
 }

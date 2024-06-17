@@ -17,27 +17,19 @@
                 <th scope="col">Data de Vencimento</th>
                 <th scope="col">Data</th>
                 <th scope="col">Preço total</th>
-                <th scope="col">Ações</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($compras as $compra)
                     <tr>
                         <th scope="row">{{ $compra->id_compra }}</th>
-                        <td>{{-- {{ $compra->produto->nome_produto }} --}} Nome do produto</td>
-                        <td>{{-- {{ $compra->fornecedor->nome_fornecedor }} --}} Nome do fornecedor</td>
+                        <td>{{ $compra->produto->nome_produto}}</td>
+                        <td>{{ $compra->fornecedor->nome_fornecedor}}</td>
                         <td>{{ $compra->qntd_compra }}</td>
-                        <td>{{ $compra->preco_uni_compra }}</td>
+                        <td>R$ {{ $compra->preco_uni_compra }}</td>
                         <td>{{ $compra->data_venc }}</td>
                         <td>{{ $compra->data_compra }}</td>
-                        <td>{{-- {{ $compra->preco_total }} --}} Preço total</td>
-                        <td>
-                            <a href="{{ route('adm.compra.edit', $compra->id_compra) }}" class="btn btn-success mb-1 mb-md-0">Editar</a>
-                            <form action="{{ route('adm.compra.delete', $compra->id_compra) }}" method="post" style="display: inline;">
-                                {{ csrf_field() }}
-                                {{ method_field('DELETE') }}
-                                <button type="submit" class="btn btn-danger mb-1 mb-md-0" onclick="return confirm('Tem certeza que deseja excluir?')">Excluir</button>
-                            </form>
+                        <td>R$ {{ $compra->preco_uni_compra * $compra->qntd_compra }}</td>
                     </tr>
                 @endforeach
             </tbody>

@@ -20,7 +20,7 @@
                 </select>
                 <div class="input-group mb-2">
                     <span class="input-group-text">R$</span>
-                    <input type="number" class="form-control" name="preco_produto" placeholder="Preço">
+                    <input type="number" class="form-control" name="preco_produto" placeholder="Preço" step="0.01">
                 </div>
 
             </div>

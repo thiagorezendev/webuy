@@ -81,8 +81,7 @@ class ProdutoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(ProdutoRequest $request, $id_produto)
-    {
+    public function update(ProdutoRequest $request, $id_produto) {
         $produto = Produto::findOrFail($id_produto);
         $path = $request->file('foto_produto')->store('produtos', 'public');
         $path = 'storage/' . $path;

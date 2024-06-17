@@ -15,11 +15,11 @@
                     <div class="form-group row my-2">
                       <label for="productQuantity" class="mb-2"><b>Quantidade</b></label>
                       <div class="col-3 col-sm-2">
-                        <input type="number" class="form-control" id="productQuantity" name="productQuantity" min="1" max="100" step="1" value="1">
+                        <input type="number" class="form-control" id="productQuantity" name="productQuantity" min="1" max="{{ $produto->estoque->qntd_estoque}}" step="1" value="1">
                       </div>
                     </div>
                   <p>{{ $produto -> desc_produto }}</p>
-                  <p></p>
+                  <p>{{ $produto->categoria->nome_categoria}}</p>
                 </div>
             </div>
            
