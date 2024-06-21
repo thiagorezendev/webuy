@@ -8,12 +8,12 @@
         <h1 class="h1 my-4 text-center">Novo Fornecedor</h1>
         <div class="row g-2">
             <div class="col-md col-sm-12">
-                <input type="text" class="form-control" name="nome_fornecedor" placeholder="Nome">
+                <input type="text" class="form-control" name="nome_fornecedor" placeholder="Nome" value="{{ old('nome_fornecedor') }}">
             </div>
             <div class="col-md col-sm-12">
                 <div class="input-group mb-2">
                     <span class="input-group-text">@</span>
-                    <input type="text" class="form-control" name="email_fornecedor" placeholder="Email">
+                    <input type="text" class="form-control" name="email_fornecedor" placeholder="Email" value="{{ old('email_fornecedor') }}">
                 </div>
             </div>
         </div>

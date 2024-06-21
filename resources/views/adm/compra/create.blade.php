@@ -26,17 +26,17 @@
         </div>
         <div class="row g-2">
             <div class="col-md col-sm-12">
-                <input type="number" class="form-control" name="qntd_compra" placeholder="Quantidade">
+                <input type="number" class="form-control" name="qntd_compra" placeholder="Quantidade" value="{{ old('qntd_compra') }}">
             </div>
             <div class="col-md col-sm-12">
                 <div class="input-group">
                     <span class="input-group-text">Vencimento</span>
-                    <input type="date" class="form-control" name="data_venc">
+                    <input type="date" class="form-control" name="data_venc" value="{{ old('data_venc') }}">
                 </div>
             </div>
             <div class="input-group col-md col-sm-12">
                 <span class="input-group-text">R$</span>
-                <input type="number" class="form-control" name="preco_uni_compra" placeholder="Preço Unitário">
+                <input type="number" class="form-control" name="preco_uni_compra" placeholder="Preço Unitário" value="{{ old('preco_uni_compra') }}">
             </div>
         </div>
         @error('id_produto')

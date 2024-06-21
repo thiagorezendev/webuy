@@ -6,10 +6,10 @@
     <form action="{{ route('adm.funcionario.store') }}" method="POST">
         @csrf
         <h1 class="h1 my-4 text-center">Cadastro de Funcionario</h1>
-        <input type="text" class="form-control mb-2" name="nome_func" placeholder="Nome">
+        <input type="text" class="form-control mb-2" name="nome_func" placeholder="Nome" value="{{ old('nome_func') }}">
         <div class="input-group mb-2">
             <span class="input-group-text">@</span>
-            <input type="email" class="form-control" name="email" placeholder="E-mail">
+            <input type="email" class="form-control" name="email" placeholder="E-mail" value="{{ old('email') }}">
         </div>
         <input type="password" class="form-control mb-2" name="password" placeholder="Senha">
         @error('nome_func')

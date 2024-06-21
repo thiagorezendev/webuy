@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\FuncionarioRequest;
 use App\Models\Funcionario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -64,7 +65,7 @@ class FuncionarioController extends Controller {
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request) {
+    public function store(FuncionarioRequest $request) {
         Funcionario::create([
             'nome_func' => $request -> nome_func,
             'email' => $request -> email,
@@ -84,7 +85,7 @@ class FuncionarioController extends Controller {
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id) {
+    public function update(FuncionarioRequest $request, $id) {
         $id = Funcionario::findOrFail($id);
         $id->update([
             'nome_func' => $request -> nome_func,

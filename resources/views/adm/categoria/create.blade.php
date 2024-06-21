@@ -6,7 +6,7 @@
     <form action="{{ route('adm.categoria.store') }}" method="POST">
         @csrf
         <h1 class="h1 my-4 text-center">Nova Categoria</h1>
-        <input type="text" class="form-control mb-2" name="nome_categoria" placeholder="Nome">
+        <input type="text" class="form-control mb-2" name="nome_categoria" placeholder="Nome" value="{{ old('nome_categoria') }}">
         @error('nome_categoria')
             <div class="alert alert-danger">{{ $message }}</div>
         @enderror
