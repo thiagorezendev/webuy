@@ -93,7 +93,7 @@ Route::group(['prefix' => '/adm', 'as' => 'adm.'], function () {
         Route::delete('/{id}', [FornecedorController::class, 'destroy'])->name('delete');
     });
 
-    Route::group(['prefix' => 'funcironario', 'as' => 'funcionario.'], function () {
+    Route::group(['prefix' => 'funcionario', 'as' => 'funcionario.'], function () {
         Route::get('/', [FuncionarioController::class, 'index'])->name('index');
         Route::get('/novo', [FuncionarioController::class, 'create'])->name('create');
         Route::post('/novo', [FuncionarioController::class, 'store'])->name('store');

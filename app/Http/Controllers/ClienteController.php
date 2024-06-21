@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ClienteRequest;
 use App\Models\Cliente;
 use App\Models\Endereco;
 use App\Models\Categoria;
@@ -9,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use App\Http\Requests\FornecedorRequest;
 
 class ClienteController extends Controller {
     /**
@@ -22,7 +24,7 @@ class ClienteController extends Controller {
         return view('main.cliente.login');
     }
 
-    public function autentica(Request $request) {
+    public function autentica(ClienteRequest $request) {
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
@@ -49,7 +51,7 @@ class ClienteController extends Controller {
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request) {
+    public function store(ClienteRequest $request) {
         Cliente::create([
             'cpf_cli' => $request -> cpf_cli,
             'nome_cli' => $request -> nome_cli,
