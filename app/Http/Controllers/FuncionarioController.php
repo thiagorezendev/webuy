@@ -84,8 +84,7 @@ class FuncionarioController extends Controller {
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id) {
         $id = Funcionario::findOrFail($id);
         $id->update([
             'nome_func' => $request -> nome_func,

@@ -18,7 +18,7 @@ class Cliente extends Authenticatable
 
     public function endereco(): HasOne
     {
-        return $this->hasOne(Endereco::class, 'cpf_cli');
+        return $this->hasOne(Endereco::class, 'id_cli');
     }
 
 }

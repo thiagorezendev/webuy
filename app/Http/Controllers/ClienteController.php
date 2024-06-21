@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ClienteRequest;
+use App\Http\Requests\ClienteRequestUpdate;
 use App\Models\Cliente;
 use App\Models\Endereco;
 use App\Models\Categoria;
@@ -10,7 +11,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
-use App\Http\Requests\FornecedorRequest;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Validator;   
 
 class ClienteController extends Controller {
     /**
@@ -87,17 +89,20 @@ class ClienteController extends Controller {
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Cliente $cliente)
-    {
-        //
+    public function edit($id) {
+        $categorias = Categoria::all();
+        $cliente = Cliente::findOrFail($id);
+        return view('main.cliente.edit', compact('categorias', 'cliente'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Cliente $cliente)
-    {
-        //
+    public function update(ClienteRequestUpdate $request, $id) {
+        $cliente = Cliente::findOrFail($id);
+        
+        $cliente->update($request->all());
+        return redirect()->route('main.home')->with('message','Atualizado com sucesso!');
     }
 
     /**

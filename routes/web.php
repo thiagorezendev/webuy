@@ -39,6 +39,10 @@ Route::post('/cadastro', [ClienteController::class, 'store'])->name('cliente.sto
 
 Route::get('/perfil/{id}', [ClienteController::class, 'show'])->name('cliente.perfil');
 
+Route::get('/editar/{id}', [ClienteController::class, 'edit'])->name('cliente.edit');
+
+Route::post('/editar/{id}', [ClienteController::class, 'update'])->name('cliente.update');
+
 Route::get('/carrinho/{id}', [CarrinhoController::class, 'show'])->name('cliente.carrinho');
 
 Route::get('/pagamento/{id}', [VendaController::class, 'create'])->name('cliente.pagamento');

@@ -41,8 +41,7 @@ class FornecedorController extends Controller {
     /**
      * Update the specified resource in storage.
      */
-    public function update(FornecedorRequest $request, $id_fornecedor)
-    {
+    public function update(FornecedorRequest $request, $id_fornecedor) {
         $id_fornecedor = Fornecedor::findOrFail($id_fornecedor);
         $id_fornecedor->update($request->all());
         return redirect()->route('adm.fornecedor.index')->with('message','Atualizado com sucesso!');

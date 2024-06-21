@@ -18,7 +18,4 @@ class Endereco extends Model
     public function cliente(): BelongsTo {
         return $this->belongsTo(Cliente::class, 'id_cli');
     }
-
-
-    
 }
