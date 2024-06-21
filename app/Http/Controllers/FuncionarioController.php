@@ -85,7 +85,11 @@ class FuncionarioController extends Controller {
     public function update(Request $request, $id)
     {
         $id = Funcionario::findOrFail($id);
-        $id->update($request->all());
+        $id->update([
+            'nome_func' => $request -> nome_func,
+            'email' => $request -> email,
+            'password' => Hash::make($request -> password),
+        ]);
         return redirect()->route('adm.funcionario.index')->with('message','Atualizado com sucesso!');
     }
 
