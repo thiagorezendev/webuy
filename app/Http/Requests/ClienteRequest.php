@@ -25,7 +25,9 @@ class ClienteRequest extends FormRequest
             'nome_cli' => 'required|string|max:50',
             'tel_cli' => 'required|max:11',
             'cpf_cli' => 'required|max:11',
-            'data_nasc_cli' => 'required|date',     
+            'data_nasc_cli' => 'required|date',
+            'cep' => 'required|max:8',
+            'numero' => 'required',
             'email' => 'required|email|unique:clientes,email|max:100',
             'password' => 'required',
         ];

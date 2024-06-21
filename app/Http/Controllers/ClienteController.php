@@ -61,7 +61,7 @@ class ClienteController extends Controller {
             'data_nasc_cli' => $request -> data_nasc_cli
         ]);
 
-      
+        Endereco::create($request->all());
         return redirect()->route('main.home')->with('message','Cadastrado com sucesso!');
     }
 

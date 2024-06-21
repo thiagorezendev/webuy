@@ -13,10 +13,10 @@ class Endereco extends Model
 
     public $timestamps = false;
 
-    protected $fillable = ['cpf_cli', 'cep', 'numero', 'complemento'];
+    protected $fillable = ['id_cli', 'cep', 'numero', 'complemento'];
 
     public function cliente(): BelongsTo {
-        return $this->belongsTo(Cliente::class, 'cpf_cli');
+        return $this->belongsTo(Cliente::class, 'id_cli');
     }
 
 

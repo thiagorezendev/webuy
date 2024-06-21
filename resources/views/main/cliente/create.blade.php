@@ -30,20 +30,27 @@
                 <input type="text" class="form-control" name="cep" placeholder="CEP" id="cep" value={{ old('cep')}}>
             </div>
             <div class="col-md-9 col-sm-12">
-                <input type="text" class="form-control" name="rua" placeholder="Rua" value={{ old('rua')}}>
+                <input type="text" class="form-control" name="rua" placeholder="Rua" id="rua" disabled>
             </div>
             <div class="col-md col-sm-12">
                 <input type="text" class="form-control mb-2" name="numero" placeholder="Número" value={{ old('numero')}}>
             </div>
         </div>
-        <div class="row">
-            <div class="col-12">
-                <input type="text" class="form-control mb-2" name="bairro" placeholder="Bairro" value={{ old('bairro')}}>
+        <div class="row g-2">
+            <div class="col-md col-sm-12">
+                <input type="text" class="form-control" name="bairro" placeholder="Bairro" id="bairro" disabled>
+            </div>
+            <div class="col-md col-sm-12">
+                <input type="text" class="form-control" name="cidade" placeholder="Cidade" id="cidade" disabled>
+            </div>
+            <div class="col-md-2 col-sm-12">
+                <input type="text" class="form-control mb-2" name="uf" placeholder="UF" id="uf" disabled>
             </div>
         </div>
         <div class="row">
             <div class="col-12">
                 <input type="text" class="form-control mb-2" name="complemento" placeholder="Complemento" value={{ old('complemento')}}>
+                <div class="form-text">Coloque aqui a rua e o bairro se o CEP não tiver!</div>
             </div>
             
         </div>
@@ -84,6 +91,17 @@
         $('#cpf').unmask();
         $('#tel').unmask();
         $('#cep').unmask();
+    });
+
+    $('#cep').blur(function() {
+        let cep = $('#cep').unmask().val();
+        $('#cep').mask('00000-000');
+        $.get('https://viacep.com.br/ws/'+ cep +'/json/', function(dados) {
+            $('#rua').val(dados.logradouro);
+            $('#bairro').val(dados.bairro);
+            $('#cidade').val(dados.localidade);
+            $('#uf').val(dados.uf);
+        });
     });
 </script>
 
