@@ -27,7 +27,8 @@ class ClienteRequest extends FormRequest
             'cpf_cli' => 'required|max:11',
             'data_nasc_cli' => 'required|date',
             'cep' => 'required|max:8',
-            'numero' => 'required',
+            'numero' => 'required|max:5',
+            'complemento' => 'max:255',
             'email' => 'required|email|unique:clientes,email|max:100',
             'password' => 'required',
         ];
@@ -41,6 +42,8 @@ class ClienteRequest extends FormRequest
             'cpf_cli.required' => 'O campo cpf é obrigatório',
             'data_nasc_cli.required' => 'O campo data de nascimento é obrigatório',
             'email.required' => 'O campo email é obrigatório',
+            'cep.required' => 'O campo CEP é obrigatório',
+            'numero.required' => 'O campo numero é obrigatório',
             'email.email' => 'O campo email deve ser um email válido',
             'email.unique' => 'Já há um cadastro com esse email',
             'password.required' => 'O campo senha é obrigatório',

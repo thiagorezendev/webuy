@@ -24,10 +24,15 @@ class ClienteController extends Controller {
         return view('main.cliente.login');
     }
 
-    public function autentica(ClienteRequest $request) {
+    public function autentica(Request $request) {
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
+        ],
+        [
+            'email.required' => 'O campo email é obrigatório',
+            'email.email' => 'O campo email deve ser um email válido',
+            'password.required' => 'O campo senha é obrigatório',
         ]);
        
  
@@ -52,7 +57,7 @@ class ClienteController extends Controller {
      * Store a newly created resource in storage.
      */
     public function store(ClienteRequest $request) {
-        Cliente::create([
+        $cliente = Cliente::create([
             'cpf_cli' => $request -> cpf_cli,
             'nome_cli' => $request -> nome_cli,
             'email' => $request -> email,
@@ -61,8 +66,13 @@ class ClienteController extends Controller {
             'data_nasc_cli' => $request -> data_nasc_cli
         ]);
 
-        Endereco::create($request->all());
-        return redirect()->route('main.home')->with('message','Cadastrado com sucesso!');
+        Endereco::create([
+            'id_cli' => $cliente->id,
+            'cep' => $request->cep,
+            'numero' => $request->numero,
+            'complemento' => $request->complemento
+        ]);
+        return redirect()->route('cliente.login')->with('message','Cadastrado com sucesso!');
     }
 
     /**

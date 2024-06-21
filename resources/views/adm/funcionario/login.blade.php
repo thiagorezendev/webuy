@@ -25,6 +25,12 @@
         <input type="checkbox" value="remember-me"> Lembrar de mim
       </label>
     </div>
+    @error('email')
+        <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
+    @error('password')
+        <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
     <button class="w-100 btn btn-lg btn-indigo" type="submit">Entrar</button>
     <p class="mt-3 mb-3 text-muted">&copy; 2024 - Lauro e Thiago</p>
   </form>

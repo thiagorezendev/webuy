@@ -1,6 +1,6 @@
 -- Tabela Clientes
 CREATE TABLE clientes (
-    id INT(10) PRIMARY KEY,
+    id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     cpf_cli VARCHAR(11) NOT NULL,
     nome_cli VARCHAR(50) NOT NULL,
     email VARCHAR(100) NOT NULL,
@@ -12,18 +12,18 @@ CREATE TABLE clientes (
 -- Tabela Endereços
 CREATE TABLE enderecos (
     id_end INT(10) AUTO_INCREMENT PRIMARY KEY,
-    id INT(10) NOT NULL,
+    id_cli BIGINT UNSIGNED NOT NULL,
     cep VARCHAR(8) NOT NULL,
     numero INT(5) NOT NULL,
     complemento TEXT,
-    FOREIGN KEY (id) REFERENCES clientes(id)
+    FOREIGN KEY (id_cli) REFERENCES clientes(id)
 );
 
 -- Tabela Carrinhos
 CREATE TABLE carrinhos (
     id_carrinho INT(10) AUTO_INCREMENT PRIMARY KEY,
-    id INT(10) NOT NULL,
-    FOREIGN KEY (id) REFERENCES clientes(id)
+    id_cli BIGINT UNSIGNED NOT NULL,
+    FOREIGN KEY (id_cli) REFERENCES clientes(id)
 );
 
 -- Tabela Categorias
@@ -96,16 +96,16 @@ CREATE TABLE compras (
 
 -- Tabela Funcionários
 CREATE TABLE funcionarios (
-    id INT(10) AUTO_INCREMENT PRIMARY KEY,
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     nome_func VARCHAR(50) NOT NULL,
     email VARCHAR(100) NOT NULL,
-    password VARCHAR(100) NOT NULL
+    password VARCHAR(255) NOT NULL
 );
 
 -- Tabela Logins
 CREATE TABLE logins (
     id_login INT(10) AUTO_INCREMENT PRIMARY KEY,
-    id_func INT(10) NOT NULL,
+    id_func BIGINT UNSIGNED NOT NULL,
     data_login datetime NOT NULL,
     FOREIGN KEY (id_func) REFERENCES funcionarios(id)
 );
@@ -134,37 +134,10 @@ CREATE INDEX idx_nome_produto ON produtos(nome_produto);
 CREATE INDEX idx_data_venda ON vendas(data_venda);
 
 -- Índice para melhorar o desempenho ao verificar os dados de login dos clientes
-CREATE INDEX idx_login_cliente ON clientes(email_cli, senha_cli);
+CREATE INDEX idx_login_cliente ON clientes(email, password);
 
 -- Índice para melhorar o desempenho ao verificar os dados de login dos funcionários
-CREATE INDEX idx_login_funcionarios ON funcionarios(email_func, senha_func);
-
--- View para mostrar as compras de produtos
-CREATE VIEW compras_produto AS 
-SELECT 
-p.nome_produto AS 'Produto', 
-p.preco_produto AS 'Preco de Venda', 
-f.nome_fornecedor AS 'Fornecedor', 
-c.qntd_compra AS 'Quantidade Compra', 
-c.data_compra AS 'Data', 
-c.preco_uni_compra AS 'Preço de Compra' 
-FROM compras c 
-JOIN produtos p ON c.id_produto = p.id_produto 
-JOIN fornecedores f ON c.id_fornecedor = f.id_fornecedor;
-
--- View para mostrar todas as vendas feitas, o cliente e os produtos comprados
-CREATE VIEW view_vendas AS 
-SELECT 
-c.nome_cli AS 'Nome Cliente',
-p.nome_produto AS 'Nome Produto', 
-i.quantidade_item AS 'Quantidade', 
-p.preco_produto AS 'Preço Unitário', 
-p.preco_produto * i.quantidade_item AS 'Preço Final' 
-FROM clientes c 
-JOIN carrinhos ON c.cpf_cli = carrinhos.cpf_cli
-JOIN vendas ON carrinhos.id_carrinho = vendas.id_carrinho
-JOIN itens_venda i ON carrinhos.id_carrinho = i.id_carrinho 
-JOIN produtos p ON i.id_produto = p.id_produto;
+CREATE INDEX idx_login_funcionarios ON funcionarios(email, password);
 
 -- Trigger para atualizar o estoque após venda
 DELIMITER $$
@@ -226,45 +199,4 @@ FOR EACH ROW
 BEGIN
     INSERT INTO estoques (id_produto, qntd_estoque) VALUES (NEW.id_produto, 0);
 END$$
-DELIMITER ;
-
-DELIMITER $$
-
-CREATE PROCEDURE valida_cpf(IN cpf VARCHAR(11), OUT is_valid BOOLEAN)
-BEGIN
-    DECLARE sum1, sum2, digit1, digit2, i, num INT;
-    
-    -- Inicializar variáveis
-    SET sum1 = 0;
-    SET sum2 = 0;
-    SET is_valid = TRUE;
-    
-    -- Validar o tamanho do CPF
-    IF LENGTH(cpf) != 11 THEN
-        SET is_valid = FALSE;
-    ELSE
-        -- Calcular o primeiro dígito verificador
-        SET i = 1;
-        WHILE i <= 9 DO
-            SET num = CAST(SUBSTRING(cpf, i, 1) AS UNSIGNED);
-            SET sum1 = sum1 + num * (11 - i);
-            SET sum2 = sum2 + num * (12 - i);
-            SET i = i + 1;
-        END WHILE;
-        
-        SET digit1 = (sum1 * 10) % 11;
-        IF digit1 = 10 THEN SET digit1 = 0; END IF;
-        
-        -- Calcular o segundo dígito verificador
-        SET sum2 = sum2 + digit1 * 2;
-        SET digit2 = (sum2 * 10) % 11;
-        IF digit2 = 10 THEN SET digit2 = 0; END IF;
-        
-        -- Comparar os dígitos verificadores calculados com os fornecidos
-        IF digit1 != CAST(SUBSTRING(cpf, 10, 1) AS UNSIGNED) OR digit2 != CAST(SUBSTRING(cpf, 11, 1) AS UNSIGNED) THEN
-            SET is_valid = FALSE;
-        END IF;
-    END IF;
-END$$
-
 DELIMITER ;

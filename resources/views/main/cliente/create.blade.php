@@ -30,7 +30,7 @@
                 <input type="text" class="form-control" name="cep" placeholder="CEP" id="cep" value={{ old('cep')}}>
             </div>
             <div class="col-md-9 col-sm-12">
-                <input type="text" class="form-control" name="rua" placeholder="Rua" id="rua" disabled>
+                <input type="text" class="form-control" name="rua" placeholder="Rua" id="rua" disabled value={{ old('rua')}}>
             </div>
             <div class="col-md col-sm-12">
                 <input type="text" class="form-control mb-2" name="numero" placeholder="Número" value={{ old('numero')}}>
@@ -38,13 +38,13 @@
         </div>
         <div class="row g-2">
             <div class="col-md col-sm-12">
-                <input type="text" class="form-control" name="bairro" placeholder="Bairro" id="bairro" disabled>
+                <input type="text" class="form-control" name="bairro" placeholder="Bairro" id="bairro" disabled value={{ old('bairro')}}>
             </div>
             <div class="col-md col-sm-12">
-                <input type="text" class="form-control" name="cidade" placeholder="Cidade" id="cidade" disabled>
+                <input type="text" class="form-control" name="cidade" placeholder="Cidade" id="cidade" disabled value={{ old('cidade')}}>
             </div>
             <div class="col-md-2 col-sm-12">
-                <input type="text" class="form-control mb-2" name="uf" placeholder="UF" id="uf" disabled>
+                <input type="text" class="form-control mb-2" name="uf" placeholder="UF" id="uf" disabled value={{ old('uf')}}>
             </div>
         </div>
         <div class="row">
@@ -67,6 +67,15 @@
             <div class="alert alert-danger">{{ $message }}</div>
         @enderror
         @error('data_nasc_cli')
+            <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
+        @error('cep')
+            <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
+        @error('numero')
+            <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
+        @error('complemento')
             <div class="alert alert-danger">{{ $message }}</div>
         @enderror
         @error('email')

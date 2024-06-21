@@ -26,6 +26,11 @@ class FuncionarioController extends Controller {
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
+        ],
+        [
+            'email.required' => 'O campo email é obrigatório',
+            'email.email' => 'O campo email deve ser um email válido',
+            'password.required' => 'O campo senha é obrigatório',
         ]);
  
         if (Auth::guard('admin')->attempt($credentials)) {
@@ -44,9 +49,6 @@ class FuncionarioController extends Controller {
 
     public function logout(Request $request) {
         Auth::guard('admin')->logout();
- 
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
      
         return redirect()->route('main.home');
     }
