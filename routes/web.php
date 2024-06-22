@@ -43,6 +43,8 @@ Route::get('/editar/{id}', [ClienteController::class, 'edit'])->name('cliente.ed
 
 Route::post('/editar/{id}', [ClienteController::class, 'update'])->name('cliente.update');
 
+Route::delete('/delete/{id}', [ClienteController::class, 'destroy'])->name('cliente.delete');
+
 Route::get('/carrinho/{id}', [CarrinhoController::class, 'show'])->name('cliente.carrinho');
 
 Route::get('/pagamento/{id}', [VendaController::class, 'create'])->name('cliente.pagamento');

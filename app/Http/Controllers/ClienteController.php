@@ -12,60 +12,68 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Validation\Rule;
-use Illuminate\Support\Facades\Validator;   
+use Illuminate\Support\Facades\Validator;
 
-class ClienteController extends Controller {
+class ClienteController extends Controller
+{
     /**
      * Show the form for creating a new resource.
      */
-    public function create() {
+    public function create()
+    {
         return view('main.cliente.create');
     }
 
-    public function login() {
+    public function login()
+    {
         return view('main.cliente.login');
     }
 
-    public function autentica(Request $request) {
-        $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
-        ],
-        [
-            'email.required' => 'O campo email é obrigatório',
-            'email.email' => 'O campo email deve ser um email válido',
-            'password.required' => 'O campo senha é obrigatório',
-        ]);
-       
- 
+    public function autentica(Request $request)
+    {
+        $credentials = $request->validate(
+            [
+                'email' => ['required', 'email'],
+                'password' => ['required'],
+            ],
+            [
+                'email.required' => 'O campo email é obrigatório',
+                'email.email' => 'O campo email deve ser um email válido',
+                'password.required' => 'O campo senha é obrigatório',
+            ]
+        );
+
+
         if (Auth::guard('web')->attempt($credentials)) {
             $request->session()->regenerate();
             return redirect()->route('main.home');
         }
- 
+
         return back()->with('message', 'Email ou senha incorretos!');
     }
 
-    public function logout(Request $request) {
+    public function logout(Request $request)
+    {
         Auth::guard('web')->logout();
- 
+
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-     
+
         return redirect()->route('main.home');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(ClienteRequest $request) {
+    public function store(ClienteRequest $request)
+    {
         $cliente = Cliente::create([
-            'cpf_cli' => $request -> cpf_cli,
-            'nome_cli' => $request -> nome_cli,
-            'email' => $request -> email,
-            'tel_cli' => $request -> tel_cli,
-            'password' => Hash::make($request -> password),
-            'data_nasc_cli' => $request -> data_nasc_cli
+            'cpf_cli' => $request->cpf_cli,
+            'nome_cli' => $request->nome_cli,
+            'email' => $request->email,
+            'tel_cli' => $request->tel_cli,
+            'password' => Hash::make($request->password),
+            'data_nasc_cli' => $request->data_nasc_cli
         ]);
 
         Endereco::create([
@@ -74,13 +82,14 @@ class ClienteController extends Controller {
             'numero' => $request->numero,
             'complemento' => $request->complemento
         ]);
-        return redirect()->route('cliente.login')->with('message','Cadastrado com sucesso!');
+        return redirect()->route('cliente.login')->with('message', 'Cadastrado com sucesso!');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show($id) {
+    public function show($id)
+    {
         $categorias = Categoria::all();
         $cliente = Cliente::findOrFail($id);
         return view('main.cliente.show', compact('categorias', 'cliente'));
@@ -89,7 +98,8 @@ class ClienteController extends Controller {
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id) {
+    public function edit($id)
+    {
         $categorias = Categoria::all();
         $cliente = Cliente::findOrFail($id);
         return view('main.cliente.edit', compact('categorias', 'cliente'));
@@ -98,18 +108,22 @@ class ClienteController extends Controller {
     /**
      * Update the specified resource in storage.
      */
-    public function update(ClienteRequestUpdate $request, $id) {
+    public function update(ClienteRequestUpdate $request, $id)
+    {
         $cliente = Cliente::findOrFail($id);
-        
+
         $cliente->update($request->all());
-        return redirect()->route('main.home')->with('message','Atualizado com sucesso!');
+        return redirect()->route('main.home')->with('message', 'Atualizado com sucesso!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Cliente $cliente)
+    public function destroy($id)
     {
-        //
+        Endereco::where('id_cli', $id)->delete();
+        $cliente = Cliente::findOrFail($id);
+        $cliente->delete();
+        return redirect()->route('main.home')->with('message', 'Deletado com sucesso!');
     }
 }
