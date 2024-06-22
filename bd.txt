@@ -46,7 +46,7 @@ CREATE TABLE produtos (
     id_categoria INT(10),
     nome_produto VARCHAR(100) NOT NULL,
     desc_produto TEXT NOT NULL,
-    foto_produto VARCHAR(30) NOT NULL,
+    foto_produto VARCHAR(255) NOT NULL,
     preco_produto DECIMAL(8, 2) NOT NULL,
     FOREIGN KEY (id_categoria) REFERENCES categorias(id_categoria)
 );
