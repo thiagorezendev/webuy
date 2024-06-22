@@ -34,7 +34,8 @@ class CategoriaController extends Controller
     public function store(CategoriaRequest $request)
     {
         Categoria::create($request->all());
-        return redirect()->back()->with('message', 'Cadastrado com sucesso!');
+        flash('Categoria cadastrada com sucesso!', 'success', [], 'Sucesso');
+        return redirect()->back();
     }
 
     /**
@@ -53,7 +54,8 @@ class CategoriaController extends Controller
     {
         $categoria = Categoria::findOrFail($id_categoria);
         $categoria->update($request->all());
-        return redirect()->route('adm.categoria.index')->with('message', 'Categoria atualizada com sucesso!');
+        flash('Categoria atualizada com sucesso!', 'success', [], 'Sucesso');
+        return redirect()->route('adm.categoria.index');
     }
 
     /**
@@ -66,9 +68,11 @@ class CategoriaController extends Controller
         $categoria = Categoria::findOrFail($id_categoria);
         if($categoria) {
             $categoria->delete();
-            return redirect()->route('adm.categoria.index')->with('message', 'Categoria deletada com sucesso!');
+            flash('Categoria deletada com sucesso!', 'success', [], 'Sucesso');
+            return redirect()->route('adm.categoria.index');
         } else {
-            return redirect()->route('adm.categoria.index')->with('message', 'Erro ao tentar deletar a categoria.');
+            flash('Erro ao tentar deletar a categoria.', 'error', [], 'Erro');
+            return redirect()->route('adm.categoria.index');
         }
     }
 }

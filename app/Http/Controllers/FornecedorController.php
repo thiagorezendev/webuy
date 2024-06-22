@@ -27,7 +27,8 @@ class FornecedorController extends Controller {
      */
     public function store(FornecedorRequest $request) {
         Fornecedor::create($request->all());
-        return redirect()->back()->with('message','Cadastrado com sucesso!');
+        flash('Fornecedor cadastrado com sucesso!', 'success', [], 'Sucesso');
+        return redirect()->back();
     }
 
     /**
@@ -44,7 +45,8 @@ class FornecedorController extends Controller {
     public function update(FornecedorRequest $request, $id_fornecedor) {
         $id_fornecedor = Fornecedor::findOrFail($id_fornecedor);
         $id_fornecedor->update($request->all());
-        return redirect()->route('adm.fornecedor.index')->with('message','Atualizado com sucesso!');
+        flash('Fornecedor atualizado com sucesso!', 'success', [], 'Sucesso');
+        return redirect()->route('adm.fornecedor.index');
     }
 
     /**
@@ -54,6 +56,7 @@ class FornecedorController extends Controller {
     {
         $fornecedor = Fornecedor::findOrFail($id_fornecedor);
         $fornecedor->delete();
-        return redirect()->route('adm.fornecedor.index')->with('message','Deletado com sucesso!');
+        flash('Fornecedor deletado com sucesso!', 'success', [], 'Sucesso');
+        return redirect()->route('adm.fornecedor.index');
     }
 }

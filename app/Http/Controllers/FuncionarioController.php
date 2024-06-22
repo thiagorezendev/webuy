@@ -44,8 +44,9 @@ class FuncionarioController extends Controller {
             $request->session()->regenerate();
             return redirect()->route('adm.home');
         }
- 
-        return back()->with('message', 'Email ou senha incorretos!');
+        
+        flash('Email ou senha incorretos!', 'error', [], 'Erro');
+        return back();
     }
 
     public function logout(Request $request) {
@@ -71,7 +72,8 @@ class FuncionarioController extends Controller {
             'email' => $request -> email,
             'password' => Hash::make($request -> password),
         ]);
-        return redirect()->back()->with('message','Cadastrado com sucesso!');
+        flash('Funcionário cadastrado com sucesso!', 'success', [], 'Sucesso');
+        return redirect()->back();
     }
 
     /**
@@ -92,7 +94,8 @@ class FuncionarioController extends Controller {
             'email' => $request -> email,
             'password' => Hash::make($request -> password),
         ]);
-        return redirect()->route('adm.funcionario.index')->with('message','Atualizado com sucesso!');
+        flash('Funcionário atualizado com sucesso!', 'success', [], 'Sucesso');
+        return redirect()->route('adm.funcionario.index');
     }
 
     /**
@@ -101,6 +104,7 @@ class FuncionarioController extends Controller {
     public function destroy($id) {
         $funcionario = Funcionario::findOrFail($id);
         $funcionario->delete();
-        return redirect()->route('adm.funcionario.index')->with('message','Deletado com sucesso!');
+        flash('Funcionário deletado com sucesso!', 'success', [], 'Sucesso');
+        return redirect()->route('adm.funcionario.index');
     }
 }

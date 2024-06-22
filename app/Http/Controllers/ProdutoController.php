@@ -7,6 +7,7 @@ use App\Models\Categoria;
 use App\Models\Produto;
 use App\Models\Estoque;
 use App\Models\Compra;
+use Flasher\Toastr\Prime\ToastrInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
@@ -56,8 +57,9 @@ class ProdutoController extends Controller
                 'preco_produto' => $request->preco_produto 
             ]);
         }
-
-        return redirect()->back()->with('message','Cadastrado com sucesso!');
+        
+        flash('Produto cadastrado com sucesso!', 'success', [], 'Sucesso');
+        return redirect()->back();
     }
 
     /**
@@ -92,7 +94,8 @@ class ProdutoController extends Controller
             'foto_produto' => $path,
             'preco_produto' => $request->preco_produto 
         ]);    
-        return redirect()->route('adm.produto.index')->with('message', 'Produto atualizado com sucesso!');
+        flash('Produto atualizado com sucesso!', 'success', [], 'Sucesso');
+        return redirect()->route('adm.produto.index');
     }
 
     /**
@@ -110,9 +113,11 @@ class ProdutoController extends Controller
             }
 
             $produto->delete();
-            return redirect()->route('adm.produto.index')->with('message', 'Deletado com sucesso!');
+            flash('Produto deletado com sucesso!', 'success', [], 'Sucesso');
+            return redirect()->route('adm.produto.index');
         } else {
-            return redirect()->route('adm.produto.index')->with('error', 'Produto não encontrado!');
+            flash('Produto não encontrado!', 'error');
+            return redirect()->route('adm.produto.index');
         }
     }
 }

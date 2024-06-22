@@ -49,7 +49,8 @@ class ClienteController extends Controller
             return redirect()->route('main.home');
         }
 
-        return back()->with('message', 'Email ou senha incorretos!');
+        flash('Email ou senha incorretos!', 'error', [], 'Erro');
+        return back();
     }
 
     public function logout(Request $request)
@@ -82,7 +83,8 @@ class ClienteController extends Controller
             'numero' => $request->numero,
             'complemento' => $request->complemento
         ]);
-        return redirect()->route('cliente.login')->with('message', 'Cadastrado com sucesso!');
+        flash('Cadastrado com sucesso!', 'success', [], 'Sucesso');
+        return redirect()->route('cliente.login');
     }
 
     /**
@@ -113,7 +115,8 @@ class ClienteController extends Controller
         $cliente = Cliente::findOrFail($id);
 
         $cliente->update($request->all());
-        return redirect()->route('main.home')->with('message', 'Atualizado com sucesso!');
+        flash('Atualizado com sucesso!', 'success', [], 'Sucesso');
+        return redirect()->route('main.home');
     }
 
     /**
@@ -124,6 +127,7 @@ class ClienteController extends Controller
         Endereco::where('id_cli', $id)->delete();
         $cliente = Cliente::findOrFail($id);
         $cliente->delete();
-        return redirect()->route('main.home')->with('message', 'Deletado com sucesso!');
+        flash('Deletado com sucesso!', 'success', [], 'Sucesso');
+        return redirect()->route('main.home');
     }
 }

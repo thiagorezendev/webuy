@@ -40,7 +40,8 @@ class CompraController extends Controller {
             'preco_uni_compra' => $request->preco_uni_compra,
             'data_venc' => $request->data_venc,
         ]);
-        return redirect()->back()->with('message','Cadastrado com sucesso!');
+        flash('Compra cadastrada com sucesso!', 'success', [], 'Sucesso');
+        return redirect()->back();
     }
 
     /**
@@ -60,7 +61,8 @@ class CompraController extends Controller {
     {
         $compra = Compra::findOrFail($id_compra);
         $compra->update($request->all()); 
-        return redirect()->route('adm.compra.index')->with('message','Atualizado com sucesso!');
+        flash('Compra atualizada com sucesso!', 'success', [], 'Sucesso');
+        return redirect()->route('adm.compra.index');
     }
 
     /**
@@ -70,6 +72,7 @@ class CompraController extends Controller {
     {
         $compra = Compra::findOrFail($id_compra);
         $compra->delete();
-        return redirect()->route('adm.compra.index')->with('message','Deletado com sucesso!');
+        flash('Compra deletada com sucesso!', 'success', [], 'Sucesso');
+        return redirect()->route('adm.compra.index');
     }
 }
