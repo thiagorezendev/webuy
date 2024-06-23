@@ -26,10 +26,10 @@
                         <td>{{ $compra->produto->nome_produto}}</td>
                         <td>{{ $compra->fornecedor->nome_fornecedor}}</td>
                         <td>{{ $compra->qntd_compra }}</td>
-                        <td>R$ {{ $compra->preco_uni_compra }}</td>
-                        <td>{{ $compra->data_venc }}</td>
-                        <td>{{ $compra->data_compra }}</td>
-                        <td>R$ {{ $compra->preco_uni_compra * $compra->qntd_compra }}</td>
+                        <td>R$ {{ number_format($compra->preco_uni_compra, 2, ',', '.') }}</td>
+                        <td>{{ date_format(date_create($compra->data_venc), 'd/m/Y') }}</td>
+                        <td>{{date_format(date_create($compra->data_compra), 'd/m/Y') }}</td>
+                        <td>R$ {{ number_format($compra->preco_uni_compra * $compra->qntd_compra, 2, ',', '.') }}</td>
                     </tr>
                 @endforeach
             </tbody>

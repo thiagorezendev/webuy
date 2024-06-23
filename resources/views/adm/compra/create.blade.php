@@ -11,7 +11,7 @@
                 <select name="id_produto" class="form-select">
                     <option value="">Qual produto será comprado?</option>
                     @foreach ($produtos as $produto)
-                        <option value="{{ $produto->id_produto }}">{{ $produto->nome_produto }}</option>
+                        <option value="{{ $produto->id_produto }}" {{ old('id_produto') == $produto->id_produto ? 'selected' : '' }}>{{ $produto->nome_produto }}</option>
                     @endforeach
                 </select>
             </div>
@@ -19,12 +19,12 @@
                 <select name="id_fornecedor" class="form-select mb-2">
                     <option value="">Em qual fornecedor?</option>
                     @foreach ($fornecedores as $fornecedor)
-                        <option value="{{ $fornecedor->id_fornecedor }}">{{ $fornecedor->nome_fornecedor }}</option>
+                        <option value="{{ $fornecedor->id_fornecedor }}" {{ old('id_fornecedor') == $fornecedor->id_fornecedor ? 'selected' : '' }}>{{ $fornecedor->nome_fornecedor }}</option>
                     @endforeach
                 </select>
             </div>
         </div>
-        <div class="row g-2">
+        <div class="row g-2 mb-2">
             <div class="col-md col-sm-12">
                 <input type="number" class="form-control" name="qntd_compra" placeholder="Quantidade" value="{{ old('qntd_compra') }}">
             </div>
@@ -36,7 +36,7 @@
             </div>
             <div class="input-group col-md col-sm-12">
                 <span class="input-group-text">R$</span>
-                <input type="number" class="form-control" name="preco_uni_compra" placeholder="Preço Unitário" value="{{ old('preco_uni_compra') }}">
+                <input type="number" class="form-control" name="preco_uni_compra" placeholder="Preço Unitário" value="{{ old('preco_uni_compra') }}" step="0.01">
             </div>
         </div>
         @error('id_produto')

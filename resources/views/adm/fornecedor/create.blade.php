@@ -6,7 +6,7 @@
     <form action="{{ route('adm.fornecedor.store') }}" method="POST">
         @csrf
         <h1 class="h1 my-4 text-center">Novo Fornecedor</h1>
-        <div class="row g-2">
+        <div class="row g-2 mb-2">
             <div class="col-md col-sm-12">
                 <input type="text" class="form-control" name="nome_fornecedor" placeholder="Nome" value="{{ old('nome_fornecedor') }}">
             </div>
