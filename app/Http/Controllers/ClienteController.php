@@ -114,7 +114,9 @@ class ClienteController extends Controller
     {
         $cliente = Cliente::findOrFail($id);
 
+        $cliente->endereco->update($request->all());
         $cliente->update($request->all());
+       
         flash('Atualizado com sucesso!', 'success', [], 'Sucesso');
         return redirect()->route('main.home');
     }

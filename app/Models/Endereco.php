@@ -13,6 +13,8 @@ class Endereco extends Model
 
     public $timestamps = false;
 
+    protected $primaryKey = 'id_end';
+
     protected $fillable = ['id_cli', 'cep', 'numero', 'complemento'];
 
     public function cliente(): BelongsTo {
