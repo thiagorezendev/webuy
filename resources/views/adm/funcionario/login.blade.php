@@ -12,7 +12,7 @@
     <h1 class="h3 mb-3">Login no Administrativo</h1>
 
     <div class="form-floating mb-2">
-      <input type="email" class="form-control" id="floatingInput" name="email" placeholder="name@example.com">
+      <input type="email" class="form-control" id="floatingInput" name="email" placeholder="name@example.com" value={{ old('email') }}>
       <label for="floatingInput">Email</label>
     </div>
     <div class="form-floating mb-2">

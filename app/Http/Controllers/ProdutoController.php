@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProdutoRequest;
+use App\Http\Requests\ProdutoRequestUpdate;
 use App\Models\Categoria;
 use App\Models\Produto;
 use App\Models\Estoque;
@@ -83,10 +84,14 @@ class ProdutoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(ProdutoRequest $request, $id_produto) {
+    public function update(ProdutoRequestUpdate $request, $id_produto) {
         $produto = Produto::findOrFail($id_produto);
-        $path = $request->file('foto_produto')->store('produtos', 'public');
-        $path = 'storage/' . $path;
+        if($request->file('foto_produto')) {
+            $path = $request->file('foto_produto')->store('produtos', 'public');
+            $path = 'storage/' . $path;
+        } else {
+            $path = $produto->foto_produto;
+        }
         $produto->update([
             'nome_produto' => $request->nome_produto,
             'id_categoria' => $request->id_categoria,

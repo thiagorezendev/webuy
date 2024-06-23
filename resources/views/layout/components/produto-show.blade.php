@@ -11,7 +11,7 @@
                   <img src="{{ asset($produto->foto_produto)}}" alt="" class="img-fluid rounded">
                 </div>
                 <div class="col-12 col-lg-6 col-sm-12">
-                  <h2 class="h2">R$ {{$produto->preco_produto}}</h2>
+                  <h2 class="h2">R$ {{ number_format($produto->preco_produto, 2, ',', '.') }}</h2>
                   <p>{{ $produto->desc_produto}}</p>
                   <p>{{ $produto->categoria->nome_categoria}}</p>
                 </div>

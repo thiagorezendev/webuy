@@ -11,7 +11,7 @@
                   <img src="{{ $produto -> foto_produto }}" alt="foto produto" class="img-fluid rounded" min-height="525">
                 </div>
                 <div class="col-12 col-lg-6 col-sm-12">
-                    <h2 class="h2">R$ {{ $produto -> preco_produto }}</h2>
+                    <h2 class="h2">R$ {{ number_format($produto -> preco_produto, 2, ',', '.') }}</h2>
                     <div class="form-group row my-2">
                       <label for="productQuantity" class="mb-2"><b>Quantidade</b></label>
                       <div class="col-3 col-sm-2">

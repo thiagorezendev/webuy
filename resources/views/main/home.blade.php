@@ -14,7 +14,7 @@
                     <img src="{{ asset($produto -> foto_produto) }}" alt="foto produto" class="rounded-top" height="200">
                     <div class="card-body">
                         <h5 class="card-title">{{ $produto -> nome_produto }}</h5>
-                        <p class="card-text">R$ {{ $produto -> preco_produto }}</p>
+                        <p class="card-text">R$ {{ number_format($produto->preco_produto, 2, ',', '.')}}</p>
                         <div class="d-grid gap-2 mx-auto">
                             <button class="btn btn-indigo" data-bs-toggle="modal" data-bs-target="#produto-modal-{{ $produto -> id_produto }}">Ver</button>
                             <button class="btn btn-outline-secondary">Adicionar ao Carrinho</button>

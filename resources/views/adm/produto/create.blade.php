@@ -15,7 +15,7 @@
                 <select name="id_categoria" class="form-select mb-2">
                     <option value="">Escolha uma opção</option>
                     @foreach ($categorias as $categoria)
-                        <option value="{{ $categoria->id_categoria }}">{{ $categoria->nome_categoria }}</option>
+                        <option value="{{ $categoria->id_categoria }}" {{ old('id_categoria') == $categoria->id_categoria ? 'selected' : '' }}>{{ $categoria->nome_categoria }}</option>
                     @endforeach
                 </select>
                 <div class="input-group mb-2">
@@ -27,7 +27,7 @@
         </div>
         <div class="input-group mb-2">
             <span class="input-group-text">Descrição</span>
-            <textarea class="form-control form-control-lg" aria-label="With textarea" name="desc_produto"></textarea>
+            <textarea class="form-control form-control-lg" aria-label="With textarea" name="desc_produto">{{ old('desc_produto') }}</textarea>
         </div>
         @error('nome_produto')
             <div class="alert alert-danger">{{ $message }}</div>
