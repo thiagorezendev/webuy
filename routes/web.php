@@ -93,6 +93,7 @@ Route::group(['prefix' => '/adm', 'as' => 'adm.'], function () {
         Route::get('/editar/{id}', [CompraController::class, 'edit'])->name('edit');
         Route::post('/editar/{id}', [CompraController::class, 'update'])->name('update');
         Route::delete('/{id}', [CompraController::class, 'destroy'])->name('delete');
+        Route::get('/pesquisa', [CompraController::class, 'pesquisa'])->name('pesquisa');
     });
 
     Route::group(['prefix' => 'fornecedor', 'as' => 'fornecedor.'], function () {
@@ -102,6 +103,7 @@ Route::group(['prefix' => '/adm', 'as' => 'adm.'], function () {
         Route::get('/editar/{id}', [FornecedorController::class, 'edit'])->name('edit');
         Route::post('/editar/{id}', [FornecedorController::class, 'update'])->name('update');
         Route::delete('/{id}', [FornecedorController::class, 'destroy'])->name('delete');
+        Route::get('/pesquisa', [FornecedorController::class, 'pesquisa'])->name('pesquisa');
     });
 
     Route::group(['prefix' => 'funcionario', 'as' => 'funcionario.'], function () {
@@ -111,5 +113,6 @@ Route::group(['prefix' => '/adm', 'as' => 'adm.'], function () {
         Route::get('/editar/{id}', [FuncionarioController::class, 'edit'])->name('edit');
         Route::post('/editar/{id}', [FuncionarioController::class, 'update'])->name('update');
         Route::delete('/{id}', [FuncionarioController::class, 'destroy'])->name('delete');
+        Route::get('/pesquisa', [FuncionarioController::class, 'pesquisa'])->name('pesquisa');
     });
 });

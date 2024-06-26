@@ -59,4 +59,10 @@ class FornecedorController extends Controller {
         flash('Fornecedor deletado com sucesso!', 'success', [], 'Sucesso');
         return redirect()->route('adm.fornecedor.index');
     }
+
+    public function pesquisa(Request $request) {
+        $query = $request->input('query');
+        $fornecedores = Fornecedor::where('nome_fornecedor', 'like', '%' . $query . '%')->get();
+        return view('adm.fornecedor.index', compact('fornecedores'));
+    }
 }

@@ -19,7 +19,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($categorias as $categoria)
+                @forelse ($categorias as $categoria)
                     <tr>
                         <th scope="row">{{ $categoria->id_categoria }}</th>
                         <td>{{ $categoria->nome_categoria }}</td>
@@ -34,6 +34,7 @@
                                 <button type="submit" class="btn btn-danger mb-1 mb-md-0" onclick="return confirm('Tem certeza que deseja excluir?')">Excluir</button>
                             </form>                        
                     </tr>
+                
                 @endforeach
             </tbody>
         </table>

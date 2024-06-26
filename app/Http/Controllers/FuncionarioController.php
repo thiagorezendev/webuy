@@ -107,4 +107,10 @@ class FuncionarioController extends Controller {
         flash('Funcionário deletado com sucesso!', 'success', [], 'Sucesso');
         return redirect()->route('adm.funcionario.index');
     }
+
+    public function pesquisa(Request $request) {
+        $query = $request->input('query');
+        $funcionarios = Funcionario::where('nome_func', 'like', '%' . $query . '%')->get();
+        return view('adm.funcionario.index', compact('funcionarios'));
+    }
 }
