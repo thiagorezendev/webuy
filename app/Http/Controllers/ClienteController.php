@@ -7,6 +7,7 @@ use App\Http\Requests\ClienteRequestUpdate;
 use App\Models\Cliente;
 use App\Models\Endereco;
 use App\Models\Categoria;
+use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -85,26 +86,31 @@ class ClienteController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($id) {
-        $categorias = Categoria::all();
-        $cliente = Cliente::findOrFail($id);
-        return view('main.cliente.show', compact('categorias', 'cliente'));
+    public function show() {
+        if(Auth::guard('web')->check()) {
+            $categorias = Categoria::all();
+            $cliente = Auth::guard('web')->user();
+            return view('main.cliente.show', compact('categorias', 'cliente'));
+        }
+       
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id) {
-        $categorias = Categoria::all();
-        $cliente = Cliente::findOrFail($id);
-        return view('main.cliente.edit', compact('categorias', 'cliente'));
+    public function edit() {
+        if(Auth::guard('web')->check()) {
+            $categorias = Categoria::all();
+            $cliente = Auth::guard('web')->user();
+            return view('main.cliente.edit', compact('categorias', 'cliente'));
+        }
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(ClienteRequestUpdate $request, $id) {
-        $cliente = Cliente::findOrFail($id);
+    public function update(ClienteRequestUpdate $request, $id_cliente) {
+        $cliente = Auth::guard('web')->user();
 
         $cliente->endereco->update($request->all());
         $cliente->update($request->all());

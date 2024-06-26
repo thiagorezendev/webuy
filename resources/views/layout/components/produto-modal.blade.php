@@ -15,7 +15,7 @@
                     <div class="form-group row my-2">
                       <label for="productQuantity" class="mb-2"><b>Quantidade</b></label>
                       <div class="col-3 col-sm-2">
-                        <input type="number" class="form-control" id="productQuantity" name="productQuantity" min="1" max="{{ $produto->estoque->qntd_estoque}}" step="1" value="1">
+                        <input type="number" class="form-control" id="qnt-{{$produto->id_produto}}" min="1" max="{{ $produto->estoque->qntd_estoque}}" step="1" value="1">
                       </div>
                     </div>
                   <p>{{ $produto -> desc_produto }}</p>
@@ -25,9 +25,19 @@
            
         </div>
         <div class="modal-footer flex-column align-items-stretch w-100 gap-2 pb-3 border-top-0">
-          <button type="button" class="btn btn-lg btn-indigo">Adicionar ao carrinho</button>
+          <a class="btn btn-lg btn-indigo add-car" href="{{route('cliente.carrinho.add', ['produto' => $produto->id_produto, 'qnt' => 1])}}">Adicionar ao carrinho</a>
           <button type="button" class="btn btn-lg btn-outline-secondary" data-bs-dismiss="modal">Fechar</button>
         </div>
       </div>
     </div>
 </div>
+
+<script>
+  $('#qnt-{{$produto->id_produto}}').on('input', function() {
+    let qnt{{$produto->id_produto}} = $('#qnt-{{$produto->id_produto}}').val();
+    var produto{{$produto->id_produto}} = "{{ $produto->id_produto }}";
+    var link = '/carrinho/' + produto{{$produto->id_produto}} + '/' + qnt{{$produto->id_produto}};
+    $('.add-car').attr("href", link)
+  });
+</script>
+

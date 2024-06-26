@@ -21,13 +21,13 @@
         <div class="modal-footer flex-column align-items-stretch w-100 pb-3 border-top-0">
           <a href="{{ route('adm.produto.edit', $produto->id_produto) }}"
             class="btn btn-lg btn-indigo">Editar</a> <!-- Adicionei o href="#" para não dar erro, lembrar de alterar -->
-        <form action="{{ route('adm.produto.delete', $produto->id_produto) }}" method="post"
+          <form action="{{ route('adm.produto.delete', $produto->id_produto) }}" method="post"
             style="display: inline;">
             {{ csrf_field() }}
             {{ method_field('DELETE') }}
             <button type="submit" class="btn btn-lg btn-outline-danger"
                 onclick="return confirm('Tem certeza que deseja excluir?')">Excluir</button>
-        </form>
+          </form>
         </div>
       </div>
     </div>

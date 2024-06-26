@@ -58,9 +58,9 @@
             </li>
         </ul>
         <div class="d-flex justify-content-center">
-            <a href="{{ route('cliente.edit', $cliente->id) }}" class="my-3 btn btn-indigo me-2">Editar</a>
-            <a href="{{ route('cliente.edit', $cliente->id) }}" class="my-3 btn btn-success me-2">Mudar Senha</a>
-            <form action="{{ route('cliente.delete', $cliente->id) }}" method="post" style="display: inline;">
+            <a href="{{ route('cliente.edit') }}" class="my-3 btn btn-indigo me-2">Editar</a>
+            <a href="{{ route('cliente.edit') }}" class="my-3 btn btn-success me-2">Mudar Senha</a>
+            <form action="{{ route('cliente.delete') }}" method="post" style="display: inline;">
                 {{ csrf_field() }}
                 {{ method_field('DELETE') }}
                 <button type="submit" class="btn btn-danger my-3" onclick="return confirm('Tem certeza que deseja excluir?')">Excluir</button>
