@@ -66,10 +66,10 @@ Route::group(['prefix' => '/adm', 'as' => 'adm.'], function () {
         Route::get('/', [ProdutoController::class, 'index'])->name('index');
         Route::get('/novo', [ProdutoController::class, 'create'])->name('create');
         Route::post('/novo', [ProdutoController::class, 'store'])->name('store');
-        Route::get('/{id}', [ProdutoController::class, 'show'])->name('show');
         Route::get('/editar/{id}', [ProdutoController::class, 'edit'])->name('edit');
         Route::post('/editar/{id}', [ProdutoController::class, 'update'])->name('update');
         Route::delete('/{id}', [ProdutoController::class, 'destroy'])->name('delete');
+        Route::get('/pesquisa', [ProdutoController::class, 'pesquisa'])->name('pesquisa');
     });
 
     Route::group(['prefix' => 'categoria', 'as' => 'categoria.'], function () {
@@ -79,6 +79,7 @@ Route::group(['prefix' => '/adm', 'as' => 'adm.'], function () {
         Route::get('/editar/{id}', [CategoriaController::class, 'edit'])->name('edit');
         Route::post('/editar/{id}', [CategoriaController::class, 'update'])->name('update');
         Route::delete('/{id}', [CategoriaController::class, 'destroy'])->name('delete');
+        Route::get('/pesquisa', [CategoriaController::class, 'pesquisa'])->name('pesquisa');
     });
 
     Route::group(['prefix' => 'compra', 'as' => 'compra.'], function () {
