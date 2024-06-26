@@ -74,4 +74,13 @@ class CompraController extends Controller {
         flash('Compra deletada com sucesso!', 'success', [], 'Sucesso');
         return redirect()->route('adm.compra.index');
     }
+    
+    public function pesquisa(Request $request) {
+        $query = $request->input('query');
+        $compras = Compra::join('produtos', 'compras.id_produto', '=', 'produtos.id_produto')
+                          ->where('produtos.nome_produto', 'LIKE', '%' . $query . '%')
+                          ->select('compras.*')
+                          ->get();
+        return view('adm.compra.index', compact('compras'));
+    }
 }
