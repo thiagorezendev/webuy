@@ -18,8 +18,7 @@ class ProdutoController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
+    public function index() {
         $produtos = Produto::all();
         return view('adm.produto.index', compact('produtos'));
     }
@@ -31,12 +30,10 @@ class ProdutoController extends Controller
         return view('main.home', compact('produtos', 'categorias', 'cliente'));
     }
 
-
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
+    public function create() {
         $categorias = Categoria::all();
         return view('adm.produto.create', compact('categorias'));
     }
@@ -66,16 +63,14 @@ class ProdutoController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Produto $produto)
-    {
+    public function show(Produto $produto) {
         return view('adm.produto.show', compact('produto'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id_produto)
-    {
+    public function edit($id_produto) {
         $produto = Produto::findOrFail($id_produto);
         $categorias = Categoria::all();
         return view('adm.produto.edit', compact('produto', 'categorias'));
@@ -106,8 +101,7 @@ class ProdutoController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id_produto)
-    {
+    public function destroy($id_produto) {
         Compra::where('id_produto', $id_produto)->delete();
 
         $produto = Produto::findOrFail($id_produto);

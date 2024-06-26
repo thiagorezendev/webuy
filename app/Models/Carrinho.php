@@ -1,9 +1,13 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
+use App\Models\Cliente;
+use App\Models\Produto;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Carrinho extends Model
 {
@@ -11,5 +15,15 @@ class Carrinho extends Model
 
     public $timestamps = false;
 
-    protected $fillable = ['cpf_cli'];
+    protected $primaryKey = 'id_carrinho';
+
+    protected $fillable = ['id_cli'];
+
+    public function cliente(): BelongsTo {
+        return $this->belongsTo(Cliente::class, 'id_cli');
+    }
+
+    public function produtos(): BelongsToMany {
+        return $this->belongsToMany(Produto::class, 'itens_venda', 'id_carrinho', 'id_produto')->withPivot('quantidade_item');
+    }
 }

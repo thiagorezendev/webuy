@@ -19,18 +19,15 @@ class ClienteController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
+    public function create() {
         return view('main.cliente.create');
     }
 
-    public function login()
-    {
+    public function login() {
         return view('main.cliente.login');
     }
 
-    public function autentica(Request $request)
-    {
+    public function autentica(Request $request) {
         $credentials = $request->validate(
             [
                 'email' => ['required', 'email'],
@@ -53,8 +50,7 @@ class ClienteController extends Controller
         return back();
     }
 
-    public function logout(Request $request)
-    {
+    public function logout(Request $request) {
         Auth::guard('web')->logout();
 
         $request->session()->invalidate();
@@ -66,8 +62,7 @@ class ClienteController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(ClienteRequest $request)
-    {
+    public function store(ClienteRequest $request) {
         $cliente = Cliente::create([
             'cpf_cli' => $request->cpf_cli,
             'nome_cli' => $request->nome_cli,
@@ -90,8 +85,7 @@ class ClienteController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($id)
-    {
+    public function show($id) {
         $categorias = Categoria::all();
         $cliente = Cliente::findOrFail($id);
         return view('main.cliente.show', compact('categorias', 'cliente'));
@@ -100,8 +94,7 @@ class ClienteController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
-    {
+    public function edit($id) {
         $categorias = Categoria::all();
         $cliente = Cliente::findOrFail($id);
         return view('main.cliente.edit', compact('categorias', 'cliente'));
@@ -110,8 +103,7 @@ class ClienteController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(ClienteRequestUpdate $request, $id)
-    {
+    public function update(ClienteRequestUpdate $request, $id) {
         $cliente = Cliente::findOrFail($id);
 
         $cliente->endereco->update($request->all());
@@ -124,8 +116,7 @@ class ClienteController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
-    {
+    public function destroy($id) {
         Endereco::where('id_cli', $id)->delete();
         $cliente = Cliente::findOrFail($id);
         $cliente->delete();

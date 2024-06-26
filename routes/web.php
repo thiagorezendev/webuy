@@ -47,6 +47,8 @@ Route::delete('/delete/{id}', [ClienteController::class, 'destroy'])->name('clie
 
 Route::get('/carrinho/{id}', [CarrinhoController::class, 'show'])->name('cliente.carrinho');
 
+Route::get('/carrinho/{produto}/{qnt}', [CarrinhoController::class, 'adicionar'])->name('cliente.carrinho.add');
+
 Route::get('/pagamento/{id}', [VendaController::class, 'create'])->name('cliente.pagamento');
 
 // rotas da ADM
@@ -66,7 +68,6 @@ Route::group(['prefix' => '/adm', 'as' => 'adm.'], function () {
         Route::get('/', [ProdutoController::class, 'index'])->name('index');
         Route::get('/novo', [ProdutoController::class, 'create'])->name('create');
         Route::post('/novo', [ProdutoController::class, 'store'])->name('store');
-        Route::get('/{id}', [ProdutoController::class, 'show'])->name('show');
         Route::get('/editar/{id}', [ProdutoController::class, 'edit'])->name('edit');
         Route::post('/editar/{id}', [ProdutoController::class, 'update'])->name('update');
         Route::delete('/{id}', [ProdutoController::class, 'destroy'])->name('delete');
