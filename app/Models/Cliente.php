@@ -22,8 +22,8 @@ class Cliente extends Authenticatable
         return $this->hasOne(Endereco::class, 'id_cli');
     }
 
-    public function carrinho(): HasOne {
-        return $this->hasOne(Carrinho::class, 'id_cli');
+    public function carrinho(): HasMany {
+        return $this->hasMany(Carrinho::class, 'id_cli');
     }
 
 }

@@ -33,7 +33,7 @@
                             </thead>
                             <tbody>
 
-                                @foreach ($cliente->carrinho->produtos as $item)
+                                @foreach ($carrinho->produtos as $item)
                                     @php
                                         $total_preco += $item->preco_produto * $item->pivot->quantidade_item;
                                         $total_quantidade ++;
@@ -66,8 +66,7 @@
             </ul>
 
             <div class="d-flex justify-content-center">
-                <a class="btn btn-indigo btn-lg mt-3" href="{{ route('cliente.pagamento', $cliente->id) }}">Continuar para o
-                    pagamento</a>
+                <a class="btn btn-indigo btn-lg mt-3" href="{{ route('cliente.pagamento') }}">Continuar para o pagamento</a>
             </div>
         </div>
     </main>

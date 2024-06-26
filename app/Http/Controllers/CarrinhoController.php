@@ -13,9 +13,10 @@ class CarrinhoController extends Controller {
 
     public function show() {
         $categorias = Categoria::all();
-        if(Auth::check()){
-            $cliente = Cliente::findOrFail(Auth::guard('web')->user()->id);
-            return view('main.cliente.carrinho.show', compact('categorias', 'cliente'));
+        if(Auth::guard('web')->check()){
+            $cliente = Auth::guard('web')->user();
+            $carrinho = $cliente->carrinho->where('fechado', 0)->first();
+            return view('main.cliente.carrinho.show', compact('categorias', 'carrinho'));
         } else {
             flash('Entre para ver o carrinho', 'error', [], 'Erro');
             return back();
@@ -23,9 +24,15 @@ class CarrinhoController extends Controller {
     }
 
     public function adicionar($produto_id, $qnt) {
-        if(Auth::check()){
-            $cliente = Cliente::findOrFail(Auth::guard('web')->user()->id);
-            $cliente->carrinho->produtos()->attach($produto_id, ['quantidade_item' => $qnt]);
+        if(Auth::guard('web')->check()){
+            $cliente = Auth::guard('web')->user();
+            $carrinho = $cliente->carrinho->where('fechado', 0)->first();
+            if(empty($carrinho->produtos->where('id_produto', $produto_id))) {
+                $carrinho->produtos()->attach($produto_id, ['quantidade_item' => $qnt]);
+            } else {
+                dd('Achou');
+            }
+            
             flash('Adicionado ao carrinho!', 'success', [], 'Sucesso');
             return back();
         } else {

@@ -22,7 +22,6 @@ class CompraController extends Controller {
      * Show the form for creating a new resource.
      */
     public function create() {
-
         $produtos = Produto::all();
         $fornecedores = Fornecedor::all();
         return view('adm.compra.create', compact('produtos', 'fornecedores'));

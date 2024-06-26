@@ -43,13 +43,15 @@ Route::get('/editar', [ClienteController::class, 'edit'])->name('cliente.edit');
 
 Route::post('/editar/{id}', [ClienteController::class, 'update'])->name('cliente.update');
 
-Route::delete('/delete', [ClienteController::class, 'destroy'])->name('cliente.delete');
+Route::delete('/perfil', [ClienteController::class, 'destroy'])->name('cliente.delete');
 
 Route::get('/carrinho', [CarrinhoController::class, 'show'])->name('cliente.carrinho');
 
 Route::get('/carrinho/{produto}/{qnt}', [CarrinhoController::class, 'adicionar'])->name('cliente.carrinho.add');
 
 Route::get('/pagamento', [VendaController::class, 'create'])->name('cliente.pagamento');
+
+Route::post('/pagamento', [VendaController::class, 'store'])->name('cliente.pagamento.store');
 
 // rotas da ADM
 

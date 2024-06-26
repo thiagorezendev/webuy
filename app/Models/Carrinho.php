@@ -17,7 +17,7 @@ class Carrinho extends Model
 
     protected $primaryKey = 'id_carrinho';
 
-    protected $fillable = ['id_cli'];
+    protected $fillable = ['id_cli', 'fechado'];
 
     public function cliente(): BelongsTo {
         return $this->belongsTo(Cliente::class, 'id_cli');

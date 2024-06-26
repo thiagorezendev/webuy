@@ -63,7 +63,7 @@
             <form action="{{ route('cliente.delete') }}" method="post" style="display: inline;">
                 {{ csrf_field() }}
                 {{ method_field('DELETE') }}
-                <button type="submit" class="btn btn-danger my-3" onclick="return confirm('Tem certeza que deseja excluir?')">Excluir</button>
+                <button type="submit" class="btn btn-danger my-3" onclick="return confirm('Tem certeza que deseja excluir sua conta?\nIsso apagará permanentemente todos os seus dados!')">Excluir</button>
             </form>
         </div>
     </div>

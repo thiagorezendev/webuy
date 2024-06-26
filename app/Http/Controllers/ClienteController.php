@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ClienteRequest;
 use App\Http\Requests\ClienteRequestUpdate;
+use App\Models\Carrinho;
 use App\Models\Cliente;
 use App\Models\Endereco;
 use App\Models\Categoria;
@@ -11,6 +12,7 @@ use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Validator;
@@ -79,6 +81,12 @@ class ClienteController extends Controller
             'numero' => $request->numero,
             'complemento' => $request->complemento
         ]);
+
+        Carrinho::create([
+            'id_cli' => $cliente->id,
+            'fechado' => 0
+        ]);
+
         flash('Cadastrado com sucesso!', 'success', [], 'Sucesso');
         return redirect()->route('cliente.login');
     }
@@ -91,6 +99,8 @@ class ClienteController extends Controller
             $categorias = Categoria::all();
             $cliente = Auth::guard('web')->user();
             return view('main.cliente.show', compact('categorias', 'cliente'));
+        } else {
+            return back();
         }
        
     }
@@ -103,13 +113,15 @@ class ClienteController extends Controller
             $categorias = Categoria::all();
             $cliente = Auth::guard('web')->user();
             return view('main.cliente.edit', compact('categorias', 'cliente'));
+        } else {
+            return back();
         }
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(ClienteRequestUpdate $request, $id_cliente) {
+    public function update(ClienteRequestUpdate $request) {
         $cliente = Auth::guard('web')->user();
 
         $cliente->endereco->update($request->all());
@@ -122,10 +134,13 @@ class ClienteController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id) {
-        Endereco::where('id_cli', $id)->delete();
-        $cliente = Cliente::findOrFail($id);
+    public function destroy() {
+        $cliente = Auth::guard('web')->user();
+        Endereco::where('id_cli', $cliente->id)->delete(); 
+        Carrinho::where('id_cli', $cliente->id)->where('fechado', 0)->delete();
+        Schema::disableForeignKeyConstraints();
         $cliente->delete();
+        Schema::enableForeignKeyConstraints();
         flash('Deletado com sucesso!', 'success', [], 'Sucesso');
         return redirect()->route('main.home');
     }

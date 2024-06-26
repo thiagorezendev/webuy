@@ -37,7 +37,7 @@ class FuncionarioController extends Controller {
         if (Auth::guard('admin')->attempt($credentials)) {
             $data = [
                 'id_func' => Auth::guard('admin')->user()->id,
-                'data_login' => date('y-m-d  h:i:s')
+                'data_login' => date('y-m-d  H:i:s')
             ];
 
             DB::table('logins')->insertGetId($data);
