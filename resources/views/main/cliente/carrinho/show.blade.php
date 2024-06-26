@@ -66,7 +66,10 @@
             </ul>
 
             <div class="d-flex justify-content-center">
-                <a class="btn btn-indigo btn-lg mt-3" href="{{ route('cliente.pagamento') }}">Continuar para o pagamento</a>
+                @if($total_quantidade > 0)
+                    <a class="btn btn-indigo btn-lg mt-3" href="{{ route('cliente.pagamento') }}">Continuar para o pagamento</a>
+                @endif
+                
             </div>
         </div>
     </main>

@@ -36,11 +36,11 @@
 <script>
   $('#qnt-{{$produto->id_produto}}').on('input', function() {
     let qnt{{$produto->id_produto}} = $('#qnt-{{$produto->id_produto}}').val();
-    if(qnt{{$produto->id_produto}} <= 0) qnt{{$produto->id_produto}} ++;
     if(qnt{{$produto->id_produto}} > {{ $produto->estoque->qntd_estoque }}) {
       qnt{{$produto->id_produto}} = {{ $produto->estoque->qntd_estoque }};
       $('.estoque').html('O estoque atual desse produto é {{ $produto->estoque->qntd_estoque }}.');
     }
+    if(qnt{{$produto->id_produto}} <= 0) qnt{{$produto->id_produto}} ++;
     var produto{{$produto->id_produto}} = "{{ $produto->id_produto }}";
     var link = '/carrinho/' + produto{{$produto->id_produto}} + '/' + qnt{{$produto->id_produto}};
     $('.add-car').attr("href", link)
