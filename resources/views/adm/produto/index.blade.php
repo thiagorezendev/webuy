@@ -1,7 +1,7 @@
 @section('titulo', 'Produtos')
-
-@extends('layout.adm-frame')
 @section('produtos', 'active')
+@section('search-action', route('adm.produto.pesquisa'))
+@extends('layout.adm-frame')
 @section('content')
     <h1 class="h1 mb-4">Produtos</h1>
     <a class="btn btn-indigo mb-4" href="{{ route('adm.produto.create') }}">Novo</a>

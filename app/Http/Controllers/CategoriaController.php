@@ -66,7 +66,7 @@ class CategoriaController extends Controller
         Produto::where('id_categoria', $id_categoria)->update(['id_categoria' => null]);
 
         $categoria = Categoria::findOrFail($id_categoria);
-        if($categoria) {
+        if ($categoria) {
             $categoria->delete();
             flash('Categoria deletada com sucesso!', 'success', [], 'Sucesso');
             return redirect()->route('adm.categoria.index');
@@ -74,5 +74,12 @@ class CategoriaController extends Controller
             flash('Erro ao tentar deletar a categoria.', 'error', [], 'Erro');
             return redirect()->route('adm.categoria.index');
         }
+    }
+
+    public function pesquisa(Request $request)
+    {
+        $query = $request->input('query');
+        $categorias = Categoria::where('nome_categoria', 'like', '%' . $query . '%')->get();
+        return view('adm.categoria.index', compact('categorias'));
     }
 }

@@ -1,10 +1,13 @@
 @section('titulo', 'Categorias')
 
-  @extends('layout.adm-frame')
+  
   @section('categorias', 'active')
+  @section('search-action', route('adm.categoria.pesquisa'))
+  @extends('layout.adm-frame')
   @section('content')
     <h1 class="h1 mb-4">Categorias</h1>
     <a class="btn btn-indigo mb-4" href="{{ route('adm.categoria.create') }}">Nova</a>
+
     <div class="table-responsive">
         <table class="table table-striped table-hover">
             <thead>

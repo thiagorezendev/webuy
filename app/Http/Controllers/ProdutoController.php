@@ -61,13 +61,6 @@ class ProdutoController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(Produto $produto) {
-        return view('adm.produto.show', compact('produto'));
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
     public function edit($id_produto) {
@@ -118,5 +111,11 @@ class ProdutoController extends Controller
             flash('Produto não encontrado!', 'error');
             return redirect()->route('adm.produto.index');
         }
+    }
+
+    public function pesquisa(Request $request) {
+        $query = $request->input('query');
+        $produtos = Produto::where('nome_produto', 'like', '%' . $query . '%')->get();
+        return view('adm.produto.index', compact('produtos'));
     }
 }
