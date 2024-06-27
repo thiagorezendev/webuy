@@ -6,7 +6,7 @@
   @section('content')
     <h1 class="h1 mb-4">Produtos</h1>
     <div class="row" data-masonry='{"percentPosition": true }'>
-        @foreach ($produtos as $produto)
+        @forelse ($produtos as $produto)
             @include('layout.components.produto-modal')
         
             <div class="col-sm-6 col-lg-4 mb-4">
@@ -22,7 +22,9 @@
                     </div>
                 </div>
             </div>
-        @endforeach
+        @empty
+            <p>Nenhum produto com estoque encontrado!</p>
+        @endforelse
     </div>
     <div class="d-flex justify-content-center mt-2">
         {{ $produtos->links() }}
