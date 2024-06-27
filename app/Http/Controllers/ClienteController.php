@@ -22,15 +22,18 @@ class ClienteController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create() {
+    public function create()
+    {
         return view('main.cliente.create');
     }
 
-    public function login() {
+    public function login()
+    {
         return view('main.cliente.login');
     }
 
-    public function autentica(Request $request) {
+    public function autentica(Request $request)
+    {
         $credentials = $request->validate(
             [
                 'email' => ['required', 'email'],
@@ -53,7 +56,8 @@ class ClienteController extends Controller
         return back();
     }
 
-    public function logout(Request $request) {
+    public function logout(Request $request)
+    {
         Auth::guard('web')->logout();
 
         $request->session()->invalidate();
@@ -65,7 +69,8 @@ class ClienteController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(ClienteRequest $request) {
+    public function store(ClienteRequest $request)
+    {
         $cliente = Cliente::create([
             'cpf_cli' => $request->cpf_cli,
             'nome_cli' => $request->nome_cli,
@@ -94,22 +99,24 @@ class ClienteController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show() {
-        if(Auth::guard('web')->check()) {
+    public function show()
+    {
+        if (Auth::guard('web')->check()) {
             $categorias = Categoria::all();
             $cliente = Auth::guard('web')->user();
             return view('main.cliente.show', compact('categorias', 'cliente'));
         } else {
             return back();
         }
-       
+
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit() {
-        if(Auth::guard('web')->check()) {
+    public function edit()
+    {
+        if (Auth::guard('web')->check()) {
             $categorias = Categoria::all();
             $cliente = Auth::guard('web')->user();
             return view('main.cliente.edit', compact('categorias', 'cliente'));
@@ -121,12 +128,13 @@ class ClienteController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(ClienteRequestUpdate $request) {
+    public function update(ClienteRequestUpdate $request)
+    {
         $cliente = Auth::guard('web')->user();
 
         $cliente->endereco->update($request->all());
         $cliente->update($request->all());
-       
+
         flash('Atualizado com sucesso!', 'success', [], 'Sucesso');
         return redirect()->route('main.home');
     }
@@ -134,14 +142,46 @@ class ClienteController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy() {
+    public function destroy()
+    {
         $cliente = Auth::guard('web')->user();
-        Endereco::where('id_cli', $cliente->id)->delete(); 
+        Endereco::where('id_cli', $cliente->id)->delete();
         Carrinho::where('id_cli', $cliente->id)->where('fechado', 0)->delete();
         Schema::disableForeignKeyConstraints();
         $cliente->delete();
         Schema::enableForeignKeyConstraints();
         flash('Deletado com sucesso!', 'success', [], 'Sucesso');
         return redirect()->route('main.home');
+    }
+
+    public function mudarSenha()
+    {
+        if (Auth::guard('web')->check()) {
+            $categorias = Categoria::all();
+            $cliente = Auth::guard('web')->user();
+            return view('main.cliente.mudar-senha', compact('categorias', 'cliente'));
+        } else {
+            return back();
+        }
+    }
+
+
+    public function updateSenha(Request $request) {
+        $request->validate([
+            'current_password' => 'required',
+            'new_password' => 'required|confirmed',
+        ]);
+    
+        $cliente = Auth::guard('web')->user();
+    
+        if (!Hash::check($request->current_password, $cliente->password)) {
+            return back()->withErrors(['current_password' => 'Senha atual está incorreta.']);
+        }
+    
+        $cliente->password = Hash::make($request->new_password);
+        $cliente->save();
+        
+        flash('Senha atualizada com sucesso!', 'success', [], 'Sucesso');
+        return redirect()->route('cliente.perfil');
     }
 }

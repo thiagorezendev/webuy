@@ -53,6 +53,10 @@ Route::get('/pagamento', [VendaController::class, 'create'])->name('cliente.paga
 
 Route::post('/pagamento', [VendaController::class, 'store'])->name('cliente.pagamento.store');
 
+Route::get('/editar/mudar-senha', [ClienteController::class, 'mudarSenha'])->name('cliente.mudar-senha');
+
+Route::post('/cliente/update-senha', [ClienteController::class, 'updateSenha'])->name('cliente.update-senha');
+
 // rotas da ADM
 
 Route::group(['prefix' => '/adm', 'as' => 'adm.'], function () {

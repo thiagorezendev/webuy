@@ -59,7 +59,7 @@
         </ul>
         <div class="d-flex justify-content-center">
             <a href="{{ route('cliente.edit') }}" class="my-3 btn btn-indigo me-2">Editar</a>
-            <a href="{{ route('cliente.edit') }}" class="my-3 btn btn-success me-2">Mudar Senha</a>
+            <a href="{{ route('cliente.mudar-senha') }}" class="my-3 btn btn-success me-2">Mudar Senha</a>
             <form action="{{ route('cliente.delete') }}" method="post" style="display: inline;">
                 {{ csrf_field() }}
                 {{ method_field('DELETE') }}

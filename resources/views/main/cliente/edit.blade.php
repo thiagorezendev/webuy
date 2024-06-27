@@ -76,7 +76,7 @@
             <div class="alert alert-danger">{{ $message }}</div>
         @enderror
         <div class="d-grid d-md-flex gap-2 justify-content-md-end">
-            <a class="btn btn-outline-secondary" href="{{ route('main.home') }}">Voltar </a>
+            <a class="btn btn-outline-secondary" href="{{ route('cliente.perfil') }}">Voltar </a>
             <button class="btn btn-indigo" type="submit">Salvar</button>
         </div>
     </form>
