@@ -26,7 +26,7 @@
            
         </div>
         <div class="modal-footer flex-column align-items-stretch w-100 gap-2 pb-3 border-top-0">
-          <a class="btn btn-lg btn-indigo add-car" href="{{route('cliente.carrinho.add', ['produto' => $produto->id_produto, 'qnt' => 1])}}">Adicionar ao carrinho</a>
+          <a class="btn btn-lg btn-indigo add-car" href="{{route('cliente.carrinho.add', ['id_produto' => $produto->id_produto, 'qnt' => 1])}}">Adicionar ao carrinho</a>
           <button type="button" class="btn btn-lg btn-outline-secondary" data-bs-dismiss="modal">Fechar</button>
         </div>
       </div>

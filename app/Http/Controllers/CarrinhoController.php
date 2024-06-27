@@ -51,4 +51,10 @@ class CarrinhoController extends Controller {
             return back();
         }
     }
+
+    public function deletarProduto($produto_id) {
+        Auth::guard('web')->user()->carrinho->where('fechado', 0)->first()->produtos()->detach($produto_id);
+        flash('Deletado com sucesso!', 'success', [], 'Sucesso');
+        return back();
+    }
 }

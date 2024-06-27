@@ -45,8 +45,7 @@
                                         <td>R$ {{ number_format($item->preco_produto, 2, ',', '.') }}</td>
                                         <td>R$ {{ number_format($item->preco_produto * $item->pivot->quantidade_item, 2, ',', '.') }}</td>
                                         <td>
-                                            <a href="#" class="btn btn-success mb-1 mb-md-0">Editar</a>
-                                            <form action="" method="post" style="display: inline;">
+                                            <form action="{{ route('cliente.carrinho.delete', $item->id_produto)}}" method="post" style="display: inline;">
                                                 {{ csrf_field() }}
                                                 {{ method_field('DELETE') }}
                                                 <button type="submit" class="btn btn-danger mb-1 mb-md-0"
