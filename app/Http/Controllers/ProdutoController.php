@@ -113,9 +113,15 @@ class ProdutoController extends Controller
         }
     }
 
-    public function pesquisa(Request $request) {
+    public function pesquisa(Request $request, $home) {
         $query = $request->input('query');
-        $produtos = Produto::where('nome_produto', 'like', '%' . $query . '%')->get();
-        return view('adm.produto.index', compact('produtos'));
+        if($home == 0) {
+            $produtos = Produto::where('nome_produto', 'like', '%' . $query . '%')->get();
+            return view('adm.produto.index', compact('produtos'));
+        } else {
+            $produtos = Produto::where('nome_produto', 'like', '%' . $query . '%')->whereRelation('estoque', 'qntd_estoque', '>', 0)->paginate(9);
+            $categorias = Categoria::all();
+            return view('main.home', compact('produtos', 'categorias'));
+        }
     }
 }

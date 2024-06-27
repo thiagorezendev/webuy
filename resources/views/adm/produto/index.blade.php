@@ -1,6 +1,6 @@
 @section('titulo', 'Produtos')
 @section('produtos', 'active')
-@section('search-action', route('adm.produto.pesquisa'))
+@section('search-action', route('adm.produto.pesquisa', 0))
 @extends('layout.adm-frame')
 @section('content')
     <h1 class="h1 mb-4">Produtos</h1>
