@@ -21,7 +21,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($compras as $compra)
+                @forelse ($compras as $compra)
                     <tr>
                         <th scope="row">{{ $compra->id_compra }}</th>
                         <td>{{ $compra->produto->nome_produto }}</td>
@@ -32,7 +32,9 @@
                         <td>{{ date_format(date_create($compra->data_compra), 'd/m/Y') }}</td>
                         <td>R$ {{ number_format($compra->preco_uni_compra * $compra->qntd_compra, 2, ',', '.') }}</td>
                     </tr>
-                @endforeach
+                @empty
+                    <p>Nenhuma compra foi encontrada!</p>
+                @endforelse
             </tbody>
         </table>
     </div>
