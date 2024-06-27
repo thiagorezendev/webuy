@@ -26,7 +26,7 @@
            
         </div>
         <div class="modal-footer flex-column align-items-stretch w-100 gap-2 pb-3 border-top-0">
-          <a class="btn btn-lg btn-indigo add-car" href="{{route('cliente.carrinho.add', ['produto' => $produto->id_produto, 'qnt' => 1])}}">Adicionar ao carrinho</a>
+          <a class="btn btn-lg btn-indigo add-car" href="{{route('cliente.carrinho.add', ['id_produto' => $produto->id_produto, 'qnt' => 1])}}">Adicionar ao carrinho</a>
           <button type="button" class="btn btn-lg btn-outline-secondary" data-bs-dismiss="modal">Fechar</button>
         </div>
       </div>
@@ -36,11 +36,11 @@
 <script>
   $('#qnt-{{$produto->id_produto}}').on('input', function() {
     let qnt{{$produto->id_produto}} = $('#qnt-{{$produto->id_produto}}').val();
-    if(qnt{{$produto->id_produto}} <= 0) qnt{{$produto->id_produto}} ++;
     if(qnt{{$produto->id_produto}} > {{ $produto->estoque->qntd_estoque }}) {
       qnt{{$produto->id_produto}} = {{ $produto->estoque->qntd_estoque }};
       $('.estoque').html('O estoque atual desse produto é {{ $produto->estoque->qntd_estoque }}.');
     }
+    if(qnt{{$produto->id_produto}} <= 0) qnt{{$produto->id_produto}} ++;
     var produto{{$produto->id_produto}} = "{{ $produto->id_produto }}";
     var link = '/carrinho/' + produto{{$produto->id_produto}} + '/' + qnt{{$produto->id_produto}};
     $('.add-car').attr("href", link)

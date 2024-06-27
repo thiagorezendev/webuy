@@ -47,7 +47,9 @@ Route::delete('/perfil', [ClienteController::class, 'destroy'])->name('cliente.d
 
 Route::get('/carrinho', [CarrinhoController::class, 'show'])->name('cliente.carrinho');
 
-Route::get('/carrinho/{produto}/{qnt}', [CarrinhoController::class, 'adicionar'])->name('cliente.carrinho.add');
+Route::delete('/carrinho/{id_produto}', [CarrinhoController::class, 'deletarProduto'])->name('cliente.carrinho.delete');
+
+Route::get('/carrinho/{id_produto}/{qnt}', [CarrinhoController::class, 'adicionar'])->name('cliente.carrinho.add');
 
 Route::get('/pagamento', [VendaController::class, 'create'])->name('cliente.pagamento');
 

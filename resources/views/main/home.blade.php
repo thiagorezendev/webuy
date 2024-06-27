@@ -17,7 +17,7 @@
                         <p class="card-text">R$ {{ number_format($produto->preco_produto, 2, ',', '.')}}</p>
                         <div class="d-grid gap-2 mx-auto">
                             <button class="btn btn-indigo" data-bs-toggle="modal" data-bs-target="#produto-modal-{{ $produto->id_produto }}">Ver</button>
-                            <a class="btn btn-outline-secondary" href="{{ route('cliente.carrinho.add',  ['produto' => $produto->id_produto, 'qnt' => 1])}}">Adicionar ao Carrinho</a>
+                            <a class="btn btn-outline-secondary" href="{{ route('cliente.carrinho.add',  ['id_produto' => $produto->id_produto, 'qnt' => 1])}}">Adicionar ao Carrinho</a>
                         </div>
                     </div>
                 </div>
