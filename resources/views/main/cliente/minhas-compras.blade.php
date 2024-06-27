@@ -2,48 +2,49 @@
 @section('titulo', 'Minhas Compras')
 
 @section('content')
-<main class="mb-5">
-    <div class="py-4 text-center">
-        <h2 class="h1">Minhas Compras</h2>
-    </div>
+    <main class="mb-5">
+        <div class="py-4 text-center">
+            <h2 class="h1">Minhas Compras</h2>
+        </div>
 
-    @forelse($carrinhos as $carrinho)
-        <div class="card mb-3">
-            <div class="card-header">
-                Compra realizada em {{ \Carbon\Carbon::parse($carrinho->venda->data_venda)->format('d/m/Y H:i') }}
-            </div>
-            <div class="card-body">
-                <h5 class="card-title">Detalhes da Compra</h5>
-                <p class="card-text">
-                    Total: R$ 
-                    @if($carrinho->itensVenda)
-                        {{ number_format($carrinho->itensVenda->sum(function($item) { 
-                            return $item->produto->preco_produto * $item->quantidade_item; 
-                        }), 2, ',', '.') }}
-                    @else
-                        0,00
-                    @endif
-                </p>
-                <p class="card-text">Método de Pagamento: {{ (string) $carrinho->venda->pagamento_venda }}</p>
-                <p class="card-text">Método de Entrega: {{ (string) $carrinho->venda->entrega_venda }}</p>
-                <ul class="list-group">
-                    @if($carrinho->itensVenda)
-                        @foreach($carrinho->itensVenda as $item)
+        @forelse($carrinhos as $carrinho)
+            @php
+                $total = 0;
+            @endphp
+            <div class="card mb-3">
+                <div class="card-header">
+                    Compra realizada em {{ date_format(date_create($carrinho->venda->data_venda), 'd/m/Y H:i') }}
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Detalhes da Compra</h5>
+                    <p class="card-text">
+                        Total: R$ <span class="total-{{ $carrinho->id_carrinho }}">{{ $total }}</span>
+                    </p>
+                    <p class="card-text">Método de Pagamento: {{ $carrinho->venda->pagamento_venda }}</p>
+                    <p class="card-text">Método de Entrega: {{ $carrinho->venda->entrega_venda }}</p>
+                    <ul class="list-group">
+                        @forelse($carrinho->produtos as $item)
+                            @php
+                                $total += $item->preco_produto * $item->pivot->quantidade_item;
+                            @endphp
                             <li class="list-group-item">
                                 <div class="d-flex justify-content-between">
-                                    <span>{{ (string) $item->produto->nome_produto }} ({{ (int) $item->quantidade_item }}x)</span>
-                                    <span>R$ {{ number_format((float) $item->produto->preco_produto * (int) $item->quantidade_item, 2, ',', '.') }}</span>
+                                    <span>{{ $item->nome_produto }} ({{ $item->pivot->quantidade_item }}x)</span>
+                                    <span>R$
+                                        {{ number_format($item->preco_produto * $item->pivot->quantidade_item, 2, ',', '.') }}</span>
                                 </div>
                             </li>
-                        @endforeach
-                    @else
-                        <li class="list-group-item">Nenhum item encontrado.</li>
-                    @endif
-                </ul>
+                        @empty
+                            <li class="list-group-item">Nenhum item encontrado.</li>
+                        @endforelse
+                    </ul>
+                </div>
             </div>
-        </div>
-    @empty
-        <p class="text-center">Você ainda não realizou nenhuma compra.</p>
-    @endforelse
-</main>
+            <script>
+                $('.total-{{ $carrinho->id_carrinho }}').html({{ $total }});
+            </script>
+        @empty
+            <p class="text-center">Você ainda não realizou nenhuma compra.</p>
+        @endforelse
+    </main>
 @endsection

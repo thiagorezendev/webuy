@@ -9,7 +9,6 @@ use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\CompraController;
 use App\Http\Controllers\FornecedorController;
 use App\Http\Controllers\FuncionarioController;
-use App\Http\Middleware\FuncMiddleware;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\Categoria;
@@ -60,9 +59,7 @@ Route::get('/editar/mudar-senha', [ClienteController::class, 'mudarSenha'])->nam
 
 Route::post('/cliente/update-senha', [ClienteController::class, 'updateSenha'])->name('cliente.update-senha');
 
-Route::middleware(['auth:web'])->group(function () {
-    Route::get('/cliente/minhas-compras', [ClienteController::class, 'minhasCompras'])->name('cliente.minhas-compras');
-});
+Route::get('/cliente/minhas-compras', [ClienteController::class, 'minhasCompras'])->name('cliente.compras');
 
 // rotas da ADM
 

@@ -19,7 +19,7 @@
             <label for="new_password_confirmation">Confirme a Nova Senha</label>
             <input type="password" name="new_password_confirmation" id="new_password_confirmation" class="form-control" required>
         </div>
-        <button type="submit" class="btn btn-primary mt-3">Atualizar Senha</button>
+        <button type="submit" class="btn btn-indigo mt-3">Atualizar Senha</button>
     </form>
 </div>
 @endsection
