@@ -17,7 +17,7 @@ use App\Models\Categoria;
 
 Route::get('/', [ProdutoController::class, 'home'])->name('main.home');
 
-Route::get('/{categoria}', [CategoriaController::class, 'filtro'])->name('produto.filtro');
+Route::get('/{categoria}', [CategoriaController::class, 'filtro'])->name('produto.filtro')->whereNumber('categoria');
 
 Route::get('/sobre', function () {
     $categorias = Categoria::all();

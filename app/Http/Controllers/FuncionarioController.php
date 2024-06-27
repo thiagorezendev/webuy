@@ -19,7 +19,11 @@ class FuncionarioController extends Controller {
     }
 
     public function login() {
-        return view('adm.funcionario.login');
+        if(Auth::guard('admin')->check()) {
+            return redirect()->route('adm.home');
+        } else {
+            return view('adm.funcionario.login');
+        }
     }
 
     public function autentica(Request $request) {

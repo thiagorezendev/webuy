@@ -17,7 +17,7 @@
                       <div class="col-3 col-sm-2">
                         <input type="number" class="form-control" id="qnt-{{$produto->id_produto}}" min="1" max="{{ $produto->estoque->qntd_estoque}}" step="1" value="1">
                       </div>
-                      <span class="estoque"></span>
+                      <span class="estoque-{{$produto->id_produto}}"></span>
                     </div>
                   <p>{{ $produto -> desc_produto }}</p>
                   <p>{{ $produto->categoria->nome_categoria}}</p>
@@ -38,9 +38,9 @@
     let qnt{{$produto->id_produto}} = $('#qnt-{{$produto->id_produto}}').val();
     if(qnt{{$produto->id_produto}} > {{ $produto->estoque->qntd_estoque }}) {
       qnt{{$produto->id_produto}} = {{ $produto->estoque->qntd_estoque }};
-      $('.estoque').html('O estoque atual desse produto é {{ $produto->estoque->qntd_estoque }}.');
+      $('.estoque-{{$produto->id_produto}}').html('O estoque atual desse produto é {{ $produto->estoque->qntd_estoque }}.');
     }
-    if(qnt{{$produto->id_produto}} <= 0) qnt{{$produto->id_produto}} ++;
+    if(qnt{{$produto->id_produto}} <= 0) qnt{{$produto->id_produto}} = 1;
     var produto{{$produto->id_produto}} = "{{ $produto->id_produto }}";
     var link = '/carrinho/' + produto{{$produto->id_produto}} + '/' + qnt{{$produto->id_produto}};
     $('.add-car').attr("href", link)
