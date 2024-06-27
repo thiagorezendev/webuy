@@ -24,7 +24,7 @@ class ProdutoController extends Controller
     }
 
     public function home() {
-        $produtos = Produto::paginate(9);
+        $produtos = Produto::whereRelation('estoque', 'qntd_estoque', '>', 0)->paginate(9);
         $categorias = Categoria::all();
         $cliente = Auth::id();
         return view('main.home', compact('produtos', 'categorias', 'cliente'));

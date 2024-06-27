@@ -79,7 +79,7 @@ class CategoriaController extends Controller {
 
     public function filtro($id_categoria) {
         $categoria = Categoria::findOrFail($id_categoria);
-        $produtos = $categoria->produtos()->paginate(9);
+        $produtos = $categoria->produtos()->whereRelation('estoque', 'qntd_estoque', '>', 0)->paginate(9);
         $categorias = Categoria::all();
         return view('main.home', compact('produtos', 'categorias'));
     }
