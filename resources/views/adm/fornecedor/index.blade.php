@@ -17,7 +17,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($fornecedores as $fornecedor)
+                @forelse ($fornecedores as $fornecedor)
                     <tr>
                         <th scope="row">{{ $fornecedor->id_fornecedor }}</th>
                         <td>{{ $fornecedor->nome_fornecedor }}</td>
@@ -33,7 +33,9 @@
                                     onclick="return confirm('Tem certeza que deseja excluir?')">Excluir</button>
                             </form>
                     </tr>
-                @endforeach
+                @empty
+                    <p>Nenhum fornecedor foi encontrado!</p>
+                @endforelse
             </tbody>
         </table>
     </div>

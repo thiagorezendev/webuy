@@ -18,7 +18,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($produtos as $produto)
+                @forelse ($produtos as $produto)
                 @include('layout.components.produto-show')
                     <tr>
                         <th scope="row">{{ $produto->id_produto }}</th>
@@ -40,7 +40,9 @@
                             </form>
                         </td>
                     </tr>
-                @endforeach
+                @empty
+                    <p>Nenhum produto foi encontrado!</p>
+                @endforelse
             </tbody>
         </table>
     </div>

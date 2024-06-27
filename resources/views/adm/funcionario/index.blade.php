@@ -17,7 +17,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($funcionarios as $funcionario)
+                @forelse ($funcionarios as $funcionario)
                     <tr>
                         <th scope="row">{{ $funcionario->id }}</th>
                         <td>{{ $funcionario->nome_func }}</td>
@@ -33,7 +33,9 @@
                                     onclick="return confirm('Tem certeza que deseja excluir?')">Excluir</button>
                             </form>
                     </tr>
-                @endforeach
+                @empty
+                    <p>Nenhum funcionario foi encontrado!</p>
+                @endforelse
             </tbody>
         </table>
     </div>
