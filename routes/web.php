@@ -20,6 +20,8 @@ Route::get('/', [ProdutoController::class, 'home'])->name('main.home');
 
 Route::get('/{categoria}', [CategoriaController::class, 'filtro'])->name('produto.filtro')->whereNumber('categoria');
 
+Route::post('/{home}', [ProdutoController::class, 'pesquisa'])->name('produto.pesquisa')->whereNumber('home');
+
 Route::get('/sobre', function () {
     $categorias = Categoria::all();
     $cliente = Auth::id();
@@ -75,7 +77,7 @@ Route::prefix('adm')->name('adm.')->group(function () {
 
         Route::group(['prefix' => 'produto', 'as' => 'produto.'], function () {
             Route::get('/', [ProdutoController::class, 'index'])->name('index');
-            Route::post('/', [ProdutoController::class, 'pesquisa'])->name('pesquisa');
+            Route::post('/{home}', [ProdutoController::class, 'pesquisa'])->name('pesquisa')->whereNumber('home');
             Route::get('/novo', [ProdutoController::class, 'create'])->name('create');
             Route::post('/novo', [ProdutoController::class, 'store'])->name('store');
             Route::get('/editar/{id}', [ProdutoController::class, 'edit'])->name('edit');

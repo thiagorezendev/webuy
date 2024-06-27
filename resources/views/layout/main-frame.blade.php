@@ -33,12 +33,15 @@
               </li>
             </ul>
             <div class="d-flex justify-content-center">
-              <form class="d-flex flex-fill me-2" role="search">
+              <form class="d-flex flex-fill me-2" role="search" action="{{ route('produto.pesquisa', 1) }}" method="POST">
+                @csrf
                 <div class="input-group">
-                  <span class="input-group-text">
-                    <img src="{{ asset('images/icons/search.svg') }}" alt="" width="12" height="12">
-                  </span>
-                  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <span class="input-group-text">
+                        <img src="{{ asset('images/icons/search.svg') }}" alt="" width="12"
+                            height="12">
+                    </span>
+                    <input class="form-control me-2" type="search" placeholder="Pesquisar"
+                        aria-label="Pesquisar" name="query">
                 </div>
               </form>
               <div class="dropdown text-end">
