@@ -166,22 +166,33 @@ class ClienteController extends Controller
     }
 
 
-    public function updateSenha(Request $request) {
+    public function updateSenha(Request $request)
+    {
         $request->validate([
             'current_password' => 'required',
             'new_password' => 'required|confirmed',
         ]);
-    
+
         $cliente = Auth::guard('web')->user();
-    
+
         if (!Hash::check($request->current_password, $cliente->password)) {
             return back()->withErrors(['current_password' => 'Senha atual está incorreta.']);
         }
-    
+
         $cliente->password = Hash::make($request->new_password);
         $cliente->save();
-        
+
         flash('Senha atualizada com sucesso!', 'success', [], 'Sucesso');
         return redirect()->route('cliente.perfil');
     }
+
+    public function minhasCompras()
+    {
+        $cliente = Auth::guard('web')->user();
+        $categorias = Categoria::all();
+        $carrinhos = $cliente->carrinho()->whereHas('venda')->with('venda')->get();
+        
+        return view('main.cliente.minhas-compras', compact('carrinhos', 'categorias', 'cliente'));
+    }
+
 }

@@ -57,6 +57,10 @@ Route::get('/editar/mudar-senha', [ClienteController::class, 'mudarSenha'])->nam
 
 Route::post('/cliente/update-senha', [ClienteController::class, 'updateSenha'])->name('cliente.update-senha');
 
+Route::middleware(['auth:web'])->group(function () {
+    Route::get('/cliente/minhas-compras', [ClienteController::class, 'minhasCompras'])->name('cliente.minhas-compras');
+});
+
 // rotas da ADM
 
 Route::group(['prefix' => '/adm', 'as' => 'adm.'], function () {

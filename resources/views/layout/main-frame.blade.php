@@ -49,6 +49,7 @@
                   @auth('web')
                     <li><a class="dropdown-item" href="{{ route('cliente.carrinho') }}">Carrinho</a></li>
                     <li><a class="dropdown-item" href="{{ route('cliente.perfil') }}">Minha Conta</a></li>
+                    <li><a class="dropdown-item" href="{{ route('cliente.minhas-compras') }}">Minhas Compras</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item" href="{{ route('cliente.logout') }}">Sair</a></li>
                     @else

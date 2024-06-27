@@ -26,4 +26,9 @@ class Carrinho extends Model
     public function produtos(): BelongsToMany {
         return $this->belongsToMany(Produto::class, 'itens_venda', 'id_carrinho', 'id_produto')->withPivot('quantidade_item');
     }
+
+    public function venda()
+    {
+        return $this->hasOne(Venda::class, 'id_carrinho');
+    }
 }

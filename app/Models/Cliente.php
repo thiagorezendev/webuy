@@ -25,5 +25,4 @@ class Cliente extends Authenticatable
     public function carrinho(): HasMany {
         return $this->hasMany(Carrinho::class, 'id_cli');
     }
-
 }
