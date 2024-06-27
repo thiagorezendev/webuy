@@ -17,15 +17,13 @@ use App\Models\Categoria;
 
 Route::get('/', [ProdutoController::class, 'home'])->name('main.home');
 
+Route::get('/{categoria}', [CategoriaController::class, 'filtro'])->name('produto.filtro');
+
 Route::get('/sobre', function () {
     $categorias = Categoria::all();
     $cliente = Auth::id();
     return view('main.sobre', compact('categorias', 'cliente'));
 })->name('main.sobre');
-
-Route::get('/sobre/{categoria}', function () {
-    return view('main.sobre');
-})->name('produto.filtro');
 
 Route::get('/login', [ClienteController::class, 'login'])->name('cliente.login');
 

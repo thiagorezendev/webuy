@@ -34,8 +34,9 @@
                                 <button type="submit" class="btn btn-danger mb-1 mb-md-0" onclick="return confirm('Tem certeza que deseja excluir?')">Excluir</button>
                             </form>                        
                     </tr>
-                
-                @endforeach
+                @empty
+                    Nenhuma categoria foi encontrada!
+                @endforelse
             </tbody>
         </table>
     </div>
