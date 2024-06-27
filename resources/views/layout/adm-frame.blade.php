@@ -35,7 +35,8 @@
                         </li>
                     </ul>
                     <div class="d-flex justify-content-center">
-                        <form class="d-flex flex-fill me-2" role="search" action="@yield('search-action')" method="GET">
+                        <form class="d-flex flex-fill me-2" role="search" action="@yield('search-action')" method="POST">
+                            @csrf
                             <div class="input-group">
                                 <span class="input-group-text">
                                     <img src="{{ asset('images/icons/search.svg') }}" alt="" width="12"

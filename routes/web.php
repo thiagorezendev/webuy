@@ -72,51 +72,56 @@ Route::group(['prefix' => '/adm', 'as' => 'adm.'], function () {
 
     Route::group(['prefix' => 'produto', 'as' => 'produto.'], function () {
         Route::get('/', [ProdutoController::class, 'index'])->name('index');
+        Route::post('/', [ProdutoController::class, 'pesquisa'])->name('pesquisa');
         Route::get('/novo', [ProdutoController::class, 'create'])->name('create');
         Route::post('/novo', [ProdutoController::class, 'store'])->name('store');
         Route::get('/editar/{id}', [ProdutoController::class, 'edit'])->name('edit');
         Route::post('/editar/{id}', [ProdutoController::class, 'update'])->name('update');
         Route::delete('/{id}', [ProdutoController::class, 'destroy'])->name('delete');
-        Route::get('/pesquisa', [ProdutoController::class, 'pesquisa'])->name('pesquisa');
+    
     });
 
     Route::group(['prefix' => 'categoria', 'as' => 'categoria.'], function () {
         Route::get('/', [CategoriaController::class, 'index'])->name('index');
+        Route::post('/', [CategoriaController::class, 'pesquisa'])->name('pesquisa');
         Route::get('/novo', [CategoriaController::class, 'create'])->name('create');
         Route::post('/novo', [CategoriaController::class, 'store'])->name('store');
         Route::get('/editar/{id}', [CategoriaController::class, 'edit'])->name('edit');
         Route::post('/editar/{id}', [CategoriaController::class, 'update'])->name('update');
         Route::delete('/{id}', [CategoriaController::class, 'destroy'])->name('delete');
-        Route::get('/pesquisa', [CategoriaController::class, 'pesquisa'])->name('pesquisa');
+      
     });
 
     Route::group(['prefix' => 'compra', 'as' => 'compra.'], function () {
         Route::get('/', [CompraController::class, 'index'])->name('index');
+        Route::post('/', [CompraController::class, 'pesquisa'])->name('pesquisa');
         Route::get('/novo', [CompraController::class, 'create'])->name('create');
         Route::post('/novo', [CompraController::class, 'store'])->name('store');
         Route::get('/editar/{id}', [CompraController::class, 'edit'])->name('edit');
         Route::post('/editar/{id}', [CompraController::class, 'update'])->name('update');
         Route::delete('/{id}', [CompraController::class, 'destroy'])->name('delete');
-        Route::get('/pesquisa', [CompraController::class, 'pesquisa'])->name('pesquisa');
+   
     });
 
     Route::group(['prefix' => 'fornecedor', 'as' => 'fornecedor.'], function () {
         Route::get('/', [FornecedorController::class, 'index'])->name('index');
+        Route::post('/', [FornecedorController::class, 'pesquisa'])->name('pesquisa');
         Route::get('/novo', [FornecedorController::class, 'create'])->name('create');
         Route::post('/novo', [FornecedorController::class, 'store'])->name('store');
         Route::get('/editar/{id}', [FornecedorController::class, 'edit'])->name('edit');
         Route::post('/editar/{id}', [FornecedorController::class, 'update'])->name('update');
         Route::delete('/{id}', [FornecedorController::class, 'destroy'])->name('delete');
-        Route::get('/pesquisa', [FornecedorController::class, 'pesquisa'])->name('pesquisa');
+       
     });
 
     Route::group(['prefix' => 'funcionario', 'as' => 'funcionario.'], function () {
         Route::get('/', [FuncionarioController::class, 'index'])->name('index');
+        Route::post('/', [FuncionarioController::class, 'pesquisa'])->name('pesquisa');
         Route::get('/novo', [FuncionarioController::class, 'create'])->name('create');
         Route::post('/novo', [FuncionarioController::class, 'store'])->name('store');
         Route::get('/editar/{id}', [FuncionarioController::class, 'edit'])->name('edit');
         Route::post('/editar/{id}', [FuncionarioController::class, 'update'])->name('update');
         Route::delete('/{id}', [FuncionarioController::class, 'destroy'])->name('delete');
-        Route::get('/pesquisa', [FuncionarioController::class, 'pesquisa'])->name('pesquisa');
+        
     });
 });
