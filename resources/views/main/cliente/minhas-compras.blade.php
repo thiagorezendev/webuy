@@ -20,8 +20,22 @@
                     <p class="card-text">
                         Total: R$ <span class="total-{{ $carrinho->id_carrinho }}">{{ $total }}</span>
                     </p>
-                    <p class="card-text">Método de Pagamento: {{ $carrinho->venda->pagamento_venda }}</p>
-                    <p class="card-text">Método de Entrega: {{ $carrinho->venda->entrega_venda }}</p>
+                    <p class="card-text">Método de Pagamento:
+                        @if ($carrinho->venda->pagamento_venda == 1)
+                            Cartão de Crédito
+                        @elseif ($carrinho->venda->pagamento_venda == 2)
+                            Cartão de Débito
+                        @elseif ($carrinho->venda->pagamento_venda == 3)
+                            Pix
+                        @endif
+                    </p>
+                    <p class="card-text">Método de Entrega:
+                        @if ($carrinho->venda->entrega_venda == 1)
+                            Entrega em Domicílio
+                        @elseif ($carrinho->venda->entrega_venda == 2)
+                            Retirada no Local
+                        @endif
+                    </p>
                     <ul class="list-group">
                         @forelse($carrinho->produtos as $item)
                             @php
