@@ -177,7 +177,11 @@ class ClienteController extends Controller {
         if (Auth::guard('web')->check()) {
             $categorias = Categoria::all();
             $cliente = Auth::guard('web')->user();
-            $carrinhos = $cliente->carrinho()->whereHas('venda')->with('venda')->get();
+            $carrinhos = $cliente->carrinho()->whereHas('venda')
+            ->join('vendas', 'carrinhos.id_carrinho', '=', 'vendas.id_carrinho') // Ajuste os nomes das colunas conforme necessário
+            ->orderBy('vendas.data_venda', 'desc')
+            ->with('venda')
+            ->get();
             return view('main.cliente.minhas-compras', compact('carrinhos', 'categorias', 'cliente'));
         } else {
             return back();
