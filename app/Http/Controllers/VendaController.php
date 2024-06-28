@@ -5,10 +5,16 @@ namespace App\Http\Controllers;
 use App\Models\Carrinho;
 use App\Models\Categoria;
 use App\Models\Venda;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class VendaController extends Controller {
+
+    public function index() {
+        $vendas = Venda::all();
+        return view('adm.venda.index', compact('vendas'));
+    }
 
     public function create() {
         if(Auth::guard('web')->check()){
@@ -43,5 +49,13 @@ class VendaController extends Controller {
         ]);
         flash('Obrigado! Compra realizada com sucesso!', 'success', [], 'Sucesso');
         return redirect(route('main.home'));
+    }
+
+    public function pesquisa(Request $request) {
+        $query_feita = $request->input('query');
+        $vendas = Venda::whereHas('carrinho.cliente', function ($query) use ($query_feita) {
+            $query->where('nome_cli', 'like', '%'.$query_feita.'%');
+        })->get();
+        return view('adm.venda.index', compact('vendas'));
     }
 }

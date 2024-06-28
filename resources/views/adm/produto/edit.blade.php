@@ -1,11 +1,11 @@
-@section('titulo', 'Novo Produto')
+@section('titulo', 'Editar Produto')
 
 @extends('layout.adm-frame')
 @section('produtos', 'active')
 @section('content')
     <form action="{{ route('adm.produto.update', $produto->id_produto) }}" method="POST" enctype="multipart/form-data">
         @csrf
-        <h1 class="h1 my-4 text-center">Novo Produto</h1>
+        <h1 class="h1 my-4 text-center">Editar Produto</h1>
         <div class="row g-2">
             <div class="col-md-7 col-sm-12">
                 <input type="text" class="form-control mb-2" name="nome_produto" value="{{ $produto->nome_produto }}"
@@ -16,7 +16,7 @@
                 <select name="id_categoria" class="form-select mb-2">
                     <option value="">Escolha uma opção</option>
                     @foreach ($categorias as $categoria)
-                        <option value="{{ $categoria->id_categoria }}" {{ $produto->categoria->id_categoria == $categoria->id_categoria ? 'selected' : '' }}>{{ $categoria->nome_categoria }}</option>
+                        <option value="{{ $categoria->id_categoria }}" {{ $produto->categoria->id_categoria ?? '' == $categoria->id_categoria ? 'selected' : '' }}>{{ $categoria->nome_categoria }}</option>
                     @endforeach
                 </select>
                 <div class="input-group mb-2">

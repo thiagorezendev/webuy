@@ -33,6 +33,9 @@
                             <a class="nav-link  @yield('funcionarios')"
                                 href="{{ route('adm.funcionario.index') }}">Funcionários</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link  @yield('vendas')" href="{{ route('adm.venda.index') }}">Vendas</a>
+                        </li>
                     </ul>
                     <div class="d-flex justify-content-center">
                         <form class="d-flex flex-fill me-2" role="search" action="@yield('search-action')" method="POST">
@@ -87,6 +90,8 @@
                         class="nav-link px-2 text-body-secondary">Fornecedores</a></li>
                 <li class="nav-item"><a href="{{ route('adm.funcionario.index') }}"
                         class="nav-link px-2 text-body-secondary">Funcionários</a></li>
+                <li class="nav-item"><a href="{{ route('adm.venda.index') }}"
+                        class="nav-link px-2 text-body-secondary">Vendas</a></li>
             </ul>
         </div>
     </footer>

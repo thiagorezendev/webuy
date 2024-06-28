@@ -24,7 +24,7 @@
                         <th scope="row">{{ $produto->id_produto }}</th>
                         <td>{{ $produto->nome_produto }}</td>
                         <td>R$ {{ number_format($produto->preco_produto, 2, ',', '.') }}</td>
-                        <td>{{ $produto->categoria->nome_categoria }}</td>
+                        <td>{{ $produto->categoria->nome_categoria ?? ''}}</td>
                         <td>{{ $produto->estoque->qntd_estoque }}</td>
                         <td>
                             <a href="#" class="btn btn-indigo mb-1 mb-md-0" data-bs-toggle="modal"

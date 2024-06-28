@@ -20,7 +20,7 @@
                       <span class="estoque-{{$produto->id_produto}}"></span>
                     </div>
                   <p>{{ $produto -> desc_produto }}</p>
-                  <p>{{ $produto->categoria->nome_categoria}}</p>
+                  <p>{{ $produto->categoria->nome_categoria ?? ''}}</p>
                 </div>
             </div>
            

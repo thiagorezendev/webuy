@@ -1,11 +1,11 @@
-@section('titulo', 'Nova Categoria')
+@section('titulo', 'Editar Categoria')
 
 @extends('layout.adm-frame')
 @section('categorias', 'active')
 @section('content')
     <form action="{{ route('adm.categoria.update', $categoria->id_categoria) }}" method="POST">
         @csrf
-        <h1 class="h1 my-4 text-center">Nova Categoria</h1>
+        <h1 class="h1 my-4 text-center">Editar Categoria</h1>
         <input type="text" class="form-control mb-2" name="nome_categoria" value="{{ $categoria->nome_categoria }}"
             placeholder="Nome">
         @error('nome_categoria')

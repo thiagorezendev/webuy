@@ -1,11 +1,11 @@
-@section('titulo', 'Cadastro de Funcionario')
+@section('titulo', 'Editar Funcionario')
 
 @extends('layout.adm-frame')
 @section('funcionarios', 'active')
 @section('content')
     <form action="{{ route('adm.funcionario.update', $funcionario->id) }}" method="POST">
         @csrf
-        <h1 class="h1 my-4 text-center">Cadastro de Funcionario</h1>
+        <h1 class="h1 my-4 text-center">Editar Funcionario</h1>
         <input type="text" class="form-control mb-2" name="nome_func" value="{{ $funcionario->nome_func }}"
             placeholder="Nome">
         <div class="input-group mb-2">

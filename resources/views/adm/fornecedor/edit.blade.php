@@ -1,11 +1,11 @@
-@section('titulo', 'Novo Fornecedor')
+@section('titulo', 'Editar Fornecedor')
 
 @extends('layout.adm-frame')
 @section('fornecedores', 'active')
 @section('content')
     <form action="{{ route('adm.fornecedor.update', $fornecedor->id_fornecedor) }}" method="POST">
         @csrf
-        <h1 class="h1 my-4 text-center">Novo Fornecedor</h1>
+        <h1 class="h1 my-4 text-center">Editar Fornecedor</h1>
         <div class="row g-2 mb-2">
             <div class="col-md col-sm-12">
                 <input type="text" class="form-control" name="nome_fornecedor" value="{{ $fornecedor->nome_fornecedor }}"

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\FornecedorRequest;
+use App\Models\Compra;
 use App\Models\Fornecedor;
 use Illuminate\Http\Request;
 
@@ -52,8 +53,8 @@ class FornecedorController extends Controller {
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id_fornecedor)
-    {
+    public function destroy($id_fornecedor) {
+        Compra::where('id_fornecedor', $id_fornecedor)->update(['id_fornecedor' => null]);
         $fornecedor = Fornecedor::findOrFail($id_fornecedor);
         $fornecedor->delete();
         flash('Fornecedor deletado com sucesso!', 'success', [], 'Sucesso');

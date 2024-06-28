@@ -25,7 +25,7 @@
                     <tr>
                         <th scope="row">{{ $compra->id_compra }}</th>
                         <td>{{ $compra->produto->nome_produto }}</td>
-                        <td>{{ $compra->fornecedor->nome_fornecedor }}</td>
+                        <td>{{ $compra->fornecedor->nome_fornecedor ?? '' }}</td>
                         <td>{{ $compra->qntd_compra }}</td>
                         <td>R$ {{ number_format($compra->preco_uni_compra, 2, ',', '.') }}</td>
                         <td>{{ date_format(date_create($compra->data_venc), 'd/m/Y') }}</td>

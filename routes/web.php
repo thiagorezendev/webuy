@@ -101,9 +101,11 @@ Route::prefix('adm')->name('adm.')->group(function () {
             Route::post('/', [CompraController::class, 'pesquisa'])->name('pesquisa');
             Route::get('/novo', [CompraController::class, 'create'])->name('create');
             Route::post('/novo', [CompraController::class, 'store'])->name('store');
-            Route::get('/editar/{id}', [CompraController::class, 'edit'])->name('edit');
-            Route::post('/editar/{id}', [CompraController::class, 'update'])->name('update');
-            Route::delete('/{id}', [CompraController::class, 'destroy'])->name('delete');
+        });
+
+        Route::group(['prefix' => 'venda', 'as' => 'venda.'], function () {
+            Route::get('/', [VendaController::class, 'index'])->name('index');
+            Route::post('/', [VendaController::class, 'pesquisa'])->name('pesquisa');
         });
 
         Route::group(['prefix' => 'fornecedor', 'as' => 'fornecedor.'], function () {
