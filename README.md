@@ -12,9 +12,9 @@
 
 ## 📖 About
 
-WeBuy is a web-based e-commerce platform designed to simplify grocery shopping, especially for people who may not have the ability or time to visit physical stores. Developed as a project for the Programming II and Database II courses.
+WeBuy is a web-based e-commerce platform designed to simplify grocery shopping, especially for people who may not have the ability or time to visit physical stores. Developed as a project for the *Programming II* and *Database II* courses.
 
-WeBuy was inspired by the social context of the COVID-19 pandemic, during which online shopping became essential. While many of these services have declined, their usefulness—especially for the elderly and immunocompromised—remains evident.
+WeBuy was inspired by the social context of the COVID-19 pandemic, during which online shopping became essential. While many of these services have declined, their usefulness, especially for the elderly, remains evident.
 
 This project highlights the use of Laravel's powerful features and demonstrates growth in database handling, front-end/back-end integration, and clean application architecture.
 
@@ -28,7 +28,7 @@ This project highlights the use of Laravel's powerful features and demonstrates 
 - 📊 Sales tracking system (for administrators)
 - 🔒 Secure authentication for customers and admins
 - ⚙️ Use of stored procedures and triggers for database automation
-- 🌙 Bonus Feature: Switch between dark and light modes
+- 🌙 **Bonus Feature:** Switch between dark and light modes
 
 
 ## 🔧 Tech Stack
