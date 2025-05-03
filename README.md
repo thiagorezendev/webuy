@@ -5,7 +5,7 @@
     <img alt="GitHub followers" src="https://img.shields.io/github/followers/BrantLauro?label=Follow%20me%20%3A%29&style=social">
 </h2>
 <p align="center">
-    <img alt="dice-simulator" src="https://github.com/user-attachments/assets/8a14d85b-b4f8-4c7e-9a35-7d5df1cddb49">
+    <img alt="webuy" src="https://github.com/user-attachments/assets/8a14d85b-b4f8-4c7e-9a35-7d5df1cddb49">
 </p>
 
 ---
